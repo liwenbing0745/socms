@@ -1,0 +1,68 @@
+/* page/sqtg/sqtg_position.wxss */
+page{
+  position:relative;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+  padding-bottom: 90rpx;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.new_position{
+  padding: 15rpx ;
+  font-size: 34rpx;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.section{
+  padding: 0;
+}
+.container .section .item_box{
+  border: none;
+}
+.posi_lists{
+  margin-top: 25rpx;
+  padding: 5rpx 10rpx;
+  background-color: #efefef;
+}
+.posi_lists .items{
+  background-color: #fff;
+}
+.section .items{
+  position: relative;
+  border: 1px solid #ddd;
+  justify-content: flex-start;
+}
+.section .items .items_content{
+  padding-left: 100rpx;
+}
+.section .items .items_img{
+  position: absolute;
+  top: 32%;
+  left: 3%;
+  width: 40rpx;
+}
+.section .title{
+  display: inline-flex;
+  font-weight: 700;
+  font-size: 36rpx;
+  padding: 10rpx 0;
+}
+.section .supple{
+  display: inline-flex;
+  padding: 10rpx 0;
+}
+
+.toIndex{
+  padding: 20rpx;
+}
+.toIndex text{
+  text-decoration: underline;
+}

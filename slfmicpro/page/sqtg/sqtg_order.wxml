@@ -1,0 +1,62 @@
+<!--page/sqtg/sqtg_.wxml-->
+<view class='container'>
+  <form  bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+  <view class='content'>
+    <scroll-view scroll-y="true" class="scroll" style='height:400rpx;'>
+      <view class='items flex_box' wx:for="{{shopList}}" wx:key="{{index}}">
+        <view class='shop_img'>
+          <image src='{{item.img}}' mode='widthFix' />
+        </view>
+        <view class='shop_wrap flex_inline'>
+          <view class='shop_title'>
+            <text>{{item.title}}</text>
+          </view>
+          <view class='shop_price flex_inline'>
+            <text class='fc_orange'>￥{{item.price}}</text>
+            <text>X{{item.num}}</text>
+          </view>
+          <view hidden='{{item.isYg!="true"}}' class='fc_orange'>
+            温馨提示:此项为预订产品，提货时间:{{item.ygTime}}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class='user_infor'>
+    <view class='tip'>
+      <text>提货地址为小区团长地址，到货后请到该地址自提。</text>
+    </view>
+    <view class='th_infor'>
+      <text>提货地址：{{sqmctihoudian}}</text>
+      <view>
+        <text>团长：{{try_user_nickname}} {{mobile}}</text>
+      </view>
+    </view>
+    <view class='flex_box'>
+      <text class='fc_gray'>预留信息</text>
+    </view>
+    <view class='flex_box'>
+      <text>姓名：</text>
+      <input placeholder='请输入姓名' value='{{consigneepeo}}' type='text'  name="consigneepeo"/>
+    </view>
+    <view class='flex_box'>
+      <text>手机：</text>
+      <input placeholder='请输入手机号' value='{{consigneemobile}}' type='number' name="consigneemobile"/>
+    </view>
+    <view class='flex_box align_start'>
+      <text>备注：</text>
+      <textarea placeholder='请输入备注' name='remark'></textarea>
+    </view>
+    <view class='flex_box '>
+      <view class='price'>
+        <text>总价：￥</text>
+        <text class='fc_orange'>{{cart.total}}</text>
+      </view>
+      <view class='btn'>
+        <button class="yellow {{cart.count?'':'disabled'}}" type='primary' formType="submit" disabled="{{!confirmSubmit||!cart.count}}">提交订单</button>
+      </view>
+    </view>
+  </view>
+  </form>
+</view>

@@ -1,0 +1,43 @@
+<view class="container">
+
+  <!--图片-->
+  <view class="car_cont">
+        <image src="{{SecondsKills[0].pro_bigpic}}" mode="widthFix"></image>
+   </view>
+  <!--价格&时间-->
+  <view class='pro_content'>
+    <view class="car_box">
+        <text class="car_price">￥{{SecondsKills[0].pro_ourpri}}</text>
+        <text class="car_market">{{SecondsKills[0].pro_markpri}}元</text>
+     </view>
+    <view class="car_detail">
+      <text>距离结束还有</text>
+      <text>{{ptstate}}</text>
+    </view>
+  </view>
+  <!-- 名称 -->
+  <view class="name_cont">
+    <text class="car_name">{{SecondsKills[0].bulk_name}}</text>
+    <view class="car_detail">
+      <text>库存: {{SecondsKills[0].stock_num}}</text>
+      <text>限购: {{SecondsKills[0].xg}}</text>
+    </view>
+  </view>
+  <view class='pro_text'>
+    <text>商品详情</text>
+  </view>
+  
+  <view  class="pro_wapcon_cont" wx:for="{{pro_wapcon}}" wx:key="img">
+    <image src="{{item.img}}" mode="widthFix"/>
+  </view>
+  
+  <view class="fix_btn">
+
+    <button id="btn" class="btn_add" size="mini" data-id="{{SecondsKills[0].proid}}" bindtap="tapAddCart">
+          <text>原价购买</text>
+    </button>
+    <button id="btn" class="btn_buy" size="mini" data-id="{{SecondsKills[0].id}}" bindtap="tapPddbountyBuy">立即抢购</button>
+   
+  </view>
+
+</view>

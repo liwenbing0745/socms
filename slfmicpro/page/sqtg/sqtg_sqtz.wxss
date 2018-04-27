@@ -1,0 +1,152 @@
+/* page/sqtg/sqtg_sqtz.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+  background-color: #efefef;
+}
+view,
+text{
+  font-size: 22rpx;
+}
+form,
+.list{
+  width: 100%;
+}
+.fc_blue{
+  padding-left: 10rpx;
+  color: #0076ff;
+  font-size: 34rpx;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.items{
+  padding: 10rpx 20rpx;
+  margin: 10rpx 0;
+  flex-direction: column;
+  align-items:flex-start;
+}
+.items input,
+.items .city_picker{
+  display: block;
+  width: 570rpx;
+  height: 60rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 32rpx;
+}
+.items .city_picker{
+  margin-bottom: 30rpx;
+}
+.items>view{
+  padding: 5rpx 0;
+}
+.list .items:nth-child(2){
+  flex-direction: row-reverse;
+  align-items:center;
+}
+.list .items:nth-child(2) input{
+  width: 400rpx;
+}
+.btn{
+  margin-top: 30rpx;
+}
+.btn button{
+  color: #fff;
+}
+.title{
+  font-size: 34rpx;
+  padding: 20rpx 30rpx;
+}
+/**app.wxss**/
+.container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+} 
+
+
+/**index.wxss**/
+.input {
+  padding-top: 200rpx;
+  width: 100%;
+}
+
+.input input {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px #d9d9d9 solid;
+  border-top: 1px #d9d9d9 solid;
+  padding: 20rpx 50rpx;
+}
+
+
+.citypickers{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: #ff0;
+  z-index: 10;
+}
+
+
+.citybody {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  background:#fff;
+}
+
+.cityheader {
+  position: absolute;
+  top:0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 10rpx 30rpx;
+  z-index: 20;
+}
+
+.city-cancel {
+  font-size: 34rpx;
+  color: #828282;
+}
+
+.city-true {
+  font-size: 34rpx;
+  color: #10FF10;
+}
+
+.section .picker {
+  background-color: #fff;
+  border-bottom: 2px #cccccc solid;
+  border-top: 2px #d9d9d9 solid;
+  padding: 20rpx;
+}
+.title text{
+  font-size: 32rpx;
+}

@@ -1,0 +1,81 @@
+/* page/sqmana/sqtg_bank.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.fw_bold{
+  font-weight: 700;
+}
+.fs_mx{
+  font-size: 50rpx;
+  color: #fc4b00;
+}
+.header{
+  flex-direction: column;
+  text-align: center;
+  padding: 30rpx 15rpx;
+}
+.header image{
+  width: 120rpx;
+}
+.header text{
+  padding: 15rpx 0;
+}
+.items{
+  padding: 30rpx 20rpx;
+  background-color: #fff;
+}
+.species{
+  margin-bottom: 20rpx;
+}
+.group_radio{
+  justify-content: space-around;
+}
+.item_wrap{
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+.item_wrap text{
+  width: 30%;
+}
+.item_wrap input{
+  display: inline-flex;
+  width: 70%;
+  color: #919191;
+}
+.money_species{
+  padding: 15rpx 0;
+  justify-content: space-around;
+}
+.money_species text{
+  display: inline-flex;
+  padding: 12rpx 18rpx;
+  background-color: #fff;
+}
+.prompt{
+  margin: 25rpx;
+}
+.prompt text{
+  font-size: 26rpx;
+  color: #919191;
+  text-align: center;
+}
+.hide{
+ display: none;
+}

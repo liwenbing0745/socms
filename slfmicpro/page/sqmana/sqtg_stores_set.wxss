@@ -1,0 +1,60 @@
+/* page/sqtg/sqtg_stores_set.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container {
+	height: 100%;
+}
+.lists .items{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15rpx 0;
+  border-bottom: 1px solid #ddd;
+}
+.lists .items>text:first-child{
+  width: 30%
+}
+.lists .items input,
+.lists .items>text:nth-child(2){
+  display: inline-flex;
+  width: 70%;
+  padding: 5rpx 10rpx;
+}
+.lists{
+  width: 100%;
+  padding: 10rpx;
+  background-color: #fff;
+}
+.lists .user_img{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.lists .stores_bg_img{
+  width: 200rpx;
+  height: 140rpx;
+}
+.lists .user_img_bg .flex_inline{
+  width: auto;
+}
+.lists .items:nth-child(5) button{
+  margin-left:28%;
+}
+.hide{
+ display: none;
+}
+.radio{
+  margin: 15rpx 0;
+}

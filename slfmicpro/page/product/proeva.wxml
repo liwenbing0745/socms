@@ -1,0 +1,34 @@
+<view class="container">
+
+  <view class="evaluation">
+    <view class="title">
+      商品评论
+    </view>
+    <view class="evaList">
+      
+      <view class="evaBox" wx:for="{{tEvaluate}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+        <view class="evaBoxs">
+          <view class="evaName">
+            <view class="evaNameL">
+              <view class="myName">
+                <text>{{tEvaluate[id].nickname}}</text>
+              </view>
+              <view class="start" wx:for="{{tEvaluate[id].com_integral}}" wx:for-index="com_in" wx:for-item="com_innum" wx:key="com_in">
+                <image src="/imgs/buy/start.png" mode="widthFix"></image>
+              </view>
+              
+            </view>
+            <text>
+              {{tEvaluate[id].addtime}}
+            </text>
+          </view>
+          <view class="evaText">
+            {{tEvaluate[id].com_con}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

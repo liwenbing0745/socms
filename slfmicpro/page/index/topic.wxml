@@ -1,0 +1,27 @@
+<view class="container">
+	<view class="header">
+		<block wx:for="{{banners}}" wx:key="id">
+      <image data-id="{{index}}" src="{{item.img}}"/>
+		</block>
+	</view>
+	<view id="result" class="result">
+		<scroll-view scroll-y="true">
+      <view class="shop_list">
+        <view class="shop" wx:for="{{products}}" wx:key="id">
+          <navigator url="/page/product/prodec?id={{item.id}}">
+            <image src="{{item.img}}"/>
+            <view class="shopText">
+                <text class="v name">{{item.pro_name}}</text>
+                <view class="priceBox v">
+                  <text class="price">￥{{item.pro_ourpri}}元</text>
+                  <text class="market">{{item.pro_markpri}}元</text>
+                </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      
+      
+		</scroll-view>
+	</view>
+</view>

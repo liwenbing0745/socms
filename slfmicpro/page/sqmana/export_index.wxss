@@ -1,0 +1,17 @@
+/* page/sqmana/export_index.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+}
+view, text{
+  font-size: 32rpx;
+}
+.item{
+  padding: 20rpx 10rpx;
+  margin: 30rpx 0;
+  background-color: #fff;
+}

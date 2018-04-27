@@ -1,0 +1,5 @@
+<view class="container">
+  <view class="content-container"> 
+    <image src="/imgs/buy/cg_icon.png" mode="widthFix" style="width:100%;"></image>
+  </view>
+</view>

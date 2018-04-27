@@ -1,0 +1,124 @@
+#adduser{  
+    background: #f5f5f5; 
+    margin-top:140rpx;
+}  
+.section__title{   
+    width:30%;  
+}  
+.form-group{   
+    width: 70%;  
+}  
+.section{  
+    width:95%;  
+    margin: 5rpx auto;  
+    padding: 8rpx;
+}
+.flex{
+  display: flex; 
+  justify-content: space-between;
+  align-items:center;
+  padding: 30rpx 0;
+}  
+.section input[type=text]{
+  width: 210rpx;
+  display: inline-block;
+  border:none;
+  vertical-align:middle;
+  color: #fc4b00;
+}
+.btn-area .submit_btn{
+  background-color:#1aad19;
+  color: #fff;
+}
+.tip-text view{
+  padding: 8rpx;
+  background-color: #fff;
+}
+.input-text{  
+    border: 1px solid #ddd;  
+}  
+.button{  
+    border: 1px solid #1aad19;  
+    border-radius: 2px;  
+}  
+.picker{  
+    padding: 13px;  
+    background-color: #FFFFFF;  
+}
+.hide{
+ display: none;
+}
+.show{ 
+ display: block;
+}
+
+.page-body-wrapper .page-body-form{
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:10;
+}
+.page-body-wrapper .page-body-form .form-img image{
+  width:100%;
+}
+.page-body-wrapper .page-body-form,
+.page-body-wrapper .page-body-form .form-img{
+  display:flex;
+}
+.page-body-wrapper .page-body-form .form-img{
+  width: 100%;
+}
+.page-body-wrapper .page-body-position{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width:100%;
+  padding:10rpx 5rpx;
+  background:#fff;
+}
+.page-body-wrapper .title{
+  width:10%;
+  color:#7c7c7c;
+}
+.page-body-wrapper .modify{
+  width:20%;
+}
+.page-body-wrapper .title,
+.page-body-wrapper .modify,
+.page-body-wrapper{
+  text-align: center;
+  vertical-align: middle;
+  height:100%;
+}
+.page-body-wrapper .page-body-form .page-form-section{
+  display:inline-flex;
+  width:65%;
+  flex-direction: column-reverse;
+  text-align:left;
+}
+.page-body-wrapper .block{
+  display:block;
+  font-size:24rpx;
+  color: #7c7c7c;
+}
+.page-body-wrapper .page-body-buttons{
+  position: absolute;
+  z-index: 10;
+  width:100%;
+  top:0;
+  left:0;
+}
+.page-body-wrapper .page-body-button,
+.page-body-wrapper .page-body-buttons button[type="primary"]{
+  background:transparent;
+  color:transparent;
+  border: 0;
+  line-height: 3;
+}
+.page-body-wrapper .page-body-buttons button::after{
+  content:none;
+}

@@ -1,0 +1,211 @@
+/* page/sqmana/sqtg_u.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx; 
+  padding-bottom: 70rpx;
+}
+.container {
+	height: 100%;
+  position: relative;
+  
+}
+scroll-view {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.toggle text{
+  display: inline-block;
+  width: 50%;
+  padding: 15rpx 0;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10rpx;
+}
+.toggle .select{
+  color: #fff;
+  background-color: #b5b1b5;
+}
+.upload_box .section .items{
+  justify-content: space-around;
+  padding: 12rpx 6rpx;
+}
+.upload_box .section picker{
+  width:70%;
+  color: green;
+}
+.upload_box .section .items input{
+  width: 500rpx;
+  border-bottom: 1px solid skyblue;
+}
+.upload_box .section .items text{
+  display: inline-flex;
+  width: 120rpx;
+}
+.upload_box .btn{
+  margin-top: 25rpx;
+  color: #fff;
+}
+
+.fc_gray{
+  color: #666666;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.upload_mana_box .select_group{
+  padding: 5rpx 10rpx;
+  justify-content: space-around;
+}
+.upload_mana_box .select_group text{
+  display: inline-flex;
+  line-height:.2;
+  padding:20rpx 0;
+}
+.upload_mana_box .bc_box{
+  background-color: #659f3b;
+}
+.upload_mana_box .sort{
+  padding: 12rpx 0;
+  color: #fff;
+}
+.upload_mana_box .sort .select{
+  color: #fcff00;
+  border-bottom: 1px solid #fcff00;
+}
+.upload_mana_box .complex .select{
+  color: #fc4b00;
+}
+
+.upload_mana_box .section{
+  padding: 0;
+}
+.upload_mana_box .pro_lists{
+  max-height: 880rpx;
+  padding: 8rpx 12rpx;
+  box-sizing: border-box;
+}
+.upload_mana_box .pro_lists .items{
+  border-bottom: 1px solid #ddd;
+}
+.upload_mana_box .pro_lists .pro_img{
+  width: 200rpx;
+}
+.upload_mana_box .pro_lists .items .items_content{
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: left;
+  width:65%;
+}
+.upload_mana_box .pro_lists  .items_content>view{
+  padding: 12rpx 0;
+}
+.upload_mana_box .pro_lists .items .items_content text{
+  font-size: 24rpx;
+}
+.upload_mana_box .pro_lists .items .title text{
+  display: inline-flex;
+  font-weight: 700;
+  font-size: 36rpx;
+  width: 450rpx;
+  height: 45rpx;
+  overflow: hidden;
+}
+.upload_mana_box .pro_lists .items .btn{
+  text-align: right;
+}
+
+.upload_mana_box .footer_cart{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 8rpx;
+  background-color: #fff;
+}
+.upload_mana_box .footer_cart button{
+  height: 100%;
+  width: 250rpx;
+  background-color: #fc4b00;
+  border-radius: 0;
+  color: #fff;
+}
+.upload_mana_box .footer_cart .price{
+  color: #fc4b00;
+  font-size: 36rpx;
+  line-height: 0;
+}
+.upload_mana_box .footer_cart .disabled{
+  background-color: #ddd;
+}
+.upload_mana_box .footer_cart .select{
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  cursor: pointer;
+  background-size: 60rpx;
+}
+.upload_mana_box .footer_cart .flex_inline{
+  justify-content: flex-start;
+}
+.upload_mana_box .not_check{
+  background-image: url(http://wx.so50.com/images/购物车_01_03.png);
+}
+.upload_mana_box .select_check{
+  background-image: url(http://wx.so50.com/images/购物车_1_03.png);
+}
+.upload_mana_box .btn button{
+  margin-right: 50rpx;
+}
+.upload_mana_box .search_content{
+  padding: 10rpx 15rpx;
+  background-color: #fff;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.upload_mana_box .search_content input{
+  display: inline-flex;
+  border: 1px solid #ddd;
+  padding: 5rpx;
+  margin-left: 20rpx;
+  width: 65%;
+  border-radius: 15rpx;
+}
+.unpload_img{
+  position: relative;
+  text-align: center;
+}
+.noUnpload_img::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto auto;
+  width: 80%;
+  height: 80%;
+  background-image: url(http://wx.so50.com/images/搜农坊首页_4_2_03.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  z-index: 10;
+  opacity: .7;
+}
+
+.tips text{
+  color: #e4393c;
+  font-size: 24rpx;
+}

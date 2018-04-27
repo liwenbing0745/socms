@@ -1,0 +1,30 @@
+<view id="adduser">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="hide">
+    <input type="hidden" name="id" value="{{id}}" />
+    <input type="hidden" name="fxaudit" value="1" />
+    <input type="hidden" name="pfaudit" value="0" />
+    </view>
+    <view class="section">
+      <view class="section__title">手机号码:</view>
+      <view class='form-group'>
+        <input type="text" class="input-text" name="mobile" placeholder="请输入手机号码" />
+      </view>
+    </view>
+    <view class="section">
+      <view class="section__title">推荐人ID:</view>
+      <view class='form-group'>
+        <input type="text" class="input-text" name="tuijren" placeholder="请输入推荐人ID" />
+      </view>
+    </view>
+
+
+    <view class="section btn-area">
+      <button formType="submit">提交</button>
+    </view>
+  </form>
+
+
+
+
+</view>

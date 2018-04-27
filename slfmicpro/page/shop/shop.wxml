@@ -1,0 +1,35 @@
+<view class="container">
+
+  <view class="cart-detail">
+    <scroll-view class="list" scroll-y="true">
+      <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+        <image class="pic" src="{{goods[id].pic}}"></image>
+        <view class="details">
+          <text class="name">{{goods[id].name}}</text>
+          <view class="total">￥{{goods[id].price}}</view>
+          <view class="quantity">
+            <view class="reduce" data-id="{{id}}" bindtap="tapReduceCart">-</view>
+            <view class="num">{{num}}</view>
+            <view class="add" data-id="{{id}}" bindtap="tapAddCart">+</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+	
+	<view class="cart">
+		<view class="data">
+			<view class="icon">
+				<image src="/imgs/shop/cart.png"></image>
+				<view class="count">{{cart.count}}</view>
+			</view>
+			<view class="total">￥{{cart.total}}</view>
+		</view>
+		<form bindsubmit="submit" report-submit="true">
+			<!--<view formType="submit" class="submit">去结算</view>-->
+			<button class="yellow {{cart.count?'':'disabled'}}" formType="submit"  disabled="{{!confirmSubmit||!cart.count}}">去结算</button>
+		</form>
+	</view>
+
+  <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}"/>
+</view>

@@ -1,0 +1,18 @@
+<!--page/sqmana/export_index.wxml-->
+<view class='container'>
+  <view class='item'>
+    <navigator url='export_pro'>
+      <text>产品营销导出</text>
+    </navigator>
+  </view>
+  <view class='item'>
+    <navigator url='export_order'>
+      <text>订单营销导出</text>
+    </navigator>
+  </view>
+  <view class='item'>
+    <navigator url='sqtg_oneClickFight'>
+      <text>产品海报生成</text>
+    </navigator>
+  </view>
+</view>

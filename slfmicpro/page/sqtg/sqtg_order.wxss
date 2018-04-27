@@ -1,0 +1,126 @@
+/* page/sqtg/sqtg_.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx; 
+  padding-bottom: 70rpx;
+}
+.container {
+	height: 100%;
+  position: relative;
+  
+}
+scroll-view {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.fc_orange{
+  color: #fc4b00;
+  font-size: 24rpx;
+}
+.fc_gray{
+  color: #7d7d7d;
+}
+.align_start{
+  align-items: flex-start;
+}
+.tip {
+  padding: 10px 15rpx;
+  background-color: #fc4b00;
+  text-align: center;
+  color: #fff
+}
+.th_infor{
+  position: relative;
+  padding: 10rpx 10rpx 10rpx 50rpx;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.th_infor::before{
+  content: '';
+  position: absolute;
+  top: 6%;
+  left: 0;
+  width: 40rpx;
+  height: 45rpx;
+  background-image: url(http://wx.so50.com/images/个人中心_02_06.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.content{
+  padding: 15rpx;
+  background-color: #fff;
+}
+.content .scroll{
+  padding-bottom: 30rpx;
+  margin-bottom: 20rpx;
+}
+.items{
+  padding: 15rpx 20rpx;
+  border-bottom: 1px solid #ddd;
+}
+.items .shop_img image{
+  width: 150rpx;
+}
+.items .shop_price .fc_orange{
+  font-weight: 700;
+  font-size: 32rpx;
+}
+.items .shop_wrap{
+  padding-left: 10rpx;
+  flex-direction: column;
+}
+.items .shop_wrap>view{
+  margin: 8rpx 0;
+}
+
+
+.user_infor{
+  /* position: fixed;
+  bottom: 0;
+  left: 0;  */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  z-index: 20;
+}
+
+.user_infor .flex_box{
+  padding: 15rpx 25rpx;
+}
+.user_infor input,
+textarea{
+  width: 560rpx;
+  height: 40rpx;
+  padding: 5rpx 10rpx;
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  font-size: 32rpx;
+}
+.user_infor textarea {
+  height: 150rpx;
+}
+.user_infor .price .fc_orange{
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.user_infor .btn button{
+  width: 250rpx;
+  height: 100%;
+  color: #fff;
+  background-color: #fc4b00;
+  border-radius: 0;
+}

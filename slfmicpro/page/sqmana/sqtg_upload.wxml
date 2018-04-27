@@ -1,0 +1,67 @@
+<!--page/sqmana/sqtg_u.wxml-->
+<view class='container'>
+
+<!--上传产品  -->
+  <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+  <view class='upload_box' wx:if="{{!toggle}}">
+    <view bindtap="openLocationuser_img" class='unpload_img {{savaPro==false ? "noUnpload_img":""}}'>
+      <image alt="上传商品图片" src='{{pro_pic}}'>上传商品大图</image>
+    </view>
+
+    <view class='section'>
+      <view class='items flex_box'>
+        <text>产品标题</text>
+        <input type='text' name="pro_name" value="{{pro[0].pro_name}}"/>
+      </view>
+      <view class='items flex_box'>
+        <text>产品类目</text>
+        <picker value="{{array[selectInx]}}" range='{{array}}' bindchange="listen" name="pro_Fittingids">
+          <text>{{array[selectInx]}}</text>
+        </picker>
+      </view>
+      <view class='items flex_box'>
+        <text>产品规格</text>
+        <input type='text' name="weight_units" value="{{pro[0].weight_units}}"/>
+      </view>
+      <view class='items flex_box'>
+        <text>产品产地</text>
+        <input type='text' name="area" value="{{pro[0].area}}"/>
+      </view>
+      <view class='tips'><text>排序规则为：数字越大，越靠后出现。</text></view>
+      <view class='items flex_box'>
+        <text>排序</text>
+        <input type='digit' name="sort" value="{{pro[0].sort}}"/>
+      </view>
+      <view class='items flex_box'>
+        <text>市场价</text>
+        <input type='digit' name="pro_markpri" value="{{pro[0].pro_markpri}}"/>
+      </view>
+      <view class='items flex_box'>
+        <text>本站价</text>
+        <input type='digit' name="pro_ourpri" value="{{pro[0].pro_ourpri}}"/>
+      </view>
+      <view class='items flex_box'>
+        <text>建议价格</text>
+        <input type='digit' name="pro_sqtgpri" value="{{pro[0].pro_sqtgpri}}"/>
+      </view>
+      <view class='items flex_box'>
+        <text>供货价</text>
+        <input type='digit' name="price" value="{{pro[0].price}}"/>
+      </view>
+    </view>
+
+    <view bindtap="openLocationstoresImg" class='unpload_img {{savaWapcon==false ? "noUnpload_img":""}}'>
+      <image alt="上传商品详情图片" src='{{pro_wapcon}}'>上传商品详情图片</image>
+    </view>
+    <view  class="hide">
+      <input type="text" name="uid" value="{{uid}}" />
+      <input type="text" name="id" value="{{pro[0].proid}}" />
+      <input type="text" name="pro_pic" value="{{pro_pic}}" />
+      <input type="text" name="pro_wapcon" value="{{pro_wapcon}}" />
+    </view>
+    <button class='btn' type='warn' wx:if="{{pro[0].proid == 'undefined'}}" data-id="{{pro[0].proid}}" bindtap="tapTake">确认删除</button>
+    <button class='btn' type='primary' formType="submit"  disabled="{{!confirmSubmit}}">确认提交</button>
+  </view>
+  </form>
+
+</view>

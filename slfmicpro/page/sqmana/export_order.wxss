@@ -1,0 +1,27 @@
+/* page/sqmana/export_order.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+}
+view, text{
+  font-size: 32rpx;
+}
+.items{
+  padding: 15rpx 10rpx;
+  margin: 10rpx 0;
+  background-color: #fff;
+}
+.items text{
+  padding: 10rpx 0;
+}
+.fix_btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}

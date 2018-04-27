@@ -1,0 +1,72 @@
+<view class="container">
+  <form bindsubmit="openLocationwx">
+  <view id="result" class="result">
+    <scroll-view scroll-y="true">
+      <view class="shop" wx:for="{{addresses}}" wx:key="id">
+        <view data-id="{{item.id}}">
+          <view>
+            <text class="v">{{item.deliveryname}} , </text>
+            <text class="v">{{item.moblie}}</text>
+          </view>
+          <text class="v">{{item.AnalyAreawx}}</text>
+        </view>
+        <view class='flex_box select_box'>
+          <view class='flex_box'>
+            <radio-group class="radio-group" data-index="{{index}}" bindchange="radioChange">
+              <label class="radio" data-id="{{item.id}}" bindtap="tapSel" class="select {{item.isdefault=='1' ? 'select_check':'not_check'}}">
+                <radio value="{{item.id}}" hidden/>
+              </label>
+            </radio-group>
+            <text>设为默认地址</text> 
+          </view>
+          <view data-id="{{item.id}}">
+          <button size='mini' type='primary' class="v" data-id="{{item.id}}" bindtap="bindReplace">编辑</button>
+            <button size='mini' type='warn' data-id="{{item.id}}"  bindtap="tapDele" class="delete">删除</button>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </view>
+
+  <view class='btn_box'>
+    <button type='primary' bindtap='addRess'>手动添加</button>
+  
+    <button type='warn' formType="submit">微信添加</button>
+  
+  </view>
+  </form>
+  <view class='add_content' hidden='{{!isShowAddRess}}'>
+    <form bindsubmit="savaRess" bindreset="formReset">
+    <view class='items flex_box'>
+      <text class='left_text_box'>联系人</text>
+      <input type='text' placeholder='姓名' name='deliveryname' value="{{addresses[0].deliveryname}}"/>
+    </view>
+    <view class='items flex_box'>
+      <text class='left_text_box'>手机号码</text>
+      <input type='digit' placeholder='手机号码' name='moblie' value="{{addresses[0].moblie}}"/>
+    </view>
+    <view class='items flex_box'>
+      <text class='left_text_box'>选择地址</text>
+      <view class='select_ress_box select_ress'>
+        <picker mode="region" bindchange="CityChange" value="{{region}}" name="procity">
+          <view class="city_picker">
+            {{region}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='items flex_box select_ress_content' bindtap='openLocation'>
+      <text class='left_text_box'>详细地址</text>
+      <input type="text" name="detailInfo" value="{{address}}" class='select_ress'/>
+    </view>
+      <view  class="hide">
+        <input type="text" name="id" value="{{id}}" />
+        <input type="text" name="userid" value="{{uid}}" />
+      </view>
+    <button class='sava_btn' form-type="submit">保存地址</button>
+    </form>
+    <view class='close' bindtap='addRess'>X</view>
+  </view>
+  <view class='max' hidden='{{!isShowAddRess}}'></view>
+</view>

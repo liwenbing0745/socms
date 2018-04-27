@@ -1,0 +1,463 @@
+/* page/sqtg/sqtg_index.wxss */
+text,
+view{
+  box-sizing: border-box;
+}
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+}
+scroll-view {
+	height: 100%;
+}
+view, text{
+  font-size: 32rpx;
+}
+.ft_ys{
+  color:#b28435;
+}
+.ft_black{
+  color: #222222;
+  font-weight: 700;
+}
+.fc_gary{
+  color: #666666;
+}
+.fc_gary_one{
+  color: #999999;
+}
+.fc_orange{
+  color: #b28435;
+}
+.fc_red{
+  color: #e4393c;
+}
+.fs_line{
+  text-decoration: line-through;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.location{
+  position: relative;
+  background:#eee;
+}
+.location::after{
+  content: "";
+  display: block;
+  width: 20rpx;
+  height: 20rpx;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  transform-origin: 50%;
+  transform: rotate(135deg);
+  position: absolute;
+  left: 60%;
+  top: 30%;
+}
+.location image{
+  width: 40rpx;
+}
+.location .flex_box{
+  padding: 15rpx 5rpx;
+  justify-content: flex-start;
+}
+.location .ress{
+  width: 400rpx;
+  height: 40rpx;
+  overflow: hidden;
+}
+.header .bold{
+  font-weight: 700;
+  color: #000;
+}
+.header{
+  background-color: #fff;
+}
+.header .text_img{
+  align-items: center;
+  justify-content: flex-start;
+}
+.shop_info{
+  padding: 15rpx;
+}
+.shop_info text,
+.shop_info view,
+.shop_ress text,
+.shop_ress view{
+  font-size: 26rpx;
+  color: #666666;
+}
+.shop_ress view .fc_red{
+  color: #e4393c;
+}
+.shop_info .name_box{
+  width: 750rpx;
+}
+.shop_info .name{
+  width:100%;
+  height: 50rpx;
+  overflow: hidden;
+  color: #000;
+  font-size: 38rpx;
+}
+.shop_info .shop_wrap{
+  width: 74%;
+  flex-direction: column;
+  padding-left: 15rpx;
+}
+.shop_info .shop_wrap>view{
+  padding: 15rpx 0; 
+}
+.shop_info .shop_wrap .tongzhi{
+  justify-content: flex-start;
+}
+.shop_info .share_code,
+.shop_info .phone{
+  width: 40rpx;
+}
+.shop_ress .ress_cart{
+  width: 50rpx;
+}
+.shop_ress .flex_box>view:first-child{
+  padding-right: 10rpx;
+}
+.shop_ress{
+  padding: 8rpx 15rpx;
+}
+.shop_ress .flex_box{
+  justify-content: flex-start;
+}
+.shop_info .shop_img{
+  width: 100%;
+  height: 340rpx;
+}
+.shop_info .user_img{
+  width: 175rpx;
+  max-height: 175rpx;
+}
+
+
+.title{
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.filters{
+  justify-content: space-around;
+}
+.filters .filter{
+  font-weight: 500;
+  font-size: 32rpx;
+  padding: 15rpx 5rpx;
+}
+.filters .active{
+  color: #b28435;
+  border-bottom: 3px solid #b28435;
+}
+.skill_notice{
+  padding: 20rpx 10rpx;
+  background-color: #f7f0e4;
+}
+.skill_notice text{
+  font-size: 26rpx;
+}
+.skill_notice>view:first-child text{
+  font-weight: 700;
+}
+.skill_notice .time_box{
+  padding: 8rpx;
+  margin: 0 5rpx;
+  background-color: #e4d5a8;
+  border-radius: 10rpx;
+}
+.product_list{
+  position: relative;
+}
+.product_list .item{
+  position:relative;
+}
+.product_list .item .skill_box::before{
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 0;
+  width: 70rpx;
+  height: 70rpx;
+  background-image: url(http://wx.so50.com/images/秒杀.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+}
+.product_list .item .skill_box .skill_box_text {
+  font-size:34rpx;
+  font-weight: 700;
+  color: #e4393c; 
+}
+.product_list .item .skill_over::after{
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 35%;
+  width: 200rpx;
+  height: 200rpx;
+  background-image: url(http://wx.so50.com/images/seconds_over.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+}
+.product_list .item,
+.booking_list .items{
+  padding: 30rpx 20rpx;
+  border-bottom: 1px solid #ddd;
+}
+.product_list .item_img{
+  width:100%;
+}
+.booking_list .item_img{
+  width: 250rpx;
+}
+.product_list .icon_cart{
+  width: 70rpx;
+}
+.booking_list .icon_cart{
+  width: 50rpx;
+}
+.product_list .imgs_box{
+  width: 30%;
+}
+.product_list .item_wrap{
+  width: 65%;
+}
+.product_list .item_wrap>navigator.flex_box,
+.booking_list .item_wrap{
+  position: relative;
+  flex-direction: column;
+  padding-left: 30rpx;
+}
+.item_wrap view{
+  padding: 5rpx 10rpx;
+}
+.item_wrap .market text{
+  font-size:28rpx;
+}
+.item_wrap .market .stock_box{
+  width: auto;
+  padding: 0;
+  line-height: 0;
+}
+.product_list .pro_title{
+  width: 100%;
+  height: 90rpx;
+  overflow: hidden;
+  padding: 0;
+}
+.product_list .th_time{
+  width: 100%;
+  height:65rpx;
+  text-align: left;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+.product_list .th_time text{
+  font-size: 24rpx;
+  color: #fc4b00;
+}
+.product_list .price .ft_ys,
+.booking_list .price .ft_ys{
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.product_list .price .profit{
+  font-size: 24rpx;
+}
+.product_list .price .modify_ipt{
+  width: 185rpx;
+}
+.product,
+.booking_list{
+  margin-bottom: 20rpx;
+  background-color: #fff;
+}
+.booking_list .text .flex_box{
+  flex-direction: column;
+  padding: 0 5rpx;
+}
+.booking_list .text .flex_box:last-child{
+  padding-left: 20rpx;
+}
+.booking_list .text .flex_box text{
+  padding: 8rpx 0;
+  width:195rpx;
+  height: 40rpx;
+  overflow: hidden;
+}
+.booking_list .text .flex_box:first-child{
+  border-right: 2px solid #ddd;
+}
+.booking_list .text .flex_box text:first-child {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.booking_list .specification{
+  width: 100%;
+  padding-bottom: 0;
+}
+.booking_list .item_wrap .frofit{
+  position: absolute;
+  top: 86%;
+  left: 7%;
+  z-index: 10;
+}
+.booking_list .description{
+  width: 400rpx;
+  height: 76rpx;
+  overflow: hidden;
+}
+.booking_list .title,
+.booking_list .specification{
+  height: 50rpx;
+  overflow: hidden;
+  text-align: left;
+}
+.section{
+  padding-bottom: 300rpx;
+  background-color: #f7f7f7;
+}
+
+.product_list .modify_box input{
+  width: 100rpx;
+}
+.product_list .modify_box .modify_content{
+  width: 60%;
+  flex-direction: column;
+  align-items:flex-start;
+}
+.product_list .modify_box .poster button{
+  width: 200rpx;
+  height: 60rpx;
+  color: #b28435;
+  background-color: #fff;
+  border: 1px solid #b28435;
+}
+.product_list .modify_box .modify_content .flex_inline{
+  line-height: 0;
+  width: auto;
+}
+.product_list .modify_box .profit{
+  line-height: 100%;
+}
+.tzBtn{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  padding: 20rpx 0;
+  z-index: 100;
+}
+.tzBtn button{
+  width: 250rpx;
+  height: 80rpx;
+  font-size: 34rpx;
+}
+.img_box,
+.modify_big{
+  position: relative;
+}
+.img_box .modify_img,
+.modify_big .modify_img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(http://wx.so50.com/images/搜农坊首页_4_2_03.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 10;
+  opacity: .7;
+}
+
+.cart {
+	display: flex;
+	position: fixed;
+	left: 0;
+	bottom: 10%;
+	width: 100%;
+	height: 100rpx;
+	background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.cart .data {
+	-webkit-flex: 1;
+}
+.cart .data .icon {
+	position: absolute;
+	left: 40rpx;
+	top: -20rpx;
+	width: 100rpx;
+	height: 100rpx;
+	background: #856029;
+	border-radius: 50%;
+}
+.cart .data .icon image {
+	position: absolute;
+	left: 16rpx;
+	top: 16rpx;
+	width: 70rpx;
+	height: 70rpx;
+}
+.cart .data .icon .count {
+	position: absolute;
+	left: 70rpx;
+	top: -10rpx;
+	font-size: 30rpx;
+	line-height: 40rpx;
+	padding: 0 12rpx;
+	color: #fff;
+	background: #f45044;
+	border-radius: 20rpx;
+}
+.cart .data .total {
+	color: #f45044;
+	font-size: 36rpx;
+	line-height: 100rpx;
+	padding-left: 160rpx;
+}
+.cart button {
+	margin-top: 10rpx;
+	margin-right: 20rpx;
+	width: 200rpx;
+	height: 100%;
+	font-size: 36rpx;
+}
+.add_data{
+  height:80rpx;
+  line-height:80rpx;
+  margin-top:20rpx;
+  text-align: center;
+  cursor: pointer;
+}
+.add_data text{
+  padding: 15rpx 25rpx;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 10rpx;
+  color: #fc4b00;
+}
+
+

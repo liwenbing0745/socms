@@ -1,0 +1,52 @@
+<!--page/sqmana/mana.wxml-->
+<view class='container'>
+  <view class='header'>
+    <view class='stores flex_box'>
+      <view class='stores_img'><image src='{{try_user_img}}' mode='widthFix'/></view>
+      <view class='stores_infor flex_inline'>
+        <view class='stores_name flex_box'>
+          <text>{{sqmcdipmc}}</text>
+          <navigator url='/page/sqmana/sqtg_stores_set'>
+            <text class='undeline'>修改店铺资料</text>
+          </navigator>
+        </view>
+        <view class='stores_ress'>【{{sqmc}}】</view>
+        <view class='stores_income'>
+          <text>今日累计收益：{{stroesInfo.todaySales}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='income flex_box'>
+      <view class='flex_box cum_sales'>
+        <text class='fc_gray'>累计收益</text>
+        <text class='fc_orange fw_bold'>{{stroesInfo.cumSales}}</text>
+      </view>
+      <view class='income_wrap flex_box'>
+        <view class='items'>
+          <text class='fc_gray'>累计销售额</text>
+          <text class='fc_orange'>{{stroesInfo.sumSales}}</text>
+        </view>
+        <view class='items'>
+          <text class='fc_gray'>累计订单</text>
+          <text class='fc_orange'>{{stroesInfo.cumOrder}}</text>
+        </view>
+        <view class='items'>
+          <text class='fc_gray'>累计提现金额</text>
+          <text class='fc_orange'>{{stroesInfo.cumMoney}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='section'>
+    <view class='mana_list flex_box'>
+      <view class='items' wx:for="{{manaList}}" wx:key="{{index}}">
+        <navigator url='{{item.url}}'>
+          <view><image src='{{item.img}}' mode='widthFix' /></view>
+          <view><text>{{item.text}}</text></view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+</view>

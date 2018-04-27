@@ -1,0 +1,209 @@
+page{
+  position:relative;
+  padding-bottom: 120rpx;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.detail_cont {
+  margin: 10px;
+  margin-bottom: 0px;
+}
+
+#detail {
+  font-weight: bolder;
+}
+
+.info_cont {
+  margin: 0px 10px;
+}
+
+#info {
+  color: #888888;
+}
+
+.car_cont , .car_pic{
+  width: 100%;
+  height:740rpx;
+}
+.car_cont image{
+  display:block;
+  width:100%;
+}
+.pro_wapcon_cont image{
+  display:block;
+  width:100%;   
+}
+.name_cont {
+  padding:5px;
+  background-color:#fff;
+}
+
+.car_name {
+  font-size:34rpx;
+  font-weight: bold;
+  margin-left: 10px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden; 
+  height:120rpx;
+  line-height: 170%;
+}
+.car_box, .car_detail{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding:15rpx 10rpx 10rpx 20rpx;
+}
+.car_price {
+    color: #FF6600;
+    font-size:50rpx;
+}
+.car_market {
+    text-decoration:line-through;
+    color:#9fa0a0;
+    padding:15rpx 10rpx 10rpx 20rpx;
+}
+
+.name_cont .quantity{
+  display:-webkit-flex;
+  padding:10rpx 0;
+}
+.name_cont .quantity .reduce,
+.name_cont .quantity .add {
+	font-size: 50rpx;
+	background: #feb70f;
+	width: 50rpx;
+	height: 50rpx;
+  line-height:95%;
+	text-align: center;
+	border-radius: 50%;
+}
+.name_cont .quantity .num {
+	text-align: center;
+	margin: 0 5rpx;
+  padding:0 15rpx;
+  line-height: 180%;
+}
+
+.evaluation{
+  display:flex;
+  flex-direction:column;
+  padding:15rpx 10rpx 10rpx 20rpx;
+  margin:15rpx 0;
+  background-color:#fff;
+}
+.evaluation .evaBoxs{
+  display:flex;
+  flex-direction:column;
+  padding:5rpx;
+  border-bottom: 1px solid #ddd;
+}
+.evaluation .evaBoxs .evaName{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+.evaluation .evaBoxs .evaNameL{
+ display:flex;
+}
+.evaluation .evaBoxs .myName{
+ padding-right: 10rpx;
+}
+.evaluation .evaBoxs .start{
+  width:26rpx;
+}
+.evaluation .evaBoxs .start image{
+  width:100%;
+}
+.evaluation .evaBoxs view{
+  padding:8rpx 0;
+}
+.evaluation .title,
+.evaluation .addEva{
+  padding:8rpx;
+  text-align:center;
+}
+.evaluation .title{
+  font-size: 32rpx;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.evaluation .addEva{
+  padding:15rpx 5rpx; 
+}
+
+.productPicture{
+  display:flex;
+  flex-direction:column;
+}
+.productPicture image{
+  width:100%;
+  height:100%;
+}
+
+.fix_btn{
+  display: flex;
+  position:fixed;
+  width:100%;
+  left:0;
+  bottom:0;
+  background-color:#fff;
+  z-index:5;
+}
+.fix_btn button{
+  color:#fff;
+}
+#btn ,.fix_btn .btn_index{
+  font-family: "Microsoft YaHei";
+  font-size:30rpx;
+  padding:15rpx 5rpx;
+  border-radius:0;
+  overflow: hidden;
+}
+button::after{
+  border:none;
+  border-radius: 0;
+}
+.fix_btn .btn_index navigator{
+  width:100%;
+  height:100%;
+  line-height:70rpx;
+  text-align: center;
+}
+.fix_btn button{
+  background-color:transparent;
+}
+.fix_btn .btn_buy,
+.fix_btn .btn_add{
+  width:35%;
+  background-color:#e4393c;
+}
+.fix_btn .btn_index,
+.fix_btn .btn_save{
+  width:15%;
+  color:#000;
+  border-top:1px solid #ddd;
+}
+.fix_btn .btn_index{
+  border-right:1px solid #ddd;
+}
+.fix_btn .btn_add{
+  background-color:#ff971c;
+}
+.fix_btn .cartNum{
+  position: absolute;
+  top:2%;
+  left:58%;
+  width:40rpx;
+  height:40rpx;
+  background:#fff;
+  overflow: hidden;
+  border-radius:50%;
+  text-align: center;
+  line-height: 140%;
+}
+.fix_btn .cartNum text{
+  font-size:24rpx;
+}

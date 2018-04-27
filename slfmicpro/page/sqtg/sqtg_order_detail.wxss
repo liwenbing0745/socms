@@ -1,0 +1,129 @@
+/* page/sqtg/sqtg_order_detail.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx; 
+  padding-bottom: 70rpx;
+}
+.container {
+	height: 100%;
+  position: relative;
+  
+}
+.section{
+  padding: 20rpx 0;
+}
+scroll-view {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.fc_red{
+  color: #ff1908;
+}
+.fc_gray{
+  color: #9d9d9d;
+}
+.bor_bt{
+  padding: 20rpx 5rpx;
+  border-bottom: 1px solid #ddd;
+}
+.text_unline{
+  text-decoration: line-through;
+}
+.header{
+  position: relative;
+  background-image: url(http://wx.so50.com/images/26_订单详情bg_02.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 200rpx;
+  color: #fff;
+}
+.header text{
+  position: absolute;
+  top: 45%;
+  left: 10%;
+}
+.left_space_box {
+  position: relative;
+  padding:5rpx 5rpx 5rpx 100rpx;
+}
+.left_space_box button::after{
+  border: 1px solid #ff1908;
+}
+.left_space_box::before{
+  content: '';
+  position: absolute;
+  top: 18%;
+  left: 2%;
+  width: 50rpx;
+  height: 50rpx;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.delivery::before{
+  background-image: url(http://wx.so50.com/images/26_订单详情_icon_03.png);
+}
+.ship::before{
+  background-image: url(http://wx.so50.com/images/26_订单详情_icon_07.png);
+}
+.ship>view,
+.delivery>text{
+  width: 65%;
+}
+.wrap{
+  padding: 0 10rpx;
+}
+.wrap .wrap_center>view,
+.wrap .wrap_right>view{
+  padding: 12rpx 0;
+}
+.wrap .wrap_right{
+  text-align: right;
+}
+.wrap .wrap_img{
+  width: 200rpx;
+  height:200rpx;
+}
+.wrap .wrap_center .title,
+.wrap .wrap_center .note{
+  width: 400rpx;
+  height: 70rpx;
+  padding-left: 20rpx;
+  overflow: hidden;
+}
+.wrap .wrap_center .note{
+  height: 35rpx;
+}
+
+
+.padding_el{
+  text-align: right;
+}
+.padding_el button{
+  margin-right: 10rpx;
+  padding: 10rpx 30rpx;
+}
+.padding_el .bc_red{
+  background-color: #ff1908;
+  color: #fff;
+}
+.all_price{
+  padding: 40rpx 5rpx;
+}
+.all_price .fc_red{
+  font-size: 36rpx;
+}
+.btn_box{
+  padding: 10rpx 0;
+}

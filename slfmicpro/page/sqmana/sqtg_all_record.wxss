@@ -1,0 +1,119 @@
+/* page/sqtg/sqtg_all_record.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:30rpx;
+}
+.container {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.fc_white{
+  color: #fff;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.fc_gray{
+  color:#656565;
+}
+.bgc_orange{
+  background-color: #fc4b00;
+}
+.bc_white{
+  background-color: #fff;
+}
+.fs_there{
+  font-size: 50rpx;
+  font-weight: 700;
+}
+.mbonus_head{
+  position: relative;
+  color: #fff;
+  text-align: center;
+  font-size: 30rpx;
+  padding: 40rpx 0;
+  background: #f3981c;
+}
+.mbonus_head .details{
+  position: absolute;
+  top: 49%;
+  right:18%;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 22rpx;
+  background-color: green;
+  color: #fff;
+}
+
+.mbonus .mbonus_lists .items{
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+  padding:15rpx;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.mbonus .mbonus_lists{
+  margin-top: 30rpx;
+}
+.mbonus .mbonus_lists .items{
+  background-color: #fff;
+}
+.mbonus .mbonus_lists .items>view,
+.mbonus .mbonus_lists .items .items_wrap{
+  padding: 15rpx 10rpx;
+}
+.mbonus .mbonus_lists .items .items_img{
+  width: 30%;
+  font-size: 0;
+  text-align:center;
+}
+.mbonus .mbonus_lists .items .items_img image{
+  width: 200rpx;
+  height: 200rpx;
+}
+.mbonus .mbonus_lists .bor_btm{
+  border-bottom: 1px solid #ddd;
+}
+.mbonus .mbonus_lists .items .item_header text{
+  font-size: 26rpx;
+  color: #979797;
+}
+.mbonus .mbonus_lists .items .items_wrap_center{
+  width: 70%;
+  height:200rpx;
+  flex-direction: column;
+  padding-left: 15rpx;
+}
+.mbonus .mbonus_lists .items .pro_title{
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+}
+.mbonus .mbonus_lists .items .order_btn_box{
+  justify-content: flex-end;
+}
+.mbonus .mbonus_lists .items .order_btn_box button{
+  margin:0 0 0 20rpx;
+}

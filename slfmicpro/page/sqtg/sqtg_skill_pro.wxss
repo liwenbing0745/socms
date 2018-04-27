@@ -1,0 +1,346 @@
+/* page/sqtg/sqtg_skill_pro.wxss */
+page{
+  position:relative;
+  padding-bottom: 120rpx;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.detail_cont {
+  margin: 10px;
+  margin-bottom: 0px;
+}
+
+#detail {
+  font-weight: bolder;
+}
+
+.info_cont {
+  margin: 0px 10px;
+}
+
+#info {
+  color: #888888;
+}
+
+.pro_text {
+  padding: 16rpx 0;
+  text-align: center;
+  background-color: #fff;
+}
+.pro_text text{
+  padding: 8rpx 0;
+  color: #fc3c24;
+  font-size: 32rpx;
+}
+.car_cont , .car_pic{
+  width: 100%;
+}
+.car_cont image{
+  display:block;
+  width:100%;
+}
+.pro_wapcon_cont image{
+  display:block;
+  width:100%;   
+}
+.name_cont {
+  padding:5px;
+  background-color:#fff;
+}
+
+.pro_content{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 100rpx;
+  padding: 0 45rpx 0 20rpx;
+  background: -webkit-linear-gradient(left,#EE3431,#FF6000);
+  background: linear-gradient(to right,#EE3431,#FF6000);
+}
+.pro_content .car_detail{
+  display: inline-flex;
+  flex-direction: column;
+}
+.pro_content .car_detail text,
+.pro_content .car_price{
+  color: #fff;
+}
+.pro_content::after{
+  content: ' ';
+  position: absolute;
+  top: 15%;
+  right: 1%;
+  width: 32rpx;
+  height: 64rpx;
+  background-image: url('http://wx.so50.com/images/shandian_03.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.car_name {
+  font-size:34rpx;
+  font-weight: bold;
+  margin-left: 10px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden; 
+  height:120rpx;
+  line-height: 170%;
+}
+.car_box, .car_detail{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding:15rpx 10rpx 10rpx 20rpx;
+}
+.car_price {
+    color: #FF6600;
+    font-size:50rpx;
+}
+.car_market {
+    text-decoration:line-through;
+    color:#9fa0a0;
+    padding:15rpx 10rpx 10rpx 20rpx;
+}
+
+.name_cont .quantity{
+  display:-webkit-flex;
+  padding:10rpx 0;
+}
+.name_cont .quantity .reduce,
+.name_cont .quantity .add {
+	font-size: 50rpx;
+	background: #feb70f;
+	width: 50rpx;
+	height: 50rpx;
+  line-height:95%;
+	text-align: center;
+	border-radius: 50%;
+}
+.name_cont .quantity .num {
+	text-align: center;
+	margin: 0 5rpx;
+  padding:0 15rpx;
+  line-height: 180%;
+}
+
+.evaluation{
+  display:flex;
+  flex-direction:column;
+  padding:15rpx 10rpx 10rpx 20rpx;
+  margin:15rpx 0;
+  background-color:#fff;
+}
+.evaluation .evaBoxs{
+  display:flex;
+  flex-direction:column;
+  padding:5rpx;
+  border-bottom: 1px solid #ddd;
+}
+.evaluation .evaBoxs .evaName{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+.evaluation .evaBoxs .evaNameL{
+ display:flex;
+}
+.evaluation .evaBoxs .myName{
+ padding-right: 10rpx;
+}
+.evaluation .evaBoxs .start{
+  width:26rpx;
+}
+.evaluation .evaBoxs .start image{
+  width:100%;
+}
+.evaluation .evaBoxs view{
+  padding:8rpx 0;
+}
+.evaluation .title,
+.evaluation .addEva{
+  padding:8rpx;
+  text-align:center;
+}
+.evaluation .title{
+  font-size: 32rpx;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.evaluation .addEva{
+  padding:15rpx 5rpx; 
+}
+
+.productPicture{
+  display:flex;
+  flex-direction:column;
+}
+.productPicture image{
+  width:100%;
+  height:100%;
+}
+
+.fix_btn{
+  display: flex;
+  position:fixed;
+  width:100%;
+  left:0;
+  bottom:0;
+  background-color:#fff;
+  z-index:5;
+  justify-content: flex-start;
+}
+.fix_btn button{
+  color:#fff;
+  width:70%;
+}
+#btn ,.fix_btn .btn_index{
+  font-family: "Microsoft YaHei";
+  font-size:30rpx;
+  padding:15rpx 5rpx;
+  border-radius:0;
+  overflow: hidden;
+}
+button::after{
+  border:none;
+  border-radius: 0;
+}
+.fix_btn .btn_index navigator{
+  width:100%;
+  height:100%;
+  line-height:70rpx;
+  text-align: center;
+}
+.fix_btn button{
+  background-color:transparent;
+}
+.fix_btn .btn_buy,
+.fix_btn .btn_add{
+  background-color:#e4393c;
+}
+.fix_btn .btn_index,
+.fix_btn .btn_save{
+  color:#000;
+  border-top:1px solid #ddd;
+}
+.fix_btn .btn_index{
+  border-right:1px solid #ddd;
+  width: 30%;
+}
+.fix_btn .btn_add{
+  background-color:#ff971c;
+}
+.fix_btn .cartNum{
+  position: absolute;
+  top:2%;
+  left:58%;
+  width:40rpx;
+  height:40rpx;
+  background:#fff;
+  overflow: hidden;
+  border-radius:50%;
+  text-align: center;
+  line-height: 140%;
+}
+.fix_btn .cartNum text{
+  font-size:24rpx;
+}
+.details_img image{
+  display: block;
+  width: 100%;
+}
+.user_img_box{
+  margin-bottom: 15rpx;
+  background-color: #fff;
+}
+.user_img_box .group_num {
+  padding:15rpx 0;
+  text-align: center;
+}
+.user_img_box .content_box {
+  justify-content: flex-start;
+}
+.user_img_box .group_num text{
+  color: #e4393c;
+}
+.user_img_box .items{
+  width: 25%;
+  flex-direction: column;
+}
+.user_img_box .items .img_box{
+  text-align: center;
+}
+.user_img_box .user_img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.user_img_box .user_name{
+  width: 100%;
+  height: 36rpx;
+  padding: 8rpx 0;
+  overflow: hidden;
+  text-align: center;
+}
+.skill_over{
+  position: relative;
+}
+.skill_over::after{
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 35%;
+  width: 200rpx;
+  height: 200rpx;
+  background-image: url(http://wx.so50.com/images/seconds_over.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+}
+.name_cont_box{
+  width: 100%;
+  padding: 15rpx 10rpx;
+  background-color: #fff;
+}
+.name_cont_box .skill_text{
+  color: #e4393c;
+  font-weight: 700;
+}
+.name_cont_box .name{
+  width: 70%;
+}
+.name_cont_box .title,
+.name_cont_box .car_name{
+  display: inline-block;
+  width: 100%;
+  height: 40rpx;
+  overflow: hidden;
+}
+.name_cont_box .car_name{
+  height: 90rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.name_cont_box .car_box{
+  width: 30%;
+  text-align: center;
+  justify-content:center;
+}
+.car_box image{
+  width: 50rpx;
+  height: 50rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "search-box": "./components/search_box"
+  }
+}
