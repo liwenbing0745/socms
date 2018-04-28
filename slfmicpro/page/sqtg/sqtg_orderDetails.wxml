@@ -46,7 +46,7 @@
           {{item.sqmcdipmcmobile==''?'':'团长电话'}}
         </button>
         <!--<button size='mini'>我要评价</button>-->
-        <navigator url='/page/sqmana/sqtg_order_detail?id={{item.id}}'>
+        <navigator url='/page/sqtg/sqtg_order_detail?id={{item.id}}'>
         <button size='mini' class='fc_orange'>{{item.active}}</button>
         </navigator>
       </view>
