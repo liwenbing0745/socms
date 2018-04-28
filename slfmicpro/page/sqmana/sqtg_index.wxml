@@ -135,7 +135,7 @@
             </view>
             <view class='item_wrap {{item.boutysum >= item.freeord ? "skill_over" : "" }}'>
                 <view class='pro_title title'>
-                <text class='skill_box_text' hidden='{{item.issqtgseckill!=1}}'>【秒杀】</text>
+                <text class='skill_box_text'>{{item.issqtgseckill!=1 ? '【爆款】' : '【秒杀】'}}</text>
                   {{item.pro_name}}
                 </view>
                 <view class='th_time' hidden='{{filterId!=0}}'>

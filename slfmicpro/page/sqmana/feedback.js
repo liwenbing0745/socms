@@ -5,12 +5,14 @@ Page({
  data: {
        uid: wx.getStorageSync('rd_session'),
        storesImg:"",
-       id: "0"
+       id: "0",
+       order: ''
    },
    onLoad: function (options) {
        var self = this;
        self.setData({
-           id: options.id
+           id: options.id,
+           order: options.order
        })
    },
 

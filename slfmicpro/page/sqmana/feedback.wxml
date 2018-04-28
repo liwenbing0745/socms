@@ -6,6 +6,12 @@
     <view class="page-body-wrapper">
       <form bindsubmit="openLocationsubmit">
         <view class="page-body-form">
+          <view class="page-body-form-item">
+            <text class="page-body-form-key">订单号</text>
+            <view>
+              <text>{{order}}</text>
+            </view>
+          </view>
          <view class="page-body-form-item">
             <text class="page-body-form-key">反馈内容</text>
             <input class="page-body-form-value" type="text" value="" name="feedcontent" placeholder="请输入反馈内容"></input>
@@ -15,7 +21,7 @@
             <input class="page-body-form-value" type="text" value="" name="feedcontel" placeholder="请输入联系方式"></input>
           </view>
           <view class='items'>
-            <text>上传凭证</text>
+            <text>上传图片</text>
             <image class='stores_bg_img' src='{{storesImg}}' mode='widthFix' />
             <button size='mini' class='btn' bindtap="openLocationstoresImg">选择文件</button>
           </view>

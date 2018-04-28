@@ -89,12 +89,6 @@ Page({
           url: '/page/sqmana/sqtg_back',
           img: 'http://wx.so50.com/images/history(1).png',
           text: '售后记录'
-      },
-      {
-          id: 11,
-          url: '/page/sqmana/feedback',
-          img: 'http://wx.so50.com/images/service_xcx.png',
-          text: '申请售后'
       }
     ]
   },  

@@ -329,19 +329,19 @@ tapFilter: function (e) {
         //console.log('products', res)
     });
 },
-loadImages: function () {
-    var self = this;
-    self.data.page = self.data.page + 1;
-    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', { userid: wx.getStorageSync('rd_session'),SearchKey: self.data.searchWords, typ: self.data.typ, page: self.data.page, page_size: self.data.page_size }, function (res) {
-       if (self.data.page > res.data.allpage) {
-        }else {
-          self.setData({ scrollTop: 100,
-            products: res.data.results,
-            page: parseInt(res.data.page)
-          });
-        }
-    });
-},
+// loadImages: function () {
+//     var self = this;
+//     self.data.page = self.data.page + 1;
+//     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', { userid: wx.getStorageSync('rd_session'),SearchKey: self.data.searchWords, typ: self.data.typ, page: self.data.page, page_size: self.data.page_size }, function (res) {
+//        if (self.data.page > res.data.allpage) {
+//         }else {
+//           self.setData({ scrollTop: 100,
+//             products: res.data.results,
+//             page: parseInt(res.data.page)
+//           });
+//         }
+//     });
+// },
 refesh: function () {
     var self = this;
     self.data.page = self.data.page - 1;

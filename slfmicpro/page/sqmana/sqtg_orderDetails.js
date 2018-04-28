@@ -195,7 +195,7 @@ Page({
 
         },
       makefeedback: function (e) {
-        wx.navigateTo({ url: '/page/sqmana/feedback?id='+ e.target.dataset.id });
+        wx.navigateTo({ url: '/page/sqmana/feedback?id='+ e.target.dataset.id + '&&order=' +e.target.dataset.order });
      }
 
 })

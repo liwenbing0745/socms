@@ -209,9 +209,12 @@ view, text{
   background-size: 100% 100%;
   z-index: 10;
 }
-.product_list .item .skill_box .skill_box_text {
+.product_list .item .skill_box_text{
   font-size:34rpx;
   font-weight: 700;
+  color: #e4393c; 
+}
+.product_list .item .skill_box .skill_box_text {
   color: #e4393c; 
 }
 .product_list .item,

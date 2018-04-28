@@ -122,7 +122,7 @@
             <view class='item_wrap {{item.boutysum >= item.freeord ? "skill_over" : "" }}'>
               <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}" class='flex_box'>
                 <view class='pro_title title'>
-                  <text class='skill_box_text' hidden='{{item.issqtgseckill!=1}}'>【秒杀】</text>
+                  <text class='skill_box_text'>{{item.issqtgseckill!=1 ? '【爆款】' : '【秒杀】'}}</text>
                   {{item.pro_name}}
                 </view>
                 <view class='th_time' hidden='{{filterId!=0}}'>
@@ -149,9 +149,9 @@
          
         </view>
       </view>
-      <view class='add_data' bindtap='loadImages' hidden='{{filterId!=0}}'>
+      <!--<view class='add_data' bindtap='loadImages' hidden='{{filterId!=0}}'>
         <text>加载更多</text>
-      </view>
+      </view>-->
     </scroll-view>
 
     <view class='booking_list'>

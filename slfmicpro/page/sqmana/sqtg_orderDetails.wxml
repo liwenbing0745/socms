@@ -47,8 +47,8 @@
       </view>
       <view class='order_btn_box flex_box'>
         <!--/page/sqmana/feedback 只有处于已发货和已提货状态才显示 -->
-        <button data-id="{{item.id}}" size='mini' hidden="{{item.order_state=='4' ? false : true}}" bindtap='makefeedback'>申请售后</button>
-        <button data-id="{{item.id}}" size='mini' hidden="{{item.order_state=='5' ? false : true}}" bindtap='makefeedback'>申请售后</button>
+        <button data-order='{{item.orderNum}}' data-id="{{item.id}}" size='mini' hidden="{{item.order_state=='4' ? false : true}}" bindtap='makefeedback'>申请售后</button>
+        <button data-order='{{item.orderNum}}' data-id="{{item.id}}" size='mini' hidden="{{item.order_state=='5' ? false : true}}" bindtap='makefeedback'>申请售后</button>
         <button data-id="{{item.id}}" size='mini' bindtap="tapTake" hidden="{{item.order_state=='4' ? false : true}}">{{item.order_state=='4'?'确认提货':''}}</button>
         <button size='mini' data-id="{{item.consigneemobile}}" hidden='{{item.active == "已提货"}}' bindtap="makePhone">
           通知提货
