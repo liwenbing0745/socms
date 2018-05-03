@@ -169,6 +169,14 @@ view, text{
   color: #b28435;
   border-bottom: 3px solid #b28435;
 }
+.section .fix_scroll{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: #fff;
+}
 .skill_notice{
   padding: 20rpx 10rpx;
   background-color: #f7f0e4;

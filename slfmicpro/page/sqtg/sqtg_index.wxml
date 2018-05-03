@@ -1,4 +1,5 @@
 <!--page/sqtg/sqtg_index.wxml-->
+<page>
 <view class='container'>
   <view class='header'>
 
@@ -74,7 +75,7 @@
 
   <view class='section'>
 
-    <view class='filters flex_box'>
+    <view class='filters flex_box {{scrollFix == true ? "fix_scroll" : ""}} '>
       <view class="filter ft_black {{filterId==0?'active':''}}" data-id="0" bindtap="tapFilter">
         爆款
       </view>
@@ -109,7 +110,7 @@
         <text class='time_box second'>{{sqstate.sec}}</text>
       </view>
     </view> -->
-    <scroll-view class='product'  scroll-y="true" style="height:100%;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+    <scroll-view class='product' scroll-y="true" style="height:100%;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
       <view class='product_list'>
 
         <view class='item' wx:for="{{products}}" wx:key="id">
@@ -209,5 +210,5 @@
   </view>
 
    <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}"/>
-
 </view>
+</page>

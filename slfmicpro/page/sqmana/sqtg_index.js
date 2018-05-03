@@ -29,12 +29,9 @@ Page({
     booking: []
   },
   modifyActive:function(){
-    
-    
       this.setData({
         isModify: true
       })
-    
   },
  formSubmit: function (e) {
      //  console.log('wx.login', e);

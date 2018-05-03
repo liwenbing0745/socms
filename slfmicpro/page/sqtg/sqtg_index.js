@@ -41,7 +41,8 @@ Page({
         total: 0,
         list: {}
       },
-      booking: []
+      booking: [],
+      scrollFix: false
   },
   toCart:function(){
     wx.redirectTo({
@@ -53,6 +54,19 @@ Page({
       isModify: true
     });
   },
+//   滚动吸顶
+  onPageScroll: function (event) {  
+    var scrollTop = event.scrollTop;
+    if(scrollTop > 400 && !this.data.scrollFix){
+        this.setData({  
+            scrollFix:true
+        }); 
+    }else if(scrollTop < 400 && this.data.scrollFix){
+        this.setData({  
+            scrollFix:false
+        }); 
+    };
+   },  
  formSubmit: function (e) {
     //  console.log('wx.login', e);
     var that = this;

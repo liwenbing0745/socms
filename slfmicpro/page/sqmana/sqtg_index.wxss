@@ -163,6 +163,7 @@ view, text{
   color: #b28435;
   border-bottom: 3px solid #b28435;
 }
+
 .skill_notice{
   padding: 20rpx 10rpx;
   background-color: #f7f0e4;
