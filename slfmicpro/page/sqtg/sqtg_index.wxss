@@ -249,7 +249,7 @@ view, text{
   width: 50rpx;
 }
 .product_list .imgs_box{
-  width: 30%;
+  width: 35%;
 }
 .product_list .item_wrap{
   width: 65%;

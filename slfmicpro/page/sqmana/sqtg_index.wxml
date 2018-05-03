@@ -134,9 +134,10 @@
             <view class='imgs_box'>
               <image class="item_img" src="{{item.img}}" mode="widthFix"/>
             </view>
-            <view class='item_wrap {{item.boutysum >= item.freeord ? "skill_over" : "" }}'>
+            <view class='item_wrap {{item.boutysum >= item.freeord && item.issqtgseckill == 1 ? "skill_over" : "" }}'>
                 <view class='pro_title title'>
-                <text class='skill_box_text'>{{item.issqtgseckill!=1 ? '【爆款】' : '【秒杀】'}}</text>
+                <text class='skill_box_text' wx:if='{{ item.issqtgseckill != 0 }}'>{{item.issqtgseckill == 1 ? '【秒杀】' : ''}}</text>
+                <text class='skill_box_text' wx:if='{{ item.issqtgseckill != 1 && item.issqtgbk != 0 }}'>{{item.issqtgbk ==1 ? '【爆款】' : ''}}</text>
                   {{item.pro_name}}
                 </view>
                 <view class='th_time' hidden='{{filterId!=0}}'>
