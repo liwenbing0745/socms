@@ -10,7 +10,7 @@
     <text wx:for="{{toactive}}" wx:key="{{index}}" class="{{activeIndex==index?'select':''}}" data-index="{{index}}" data-id="{{item.attr}}" bindtap='toActive'>{{item.text}}</text>
   </view> 
 
-  <scroll-view class='orderLists'  scroll-y="true"  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+  <scroll-view class='orderLists'  scroll-y="true"  style="height:{{scrollHeight}}px" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
     <view class='items' wx:for="{{orderDetails}}" wx:key="{{index}}">
       <view class='item_top_box item_txt' style='{{item.txtStyle}}' data-index='{{index}}' bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">  
         <view class='flex_box item_header'>

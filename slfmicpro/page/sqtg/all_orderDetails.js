@@ -20,6 +20,7 @@ Page({
     startX:0,
     leftBox:null,
     isShowLeftBox: false,
+    scrollHeight:0,
     today:[
       {
         text: '今天',
@@ -120,8 +121,15 @@ Page({
     // console.log('products', res)
       self.setData({
         order_state: options.order_state,
-        orderDetails: res.data.results
+        orderDetails: res.data.results,
       })
+    });
+    wx.getSystemInfo({
+      success:function(res){
+        self.setData({
+          scrollHeight:res.windowHeight * 2
+        });
+      }
     });
   },
 
@@ -145,7 +153,9 @@ Page({
 
         });
   },
+
    loadImages: function () {
+      wx.showNavigationBarLoading();
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
         self.data.page = self.data.page + 1;
@@ -153,7 +163,7 @@ Page({
             if (self.data.page > res.data.allpage) {
             }
             else {
-                self.setData({ scrollTop: 100,
+                self.setData({ 
                     orderDetails: res.data.results,
                     page: parseInt(res.data.page),
                     scrollTop: 100
@@ -161,8 +171,10 @@ Page({
             }
             //console.log('products', res)
         });
+        wx.hideNavigationBarLoading();
     },
     refesh: function () {
+      wx.showNavigationBarLoading();
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
         self.data.page = self.data.page - 1;
@@ -170,14 +182,15 @@ Page({
             if (self.data.page < 1) {
             }
             else {
-                self.setData({ scrollTop: 100,
-                    orderDetails: res.data.results,
-                    page: parseInt(res.data.page),
-                    scrollTop: 100
+                self.setData({ 
+                  scrollTop: 100,
+                  orderDetails: res.data.results,
+                  page: parseInt(res.data.page),
                 });
             }
             //console.log('products', res)
         });
+        wx.hideNavigationBarLoading();
     },
       tapPay: function (e) {
         var self = this;
@@ -477,32 +490,6 @@ Page({
 
     });
 
-  },
-
-  //点击删除按钮事件
-
-  delDetails:function(e){
-
-    //获取列表中要删除项的下标
-
-    var index = e.currentTarget.dataset.index;
-
-    var list = this.data.orderDetails;
-
-    // !! TODO:提交服务器，获取新的数据
-
-    //移除列表中下标为index的项
-
-    list.splice(index,1);
-
-    //更新列表的状态
-
-    this.setData({
-
-      orderDetails:list
-
-    });
-
-  },
+  }
 
 })

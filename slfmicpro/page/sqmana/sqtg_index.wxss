@@ -33,6 +33,15 @@ view, text{
 .fc_orange{
   color: #b28435;
 }
+.fc_red{
+  color: #e4393c;
+}
+.fc_orange_one{
+  color: #b28435;
+}
+.fc_orange_two{
+  color:#f14e01;
+}
 .fs_line{
   text-decoration: line-through;
 }
@@ -415,3 +424,78 @@ input[type=digit]{
 .nav_footer .flex_box text{
   padding: 5rpx 0;
 }
+
+/* 18-05-04 */
+.search_pro_box{
+  justify-content: space-around;
+  padding: 20rpx;
+}
+.search_pro_box button{
+  margin: 0;
+}
+.sale_product .price_box,
+.user_box .user_infor{
+  width: auto;
+}
+.sale_product .item_img{
+  width: 100%;
+}
+.sale_product .pro_title{
+  width:100%;
+  height:120rpx;
+  overflow:hidden;
+  padding:0;
+  line-height: 2;
+}
+.sale_product .pro_title .tip_box{
+  padding: 8rpx 15rpx;
+  font-size: 32rpx;
+  color:#fff;
+  background-color: #fc4b00;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.sale_product .top_box{
+  padding: 12rpx 0;
+}
+.sale_product .bottom_box{
+  line-height:.5;
+}
+.sale_product .price_wrap{
+  line-height: 1;
+  padding: 25rpx 0;
+}
+.sale_product .price_box{
+  line-height: 0;
+}
+.sale_product .price{
+  display: inline;
+  font-size: 44rpx;
+  font-weight: 700;
+  margin-right: 15rpx;
+}
+.sale_product .btn{
+  border-radius: 25rpx;
+  color: #fff;
+  background-color: #fc4b00;
+}
+.bk_product_list .btn{
+  border: #b28435;
+  color: #b28435;
+  background-color: #fff;
+}
+.sale_product .user_box{
+  justify-content: flex-end;
+  padding: 10rpx 8rpx;
+}
+.sale_product .user_box .user_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.sale_product .user_box text{
+  font-size: 26rpx;
+}
+
+

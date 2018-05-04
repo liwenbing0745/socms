@@ -26,7 +26,9 @@ Page({
     isTuanZhang: false,
     isModify:false,
     products: [],
-    booking: []
+    booking: [],
+    skillProduct:[],
+    bkProduct:[]
   },
   modifyActive:function(){
       this.setData({
@@ -120,6 +122,8 @@ onShow: function () {
     fxxcxewmimg: res.data.uro[0].fxxcxewmimg,
   
             products: res.data.results,
+              skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
             booking: res.data.products
         });
 
@@ -192,6 +196,8 @@ onShow: function () {
      fxxcxewmimg: res.data.uro[0].fxxcxewmimg,
   
                       products: res.data.results,
+                       skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
                 booking: res.data.products
                     });
 
@@ -265,6 +271,8 @@ tapFilter: function (e) {
        self.setData({
                          filterId: e.target.dataset.id,
             products: res.data.results,
+             skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
                 booking: res.data.products,
             typ: e.target.dataset.id
                     });
@@ -280,6 +288,8 @@ loadImages: function () {
             else {
        self.setData({ scrollTop: 100,
                          products: res.data.results,
+                          skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
             page: parseInt(res.data.page)
                     });
                     }
@@ -296,6 +306,8 @@ refesh: function () {
             else {
                self.setData({ scrollTop: 100,
                          products: res.data.results,
+                          skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
             page: parseInt(res.data.page)
                     });
                     }
@@ -338,6 +350,8 @@ refesh: function () {
             else {
                 self.setData({
                     products: res.data.results,
+                     skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
                     page: parseInt(res.data.page)
                 });
             }

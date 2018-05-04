@@ -10,8 +10,9 @@ Page({
 //        },
       uid: wx.getStorageSync('rd_session'),
       scrollTop: 100,
-
-      
+         searchWords: '',
+     
+      AreaSNF:"",
       sqmcdipmc:"",
       ssshutongzi:"",
       storesImg: "",
@@ -42,7 +43,10 @@ Page({
         list: {}
       },
       booking: [],
-      scrollFix: false
+      scrollFix: false,
+      skillProduct:[],
+    bkProduct:[]
+     
   },
   toCart:function(){
     wx.redirectTo({
@@ -151,6 +155,7 @@ onShow: function () {
        
          self.setData({
              try_user_nickname: res.data.pro[0].try_user_nickname,
+             AreaSNF: res.data.pro[0].AreaSNF,
            scene:res.data.scene,
           sqmcdipmc:res.data.pro[0].sqmcdipmc,
     ssshutongzi:res.data.pro[0].ssshutongzi,
@@ -164,9 +169,12 @@ onShow: function () {
     fxaudit: res.data.pro[0].fxaudit,
     mobile: res.data.pro[0].mobile,
                        products: res.data.results,
+                       skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
                 booking: res.data.products,
                  cart: res.data.cart
                     });
+                    console.log(res.data.issqtgseckill,res.data.issqtgbk);
 //          var totalSecond = res.data.bulk_endtime - Date.parse(new Date()) / 1000;
 //          if (totalSecond>0)
 //          {
@@ -216,7 +224,23 @@ onShow: function () {
       withShareTicket: true
     });
   },
-
+    inputSearch: function (e) {
+        this.setData({
+            searchWords: e.detail.value
+        })
+    },
+    doSearch: function () {
+        var self = this;
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', {userid: wx.getStorageSync('rd_session'),tit: self.data.searchWords,scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
+               self.setData({
+              products: res.data.results,
+               skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
+              booking: res.data.products,
+              cart: res.data.cart
+            });
+        });
+    },
   onLoad: function (options) {
       var self = this;
       var rd_session = wx.getStorageSync('rd_session');
@@ -239,7 +263,8 @@ onShow: function () {
           
              scene: res.data.scene,
              try_user_nickname: res.data.pro[0].try_user_nickname,
-             sqmcdipmc: res.data.pro[0].sqmcdipmc,
+             AreaSNF: res.data.pro[0].AreaSNF,
+               sqmcdipmc: res.data.pro[0].sqmcdipmc,
              ssshutongzi: res.data.pro[0].ssshutongzi,
               storesImg: res.data.pro[0].storesImg,
               weixinhao: res.data.pro[0].weixinhao,
@@ -250,6 +275,8 @@ onShow: function () {
               fxaudit: res.data.pro[0].fxaudit,
               mobile: res.data.pro[0].mobile,
               products: res.data.results,
+               skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
               booking: res.data.products,
               cart: res.data.cart
             });
@@ -337,6 +364,8 @@ tapFilter: function (e) {
       self.setData({
             filterId: e.currentTarget.dataset.id,
             products: res.data.results,
+             skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
             booking: res.data.products,
             typ: e.currentTarget.dataset.id
                     });
@@ -364,6 +393,8 @@ refesh: function () {
             }
             else {   self.setData({ scrollTop: 100,
                          products: res.data.results,
+                          skillProduct: res.data.issqtgseckill,
+                       bkProduct: res.data.issqtgbk,
             page: parseInt(res.data.page)
                     });
                     }
