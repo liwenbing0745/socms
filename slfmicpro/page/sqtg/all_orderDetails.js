@@ -86,7 +86,7 @@ Page({
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrderall.ashx', { userid: rd_session,todata:todata, page: self.data.page, page_size: self.data.page_size }, function (res) {
             self.setData({
              order_state:0,
-          tit:"",
+                tit:"",
                 orderDetails: res.data.results,
                  todata: todata,
                   dataIndex: inx
