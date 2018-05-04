@@ -20,7 +20,7 @@ Page({
         var rd_session = wx.getStorageSync('rd_session');
         var openid = wx.getStorageSync('openid');
         server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/GetOrderDetail.ashx', { userid: rd_session, openid: openid, id: e.target.dataset.id, action: 'tapPay' }, function (res) {
-            //console.log(res)
+            if (res.data.resultspay.errormess == '') {
                wx.requestPayment({
                 'timeStamp': res.data.resultspay.timeStamp,
                 'nonceStr': res.data.resultspay.nonceStr,
@@ -49,6 +49,14 @@ Page({
 //                    });
                 }
             })
+        }
+        else {
+            wx.showModal({
+                title: '温馨提示',
+                content: res.data.resultspay.errormess,
+                showCancel: false
+            });
+        }
         });
     },
     tapRei: function (e) {

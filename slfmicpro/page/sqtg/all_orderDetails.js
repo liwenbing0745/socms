@@ -8,14 +8,18 @@ Page({
    */
   data: {
     page: 1,
-        page_size: 6,
-          scrollTop: 100,
-          order_state:0,
-          todata:0,
-          tit:"",
+    page_size: 6,
+    scrollTop: 100,
+    order_state:0,
+    todata:0,
+    tit:"",
     isTz: false,//判断是否为团长
     activeIndex: 0,
     dataIndex: 0,
+    delBtnWidth: 180,
+    startX:0,
+    leftBox:null,
+    isShowLeftBox: false,
     today:[
       {
         text: '今天',
@@ -69,7 +73,7 @@ Page({
       }
     ],
     orderDetails:[
-   
+
     ]
   },
 
@@ -111,15 +115,14 @@ Page({
    */
   onLoad: function (options) {
     var self = this;
-        var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrderall.ashx', { userid: rd_session,order_state:options.order_state,page: self.data.page, page_size: self.data.page_size }, function (res) {
-         // console.log('products', res)
-             self.setData({
-               order_state: options.order_state,
-               orderDetails: res.data.results
-            })
-
-        });
+    var rd_session = wx.getStorageSync('rd_session');
+    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrderall.ashx', { userid: rd_session,order_state:options.order_state,page: self.data.page, page_size: self.data.page_size }, function (res) {
+    // console.log('products', res)
+      self.setData({
+        order_state: options.order_state,
+        orderDetails: res.data.results
+      })
+    });
   },
 
   /**
@@ -134,8 +137,8 @@ Page({
         var rd_session = wx.getStorageSync('rd_session');
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrderall.ashx', { userid: rd_session,tit:tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
             self.setData({
-             order_state:0,
-          todata:0,
+              order_state:0,
+            todata:0,
                 orderDetails: res.data.results,
                  tit: tit
             })
@@ -181,8 +184,8 @@ Page({
         var rd_session = wx.getStorageSync('rd_session');
         var openid = wx.getStorageSync('openid');
         server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/SetOrder.ashx', { userid: rd_session, openid: openid, id: e.target.dataset.id, action: 'tapPay' }, function (res) {
-//            console.log(res)
-//            console.log(e.target.dataset.id)
+   if (res.data.resultspay.errormess == '') {
+         
             wx.requestPayment({
                 'timeStamp': res.data.resultspay.timeStamp,
                 'nonceStr': res.data.resultspay.nonceStr,
@@ -208,6 +211,14 @@ Page({
                     //                    });
                 }
             })
+            }
+            else {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: res.data.resultspay.errormess,
+                    showCancel: false
+                });
+            }
         });
     },
   
@@ -231,6 +242,267 @@ Page({
         } 
       }
     })
+  },
+
+  touchS:function(e){
+
+    if(e.touches.length==1){
+
+      this.setData({
+
+        //设置触摸起始点水平方向位置
+
+        startX:e.touches[0].clientX
+
+      });
+
+    }
+
+  },
+
+  touchM:function(e){
+
+    if(e.touches.length==1){
+      //获取手指触摸的是哪一项
+
+      var index = e.currentTarget.dataset.index;
+
+      var list = this.data.orderDetails;
+
+      //判断
+
+      this.showLeftBox(index);
+
+      this.clearLeftBox(index);
+
+      if(this.data.isShowLeftBox){
+
+        //手指移动时水平方向位置
+
+        var moveX = e.touches[0].clientX;
+
+        //手指起始点位置与移动期间的差值
+
+        var disX = this.data.startX - moveX;
+
+        var delBtnWidth = this.data.delBtnWidth;
+
+        var txtStyle = "";
+
+        if(disX == 0 || disX < 0){//如果移动距离小于等于0，文本层位置不变
+
+          txtStyle = "left:0px";
+
+        }else if(disX > 0 ){//移动距离大于0，文本层left值等于手指移动距离
+
+          txtStyle = "left:-"+disX+"px";
+
+          if(disX>=delBtnWidth){
+
+            //控制手指移动距离最大值为删除按钮的宽度
+
+            txtStyle = "left:-"+delBtnWidth+"px";
+
+          }
 
         }
+
+        list[index].txtStyle = txtStyle;
+        
+        //更新列表的状态
+
+        this.setData({
+
+          orderDetails:list,
+
+          leftBox: index
+
+        });
+
+      }
+
+    }else{
+      return false;
+    }
+
+  },
+  //根据订单状态判断能否左滑
+  showLeftBox:function(inx){
+
+    let list = this.data.orderDetails;
+
+    let list_key = list[inx].order_state;
+
+    let isShow = false;
+
+    switch (list_key) {
+      case '1':
+        isShow = true;
+        break;
+      case '2':
+        isShow = true;
+        break;
+      case '6':
+        isShow = true;
+        break;
+      case '7':
+        isShow = true;
+        break;
+      case '8':
+        isShow = true;
+        break;
+      default:
+        isShow = false;
+        break;
+    };
+
+    this.setData({
+
+      isShowLeftBox: isShow
+
+    });
+
+  },
+
+  //清除已有左滑
+  clearLeftBox:function(inx){
+
+    let list = this.data.orderDetails;
+
+    let oinx = this.data.leftBox;
+
+    if( oinx == inx){
+
+      return false
+
+    }else if( oinx ){
+
+      list[oinx].txtStyle = '';
+
+      this.setData({
+
+        orderDetails: list
+
+      });
+
+    };
+
+    this.setData({
+
+      leftBox: oinx
+
+    });
+
+  },
+
+  touchE:function(e){
+
+    if(e.changedTouches.length==1){
+
+      if(this.data.isShowLeftBox){
+
+        //手指移动结束后水平位置
+
+        var endX = e.changedTouches[0].clientX;
+
+        //触摸开始与结束，手指移动的距离
+
+        var disX = this.data.startX - endX;
+
+        var delBtnWidth = this.data.delBtnWidth;
+
+        //如果距离小于删除按钮的1/2，不显示删除按钮
+
+        var txtStyle = disX > delBtnWidth/2 ? "left:-"+delBtnWidth+"px":"left:0px";
+
+        //获取手指触摸的是哪一项
+
+        var index = e.currentTarget.dataset.index;
+
+        var list = this.data.orderDetails;
+
+        list[index].txtStyle = txtStyle;
+
+        //更新列表的状态
+
+        this.setData({
+
+          orderDetails:list
+
+        });
+
+      }
+
+    }
+
+  },
+
+  //获取元素自适应后的实际宽度
+
+  getEleWidth:function(w){
+
+    var real = 0;
+
+    try{
+
+      var res = wx.getSystemInfoSync().windowWidth;
+
+      var scale = (750/2)/(w/2);//以宽度750px设计稿做宽度的自适应
+
+      // console.log(scale);
+
+      real = Math.floor(res/scale);
+
+      return real;
+
+    } catch(e) {
+
+      return false;
+
+     // Do something when catch error
+
+    }
+
+  },
+
+  //设置实际宽度
+
+  initEleWidth:function(){
+
+    var delBtnWidth = this.getEleWidth(this.data.delBtnWidth);
+
+    this.setData({
+
+      delBtnWidth:delBtnWidth
+
+    });
+
+  },
+
+  //点击删除按钮事件
+
+  delDetails:function(e){
+
+    //获取列表中要删除项的下标
+
+    var index = e.currentTarget.dataset.index;
+
+    var list = this.data.orderDetails;
+
+    // !! TODO:提交服务器，获取新的数据
+
+    //移除列表中下标为index的项
+
+    list.splice(index,1);
+
+    //更新列表的状态
+
+    this.setData({
+
+      orderDetails:list
+
+    });
+
+  },
+
 })

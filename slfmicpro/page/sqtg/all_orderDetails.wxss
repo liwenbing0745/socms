@@ -57,9 +57,38 @@ scroll-view {
   margin-top: 30rpx;
 }
 .orderLists .items{
+  position:relative;
+  height:450rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+.orderLists .items .item_top_box{
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
   background-color: #fff;
 }
-.orderLists .items>view,
+.orderLists .items .item_txt{
+  width: 100%;
+  z-index: 5;
+  padding:0 10rpx;
+  transition: left 0.2s ease-in-out;
+}
+.orderLists .items .item_bottom_box{
+  position:absolute;
+  top:0;
+  right: 0;
+  width: 180rpx;
+  height: 100%;
+  line-height:450rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #e64340;
+  z-index: 4;
+}
+.orderLists .items .item_top_box>view,
 .orderLists .items .items_wrap{
   padding: 15rpx;
 }

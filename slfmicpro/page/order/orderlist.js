@@ -67,34 +67,42 @@ Page({
         var rd_session = wx.getStorageSync('rd_session');
         var openid = wx.getStorageSync('openid');
         server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/SetOrder.ashx', { userid: rd_session, openid: openid, id: e.target.dataset.id, action: 'tapPay' }, function (res) {
-            //console.log(res)
-            wx.requestPayment({
-                'timeStamp': res.data.resultspay.timeStamp,
-                'nonceStr': res.data.resultspay.nonceStr,
-                'package': res.data.resultspay.package,
-                'signType': 'MD5',
-                'paySign': res.data.resultspay.paySign,
-                'success': function (ress) {
-                    //                    wx.showModal({
-                    //                        title: '提示',
-                    //                        content: "支付成功",
-                    //                        showCancel: false
-                    //                    });
-                    server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UpdateOrderState.ashx', { id: res.data.results[0].id, sp_billno: res.data.results[0].order_no }, function (payres) {
-                        wx.navigateTo({ url: '/page/order/buy' });
-                    });
-                    self.setData({
-                        orderlists: res.data.results
-                    })
-                },
-                'fail': function (ress) {
-                    //                    wx.showModal({
-                    //                        title: '提示',
-                    //                        content: "支付失败",
-                    //                        showCancel: false
-                    //                    });
-                }
-            })
+            if (res.data.resultspay.errormess == '') {
+                wx.requestPayment({
+                    'timeStamp': res.data.resultspay.timeStamp,
+                    'nonceStr': res.data.resultspay.nonceStr,
+                    'package': res.data.resultspay.package,
+                    'signType': 'MD5',
+                    'paySign': res.data.resultspay.paySign,
+                    'success': function (ress) {
+                        //                    wx.showModal({
+                        //                        title: '提示',
+                        //                        content: "支付成功",
+                        //                        showCancel: false
+                        //                    });
+                        server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UpdateOrderState.ashx', { id: res.data.results[0].id, sp_billno: res.data.results[0].order_no }, function (payres) {
+                            wx.navigateTo({ url: '/page/order/buy' });
+                        });
+                        self.setData({
+                            orderlists: res.data.results
+                        })
+                    },
+                    'fail': function (ress) {
+                        //                    wx.showModal({
+                        //                        title: '提示',
+                        //                        content: "支付失败",
+                        //                        showCancel: false
+                        //                    });
+                    }
+                })
+            }
+            else {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: res.data.resultspay.errormess,
+                    showCancel: false
+                });
+            }
         });
     },
     tapRei: function (e) {

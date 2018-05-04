@@ -29,7 +29,7 @@
           <view class='shop_wrap'> 
             <view class='flex_box'>
               <view class='flex_inline name_box'>
-                <text class='bold name' hidden="{{isModify}}">{{sqmcdipmc}}</text>
+                <text class='bold name'>{{sqmcdipmc}}</text>
               </view>
               <view class='flex_box text_img success'>
                 <icon type="success" size='20'></icon>
