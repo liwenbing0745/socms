@@ -115,13 +115,24 @@ view, text{
 .shop_ress text,
 .shop_ress view{
   font-size: 26rpx;
-  color: #666666;
+  color: #999999;
 }
 .shop_ress view .fc_red{
   color: #e4393c;
 }
 .shop_info .name_box{
   width: 750rpx;
+}
+.shop_info .phone_box{
+  width:210rpx;
+  padding: 5rpx 25rpx;
+  margin-right:19rpx;
+  border-radius: 25rpx;
+  border: 1px solid #856029;
+  text-align: center;
+}
+.shop_info .phone_box text{
+  color: #856029;
 }
 .shop_info .name{
   width:100%;
@@ -137,6 +148,13 @@ view, text{
 }
 .shop_info .shop_wrap>view{
   padding: 15rpx 0; 
+}
+.shop_info .shop_wrap>view:first-child{
+  padding-bottom:5rpx;
+}
+.shop_info .shop_wrap>view:nth-child(2){
+  padding: 0 0 15rpx 0;
+  border-bottom: 1px solid #EFEFEF;
 }
 .shop_info .shop_wrap .tongzhi{
   justify-content: flex-start;
@@ -163,7 +181,9 @@ view, text{
 }
 .shop_info .user_img{
   width: 175rpx;
-  max-height: 175rpx;
+  height: 175rpx;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 
@@ -264,9 +284,10 @@ view, text{
 }
 .product_list .pro_title{
   width: 100%;
-  height: 90rpx;
+  height: 45rpx;
   overflow: hidden;
   padding: 0;
+  font-size:30rpx;
 }
 .product_list .th_time{
   width: 100%;
@@ -385,6 +406,15 @@ view, text{
   width:35%;
   text-align:center;
 }
+.modify_big .phase{
+  position: absolute;
+  top:27%;
+  left: 28%;
+  font-size: 66rpx;
+  /* #fa2753 */
+  color: #522f1a;
+  z-index: 11;
+}
 
 .cart {
 	display: flex;
@@ -395,6 +425,7 @@ view, text{
 	height: 100rpx;
 	background: #fff;
   border-bottom: 1px solid #ddd;
+  z-index:50;
 }
 .cart .data {
 	-webkit-flex: 1;
@@ -487,7 +518,7 @@ view, text{
   padding-bottom: 20rpx;
 }
 .sale_product .bottom_line{
-  border-bottom: .1rpx solid #EFEFEF;
+  border-bottom: 1px solid #EFEFEF;
 }
 .sale_product .price_box,
 .user_box .user_infor{
@@ -502,7 +533,7 @@ view, text{
   overflow:hidden;
   padding:0;
   line-height: 2;
-  font-size: 26rpx;
+  font-size: 30rpx;
 }
 .sale_product .pro_title .tip_box{
   padding: 8rpx 12rpx;
@@ -530,7 +561,7 @@ view, text{
 }
 .sale_product .price{
   display: inline;
-  font-size: 28rpx;
+  font-size: 36rpx;
   font-weight: 700;
   margin-right: 15rpx;
 }
@@ -565,14 +596,17 @@ view, text{
   margin-bottom: 12rpx;
   background-color: #fff;
 }
-.skill_product_list .item .skill_over::after{
+.sale_product .item_img_box{
+  position: relative;
+}
+.sale_product .skill_over .item_img_box::after{
   content: '';
   position: absolute;
-  top: 55%;
-  left: 35%;
-  width: 250rpx;
-  height: 250rpx;
-  background-image: url(http://wx.so50.com/images/seconds_over.png);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(http://wx.so50.com/images/indexmask.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
@@ -588,4 +622,31 @@ view, text{
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
+}
+/* 18-05-08 左上角弹窗*/
+.message_box{
+  position: fixed;
+  top:3%;
+  left: 2%;
+  width: auto;
+  height: auto;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  background-color: #000;
+  opacity: .7;
+}
+.message_box text{
+  color: #fff;
+}
+.message_box .user_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@keyframes show{
+  from{opacity: .0;}
+  20%{opacity: .7;}
+  80%{opacity: .7;}
+  to{opacity: 0;}
 }

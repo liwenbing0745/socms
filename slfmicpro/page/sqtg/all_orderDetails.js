@@ -8,7 +8,7 @@ Page({
    */
   data: {
     page: 1,
-    page_size: 6,
+    page_size: 12,
     scrollTop: 100,
     order_state:0,
     todata:0,
@@ -263,7 +263,7 @@ Page({
 
       this.setData({
 
-        //设置触摸起始点水平方向位置
+        //设置触摸起始点
 
         startX:e.touches[0].clientX
 
@@ -390,7 +390,7 @@ Page({
 
     }else if( oinx ){
 
-      list[oinx].txtStyle = '';
+      list[oinx].txtStyle = 'left:0px';
 
       this.setData({
 

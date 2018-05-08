@@ -27,16 +27,16 @@
       <image class='user_img' src='{{try_user_img}}' mode='widthFix'/>
       <button size='mini' bindtap="openLocationuser_img">选择文件</button>
     </view>
-    <view class='items'>
+   <!-- <view class='items'>
       <text>背景</text>
       <view class='bg_img_box'>
         <radio-group class="radio-group" bindchange="radioChange">
-          <!--用户自选图片  -->
+          
           <view class='user_img_bg'>
             <image class='stores_bg_img' src='{{storesImg}}' />
             <button size='mini' class='btn' bindtap="openLocationstoresImg">选择文件</button>
           </view>
-          <!--系统预设置图片  -->
+          
           <label class="radio flex_inline" wx:for='{{bgImgs}}' wx:key='{{index}}'>
             <radio value="{{item.name}}" checked="{{item.checked=='0'}}" data-id="{{item.src}}" bindtap="tapbgImgsid"/>
             <image class='stores_bg_img' src='{{item.src}}'  data-id="{{item.src}}" bindtap="tapbgImgsid"/>
@@ -44,7 +44,7 @@
 
         </radio-group>
       </view>
-    </view>
+    </view> -->
     <view class='items'>
       <text>预售专区</text>
       <switch checked='{{ysIs}}' value="ys" name='ysIs'></switch>

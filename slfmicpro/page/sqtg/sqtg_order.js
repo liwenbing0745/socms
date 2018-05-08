@@ -91,7 +91,24 @@ formSubmit: function (e) {
    }
 },
 onReady: function () {
+    // wx.showToast({
+    //     title: '购买失败，您已购买该产品。',
+    //     icon: 'none',
+    //     duration: 2000,
+    //     mask: true
+    // });
     if (this.data.ispay == "1") {
+        wx.showModal({
+            title: '提示',
+            content: '购买失败，每人仅限购买一次',
+            success:function(res){
+                if(res.confirm){
+                    //console.log('用户点击确定');
+                }else if (res.cancel){
+                    //console.log('用户点击取消');
+                };
+            }
+        })
         wx.redirectTo({ url: '/page/sqtg/all_orderDetails' });
     }
 },

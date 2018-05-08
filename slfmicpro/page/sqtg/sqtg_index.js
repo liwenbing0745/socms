@@ -11,7 +11,7 @@ Page({
       uid: wx.getStorageSync('rd_session'),
       scrollTop: 100,
          searchWords: '',
-     
+      phase: '0',
       AreaSNF:"",
       sqmcdipmc:"",
       ssshutongzi:"",
@@ -37,6 +37,10 @@ Page({
       isTuanZhang: false,
       isModify:false,
       products: [],
+      Dynamic: [],
+      messageDisplay:false,
+      messInx:0,
+      message:{},
       cart: {
         count: 0,
         total: 0,
@@ -58,7 +62,31 @@ Page({
       isModify: true
     });
   },
-//   滚动吸顶
+    messageBox:function(){
+        let self = this;
+        if(this.data.Dynamic.length == this.data.messInx){
+            console.log('没数据啦');
+            return false;
+        }else{
+            let newMessage = this.data.Dynamic[this.data.messInx];
+            this.setData({
+                message: newMessage,
+                messInx: this.data.messInx + 1,
+                messageDisplay: true
+            });
+            //console.log(newMessage, this.data.messInx);
+        };
+        
+        //重复调用
+        setTimeout(function(){
+            self.setData({
+                messageDisplay: false
+            });
+            //console.log('timeout');
+            self.messageBox();
+        }, 5000);
+    },
+    //   滚动吸顶
   onPageScroll: function (event) {  
     var scrollTop = event.scrollTop;
     if(scrollTop > 400 && !this.data.scrollFix){
@@ -157,6 +185,7 @@ onShow: function () {
              try_user_nickname: res.data.pro[0].try_user_nickname,
              AreaSNF: res.data.pro[0].AreaSNF,
            scene:res.data.scene,
+             phase:res.data.phase,
           sqmcdipmc:res.data.pro[0].sqmcdipmc,
     ssshutongzi:res.data.pro[0].ssshutongzi,
     storesImg: res.data.pro[0].storesImg,
@@ -171,10 +200,11 @@ onShow: function () {
                        products: res.data.results,
                        skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
+                         Dynamic: res.data.Dynamic,
                 booking: res.data.products,
                  cart: res.data.cart
                     });
-                    console.log(res.data.issqtgseckill,res.data.issqtgbk);
+                    //console.log(res.data.issqtgbk,res.data.issqtgseckill);
 //          var totalSecond = res.data.bulk_endtime - Date.parse(new Date()) / 1000;
 //          if (totalSecond>0)
 //          {
@@ -236,6 +266,7 @@ onShow: function () {
               products: res.data.results,
                skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
+                           Dynamic: res.data.Dynamic,
               booking: res.data.products,
               cart: res.data.cart
             });
@@ -258,9 +289,9 @@ onShow: function () {
 
       });
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', {userid: wx.getStorageSync('rd_session'),scene:scene,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
-          console.log('products', res)
+          //console.log('products', res)
          self.setData({
-          
+             phase:res.data.phase,
              scene: res.data.scene,
              try_user_nickname: res.data.pro[0].try_user_nickname,
              AreaSNF: res.data.pro[0].AreaSNF,
@@ -277,6 +308,7 @@ onShow: function () {
               products: res.data.results,
                skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
+                           Dynamic: res.data.Dynamic,
               booking: res.data.products,
               cart: res.data.cart
             });
@@ -330,6 +362,10 @@ onShow: function () {
 //            }
     
           //console.log('products', res)
+          setTimeout(function(){
+              //console.log('show');
+            self.messageBox();
+        }, 3000);
       });
 
 
@@ -366,6 +402,7 @@ tapFilter: function (e) {
             products: res.data.results,
              skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
+                           Dynamic: res.data.Dynamic,
             booking: res.data.products,
             typ: e.currentTarget.dataset.id
                     });
@@ -394,6 +431,7 @@ refesh: function () {
             else {   self.setData({ scrollTop: 100,
                          products: res.data.results,
                           skillProduct: res.data.issqtgseckill,
+                              Dynamic: res.data.Dynamic,
                        bkProduct: res.data.issqtgbk,
             page: parseInt(res.data.page)
                     });

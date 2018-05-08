@@ -23,6 +23,9 @@ page{
 .flex_dir{
   flex-direction: column;
 }
+.fc_red{
+  color: #e4393c;
+}
 .fc_gray{
   color: #7d7d7d;
 }
@@ -36,10 +39,11 @@ page{
 }
 .car_wrap{
   width: 100%;
-  padding: 15rpx 10rpx;
+  padding: 10rpx;
   background-image: url(http://wx.so50.com/images/拼团详情tg_1_02.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
+  line-height:1.2;
 }
 .skill_over{
   position: relative;
@@ -59,6 +63,7 @@ page{
 .car_wrap .time_box{
   width: 30%;
   text-align: center;
+  line-height:1.5;
 }
 .car_wrap text{
   font-size: 26rpx;
@@ -94,8 +99,9 @@ page{
 }
 .name_cont{
   width: 100%;
-  padding: 15rpx 10rpx;
+  padding: 15rpx 20rpx 0 20rpx;
   background-color: #fff;
+  border-bottom: .1rpx solid #EFEFEF;
 }
 .name_cont .skill_text{
   color: #e4393c;
@@ -112,13 +118,24 @@ page{
   overflow: hidden;
 }
 .name_cont .car_name{
-  height: 95rpx;
+  height: 55rpx;
   font-size: 36rpx;
   font-weight: 700;
 }
 .name_cont .car_box{
   width: 30%;
   text-align: center;
+}
+.car_number_box{
+  padding: 10rpx 20rpx;
+  background-color: #fff;
+}
+.car_number_box .car_time{
+  justify-content: space-between;
+}
+.car_number_box .pro_name{
+  color: #e4393c;
+  font-size: 22rpx;
 }
 .footer .controller{
   justify-content: space-around;
@@ -245,4 +262,35 @@ button::after{
 }
 .fix_btn .cartNum text{
   font-size:24rpx;
+}
+.fix_btn .disable{
+  background-color: #F5F5F5;
+  color: #ACA899;
+}
+/* 18-05-08 左上角弹窗*/
+.message_box{
+  position: fixed;
+  top:3%;
+  left: 2%;
+  width: auto;
+  height: auto;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  background-color: #000;
+  opacity: .7;
+}
+.message_box text{
+  color: #fff;
+}
+.message_box .user_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@keyframes show{
+  from{opacity: .0;}
+  20%{opacity: .7;}
+  80%{opacity: .7;}
+  to{opacity: 0;}
 }

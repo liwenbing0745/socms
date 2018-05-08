@@ -27,44 +27,47 @@
     <view class='shop_info'>
       <view class='modify_big'>
         <image class="shop_img"src='{{storesImg}}' mode='widthFix'/>
+        {{phase}}
         <!--***修改图片***  -->
         <view class='modify_img' hidden='{{!isModify}}' bindtap="openLocationuser_img"></view>
       </view>
       <view class='shop_box'>
         <view class='shop_name flex_box'>
           <view class='img_box'>
-            <image class="user_img" src='{{try_user_img}}' mode='widthFix'/>
+            <image class="user_img" src='{{try_user_img}}'/>
             <!--***修改图片***  -->
             <!--<view class='modify_img' hidden='{{!isModify}}'  bindtap="openLocationstoresImg" ></view>-->
           </view>
           <view class='shop_wrap flex_inline'> 
+            <view class='flex_box'>
+              <view class='flex_inline number_box'>
+                <text class='number'>编号：{{AreaSNF}}</text>
+              </view>
+              <navigator  class='flex_box phone_box text_img' bindtap="makePhone">
+                <!--<image class="phone" src='http://wx.so50.com/images/搜农坊首页--3_04_03.png' mode='widthFix'/>-->
+                <text>联系团长</text>
+              </navigator>
+            </view>
             <view class='flex_box'>
               <view class='flex_box'>
                 <text class='bold name' hidden="{{isModify}}">{{user.sqmcdipmc}}</text>
                 <!--***修改名字***  -->
                 <input hidden='{{!isModify}}' class="bold" type='text' value='{{user.sqmcdipmc}}'  name='sqmcdipmc'/>
               </view>
-              <view class='flex_box text_img success'>
-                <icon type="success" size='20'></icon>
-                <text>已认证</text>
+              <view class='flex_inline text_img' bindtap="previewImage" style='width:400rpx;'>
+                <image class='share_code' src='http://wx.so50.com/images/搜农坊首页--8_03.png' mode='widthFix'/>
+                <text>分享二维码</text>
               </view>
             </view>
-            <view class='flex_box'>
-              <navigator  class='flex_box text_img' bindtap="makePhone">
-                <image class="phone" src='http://wx.so50.com/images/搜农坊首页--3_04_03.png' mode='widthFix'/>
-                <text>联系团长</text>
-              </navigator>
-              <view class='flex_inline text_img' bindtap="previewImage">
-                <image class='share_code' src='http://wx.so50.com/images/搜农坊首页--8_03.png' mode='widthFix'/>
-                <text style='width:135rpx;'>分享二维码</text>
-              </view>
+            <view>
+              <text class='bold'>提货点：</text><text class='fc_red'>{{sqmctihoudian}}</text>
             </view>
             <!--<view class='flex_box tongzhi'>
               <text class='bold'>通知：</text>
-              <!--***修改通知***  -->
               <input hidden='{{!isModify}}' type="text" value='{{user.ssshutongzi}}' name='ssshutongzi'/>
               <text hidden="{{isModify}}">{{user.ssshutongzi}}</text>
             </view>-->
+
           </view>
         </view>
       </view>
@@ -86,7 +89,7 @@
         <input type="text" name="try_user_img" value="{{try_user_img}}" />
       </view>
     
- 
+  </view>
   </form>
   <view class='section'>
 
@@ -125,7 +128,7 @@
         <text class='time_box second'>{{sqstate.sec}}</text>
       </view>
     </view> -->
-    <scroll-view class='product'  scroll-y="true"  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+    <scroll-view class='product'  scroll-y="true"  style="height:100%;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
       
       <view class='skill_product_list sale_product'>
         <view class='item' wx:for='{{skillProduct}}' wx:key='{{index}}'>
@@ -143,7 +146,7 @@
                 开始时间：{{item.start_time}}
               </view>
               <view>
-                已售<text class='fc_orange'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
               </view>
             </view>
             <view class='bottom_box'>
@@ -167,10 +170,10 @@
             </view>  
           </view>
           <!--05/04 修改价格-->
-          <view>
+          <!--<view>
             <input hidden='{{!isModify}}' type="text" value='' name=''/>
             <text hidden="{{isModify}}"></text>
-          </view>
+          </view>-->
 
         </view>
       </view>
@@ -189,10 +192,10 @@
             </view>
             <view class='flex_box top_box'>
               <view class='fc_orange_two'>
-                提货时间：{{item.start_time}}提货
+                提货时间：{{item.remark}}
               </view>
               <view>
-                已售<text class='fc_orange'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
               </view>
             </view>
           </navigator>
@@ -211,10 +214,10 @@
             </view>  
           </view>
           <!--05/04 修改价格-->
-          <view>
+          <!--<view>
             <input hidden='{{!isModify}}' type="text" value='' name=''/>
             <text hidden="{{isModify}}"></text>
-          </view>
+          </view>-->
 
         </view>
       </view>

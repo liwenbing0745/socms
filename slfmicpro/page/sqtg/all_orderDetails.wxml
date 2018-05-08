@@ -17,7 +17,7 @@
           <text>时间：{{item.time}}</text>
           <text>订单号：{{item.orderNum}}</text>
         </view>
-        <navigator url='/page/sqtg/sqtg_order_detail?id={{item.id}}'>
+        <navigator url='/page/sqtg/sqtg_order_detail?id={{item.id}}'> 
           <view class='items_wrap flex_box bor_btm' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}'>
             <view class='items_img'>
               <image src="{{childData.img}}" mode='widthFix'/>

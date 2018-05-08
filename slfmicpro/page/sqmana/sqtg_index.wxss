@@ -1,6 +1,7 @@
 /* page/sqtg/sqtg_index.wxss */
 text,
 view{
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   box-sizing: border-box;
 }
 page {
@@ -107,7 +108,7 @@ view, text{
 .shop_ress text,
 .shop_ress view{
   font-size: 26rpx;
-  color: #666666;
+  color: #999999;
 }
 .shop_info .name_box{
   width: 700rpx;
@@ -124,8 +125,25 @@ view, text{
   flex-direction: column;
   padding-left: 15rpx;
 }
+.shop_info .phone_box{
+  width:215rpx;
+  padding: 5rpx 25rpx;
+  margin-right:19rpx;
+  border-radius: 25rpx;
+  border: 1px solid #856029;
+  text-align: center;
+}
+.shop_info .phone_box text{
+  color: #856029;
+}
 .shop_info .shop_wrap>view{
   padding: 15rpx 0; 
+}
+.shop_info .shop_wrap>view:first-child{
+  padding-bottom:5rpx;
+}
+.shop_info .shop_wrap>view:nth-child(2){
+  padding: 0 0 15rpx 0;
 }
 .shop_info .shop_wrap .tongzhi{
   justify-content: flex-start;
@@ -152,7 +170,9 @@ view, text{
 }
 .shop_info .user_img{
   width: 175rpx;
-  max-height: 175rpx;
+  height: 175rpx;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 
@@ -264,7 +284,7 @@ view, text{
 }
 .product_list .pro_title{
   width: 100%;
-  height: 90rpx;
+  height: 45rpx;
   overflow: hidden;
   padding: 0;
 }
@@ -428,10 +448,34 @@ input[type=digit]{
 /* 18-05-04 */
 .search_pro_box{
   justify-content: space-around;
-  padding: 20rpx;
+  padding: 15rpx 10rpx;
+}
+.search_pro_box input{
+  width: 450rpx;
+  text-align: center;
+  font-size: 24rpx;
 }
 .search_pro_box button{
   margin: 0;
+  padding: 12rpx 50rpx;
+  line-height: 1;
+  text-align:center;
+  background-color: #f7f7f7;
+  border: 1px solid #f7f7f7;
+  color: #000;
+}
+.sale_product text,
+.sale_product view{
+  font-size: 24rpx;
+}
+.sale_product{
+  background-color: #F0F0F0;
+}
+.bk_product_list{
+  padding-bottom: 20rpx;
+}
+.sale_product .bottom_line{
+  border-bottom: .1rpx solid #EFEFEF;
 }
 .sale_product .price_box,
 .user_box .user_infor{
@@ -442,60 +486,94 @@ input[type=digit]{
 }
 .sale_product .pro_title{
   width:100%;
-  height:120rpx;
+  height:60rpx;
   overflow:hidden;
   padding:0;
   line-height: 2;
+  font-size: 26rpx;
 }
 .sale_product .pro_title .tip_box{
-  padding: 8rpx 15rpx;
-  font-size: 32rpx;
+  padding: 8rpx 12rpx;
+  font-size: 28rpx;
   color:#fff;
   background-color: #fc4b00;
   border-radius: 50%;
   overflow: hidden;
 }
+.bk_product_list .pro_title .fc_orange{
+  font-size: 28rpx;
+}
 .sale_product .top_box{
-  padding: 12rpx 0;
+  padding: 12rpx 15rpx;
 }
 .sale_product .bottom_box{
   line-height:.5;
 }
 .sale_product .price_wrap{
   line-height: 1;
-  padding: 25rpx 0;
+  padding: 8rpx 15rpx;
 }
 .sale_product .price_box{
   line-height: 0;
 }
 .sale_product .price{
   display: inline;
-  font-size: 44rpx;
+  font-size: 36rpx;
   font-weight: 700;
   margin-right: 15rpx;
 }
 .sale_product .btn{
+  font-size: 24rpx;
   border-radius: 25rpx;
   color: #fff;
   background-color: #fc4b00;
 }
 .bk_product_list .btn{
+  padding: 5rpx 15rpx;
+  border-radius: 0;
   border: #b28435;
   color: #b28435;
   background-color: #fff;
 }
 .sale_product .user_box{
   justify-content: flex-end;
-  padding: 10rpx 8rpx;
+  padding: 15rpx 8rpx;
 }
 .sale_product .user_box .user_img{
-  width: 50rpx;
-  height: 50rpx;
+  width: 35rpx;
+  height: 35rpx;
   border-radius: 50%;
   overflow: hidden;
 }
 .sale_product .user_box text{
-  font-size: 26rpx;
+  font-size: 20rpx;
 }
-
-
+.sale_product .item{
+  position: relative;
+  margin-bottom: 12rpx;
+  background-color: #fff;
+}
+.skill_product_list .item .skill_over::after{
+  content: '';
+  position: absolute;
+  top: 55%;
+  left: 35%;
+  width: 250rpx;
+  height: 250rpx;
+  background-image: url(http://wx.so50.com/images/seconds_over.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+}
+.skill_product_list .item .skill_box::before{
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 0;
+  width: 70rpx;
+  height: 70rpx;
+  background-image: url(http://wx.so50.com/images/秒杀.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+}

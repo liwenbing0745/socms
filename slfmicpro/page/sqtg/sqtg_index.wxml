@@ -19,20 +19,22 @@
     <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
     <view class='shop_info'>
       <view class='modify_big'>
-        <image class="shop_img" src='{{storesImg}}' />
+        <!--<image class="shop_img" src='{{storesImg}}' />-->
+        <image class="shop_img" src='http://wx.so50.com/images/小程序期数背景图_20180508144856.jpg' />
+        <text class='phase'>{{phase}}</text>
       </view>
       <view class='shop_box'>
         <view class='shop_name flex_box'>
           <view class='img_box'>
-            <image class="user_img" src='{{try_user_img}}' mode='widthFix'/>
+            <image class="user_img" src='{{try_user_img}}'/>
           </view>
           <view class='shop_wrap'> 
             <view class='flex_box'>
               <view class='flex_inline number_box'>
                 <text class='number'>编号：{{AreaSNF}}</text>
               </view>
-              <view class='flex_box text_img' bindtap="makePhone" style='width:300rpx;'>
-                <image class="phone" src='http://wx.so50.com/images/搜农坊首页--3_04_03.png' mode='widthFix'/>
+              <view class='flex_box phone_box text_img' bindtap="makePhone">
+                <!--<image class="phone" src='http://wx.so50.com/images/搜农坊首页--3_04_03.png' mode='widthFix'/>-->
                 <text>联系团长</text>
               </view>
             </view>
@@ -45,8 +47,8 @@
                 <text>分享二维码</text>
               </view>
             </view>
-            <view class='bold'>
-              <text class='bold'>提货点：</text><text class='fc_red'>{{sqmctihoudian}}</text>
+            <view>
+              <text class='bold'>提货点：</text><text>{{sqmctihoudian}}</text>
             </view>
           </view>
         </view>
@@ -119,9 +121,9 @@
       <view class='skill_product_list sale_product'>
         <view class='item' wx:for='{{skillProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box {{item.boutysum >= item.freeord && item.issqtgseckill == 1 ? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
-            <view>
-              <image class="item_img" src="{{item.img}}" mode="widthFix"/>
+          <navigator class='item_box {{item.boutysum >= item.freeord ? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+            <view class='item_img_box'>
+              <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
             <view class='pro_title bottom_line padding_between'>
               <text class='tip_box'>秒</text><text class='tip_box'>杀</text>
@@ -132,7 +134,7 @@
                 开始时间：{{item.start_time}}
               </view>
               <view>
-                已售<text class='fc_orange'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
               </view>
             </view>
             <view class='bottom_box padding_between'>
@@ -171,9 +173,9 @@
       <view class='bk_product_list sale_product'>
         <view class='item' wx:for='{{bkProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
-            <view>
-              <image class="item_img" src="{{item.img}}" mode="widthFix"/>
+          <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+            <view class='item_img_box'>
+              <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
             <view class='pro_title bottom_line padding_between'>
               <text class='fc_orange'>【爆款】</text>
@@ -181,10 +183,10 @@
             </view>
             <view class='flex_box top_box padding_between'>
               <view class='fc_orange_two'>
-                提货时间：{{item.start_time}}提货
+                提货时间：{{item.remark}}
               </view>
               <view>
-                已售<text class='fc_orange'>{{item.sales_sum}}</text>份/仅剩<text>{{item.stock_num}}</text>份
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/仅剩<text>{{item.stock_num}}</text>份
               </view>
             </view>
           </navigator>
@@ -203,7 +205,7 @@
             </view>  
           </view>
 
-          <view class='user_box flex_box'>
+          <view class='user_box flex_box' wx:if='{{item.childData.length < 1}}'>
             <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}'>
               <image class="user_img" src="{{childData.user_img}}"/>
               <text> {{childData.user_name}}、</text>
@@ -295,6 +297,15 @@
       </view>
     </view>
 
+    <view class='message_box' style='animation:show 5s linear;display:{{messageDisplay ? "block" : "none"}}'>
+      <view class='content flex_box'>
+        <view><image class='user_img' src='{{message.img}}'/></view>
+        <view><text class='user_name'>{{message.title}}</text></view>
+        <view><text>购买成功</text></view>
+      </view>
+    </view>
+    
+    
     <view class="cart">
       <view bindtap='toCart' class='flex_box'>
         <view class="data">

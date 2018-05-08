@@ -10,6 +10,7 @@ Page({
 //        },
     uid: wx.getStorageSync('rd_session'),
      scrollTop: 100,
+       phase: '0',
   user:{},
    storesImg: "",
       try_user_img:"",
@@ -120,7 +121,7 @@ onShow: function () {
          storesImg:res.data.uro[0].storesImg,
       try_user_img:res.data.uro[0].try_user_img,
     fxxcxewmimg: res.data.uro[0].fxxcxewmimg,
-  
+     phase:res.data.phase,
             products: res.data.results,
               skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
@@ -194,7 +195,7 @@ onShow: function () {
          storesImg:res.data.uro[0].storesImg,
       try_user_img:res.data.uro[0].try_user_img,
      fxxcxewmimg: res.data.uro[0].fxxcxewmimg,
-  
+     phase:res.data.phase,
                       products: res.data.results,
                        skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,

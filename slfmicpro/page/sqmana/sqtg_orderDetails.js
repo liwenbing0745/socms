@@ -8,7 +8,7 @@ Page({
    */
   data: {
     page: 1,
-    page_size: 6,
+    page_size: 12,
     scrollTop: 100,
     order_state:0,
     todata:0,
