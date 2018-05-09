@@ -10,7 +10,7 @@
     <text wx:for="{{toactive}}" wx:key="{{index}}" class="{{activeIndex==index?'select':''}}" data-index="{{index}}" data-id="{{item.attr}}" bindtap='toActive'>{{item.text}}</text>
   </view>
 
-  <scroll-view class='orderLists'  scroll-y="true"  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+  <scroll-view class='orderLists'  scroll-y="true"  style="height:780px;">
     <view class='items' wx:for="{{orderDetails}}" wx:key="{{index}}">
       <view class='flex_box item_header bor_btm'>
         <text>时间：{{item.time}}</text>
@@ -56,6 +56,10 @@
         <button size='mini' class='fc_orange'>{{item.active}}</button>
       </view>
       
+    </view>
+    <view class='loading_btn flex_box'>
+      <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
+      <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
     </view>
   </scroll-view>
 </view>

@@ -23,15 +23,19 @@
             <text class='pro_title'>
               {{item.text}}
             </text>
-            <view class='flex_inline'>
+            <view class='flex_inline number_box'>
               <text>数量：{{item.num}}</text>
               <text class='fc_orange'>佣金：{{item.commission}}元</text>
+            </view>
+            <view class='flex_inline user_infor'>
+              <text class='fc_orange'>购买人：{{item.userName}}</text>
+              <text class='fc_orange'>{{item.consigneemobile}}</text>
             </view>
           </view>
         </view>
 
       <view class='order_btn_box flex_box'>
-        <button size='mini' class='yellow'>已到账</button>
+        <text class='yellow'>已到账</text>
       </view>
       
     </view>

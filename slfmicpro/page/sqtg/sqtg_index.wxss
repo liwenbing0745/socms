@@ -535,6 +535,10 @@ view, text{
   line-height: 2;
   font-size: 30rpx;
 }
+.sale_product .pro_title .fc_orange_two{
+  font-size:32rpx;
+  font-weight:700;
+}
 .sale_product .pro_title .tip_box{
   padding: 8rpx 12rpx;
   font-size: 28rpx;
@@ -572,11 +576,12 @@ view, text{
   background-color: #fc4b00;
 }
 .bk_product_list .btn{
-  padding: 5rpx 15rpx;
-  border-radius: 0;
-  border: #b28435;
-  color: #b28435;
-  background-color: #fff;
+  display:inline-block;
+  padding:10rpx 20rpx;
+  border-radius:20rpx;
+  color:#b28435;
+  background-color:#fff;
+  border:1px solid #b28435;
 }
 .sale_product .user_box{
   justify-content: flex-end;

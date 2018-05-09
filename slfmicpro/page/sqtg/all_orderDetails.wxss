@@ -54,6 +54,7 @@ scroll-view {
 }
 .orderLists{
   margin-top: 30rpx;
+  padding-bottom:100rpx;
 }
 .orderLists .items{
   position:relative;
@@ -136,4 +137,20 @@ scroll-view {
   color: #fff;
   background-color: #fc4b00;
   border: 1px solid #ddd;
+}
+.loading_btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 20;
+}
+.loading_btn button{
+  width: 50%;
+  padding: 15rpx 0;
+  color: #fff;
+  border-radius: 0;
+}
+.loading_btn .green{
+  background-color: green;
 }

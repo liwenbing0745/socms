@@ -8,7 +8,7 @@ Page({
    */
   data: {
     page: 1,
-    page_size: 12,
+    page_size: 10,
     scrollTop: 100,
     order_state:0,
     todata:0,
@@ -144,6 +144,9 @@ Page({
         self.data.page = self.data.page + 1;
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, order_state: self.data.order_state, todata: self.data.todata, tit: self.data.tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
             if (self.data.page > res.data.allpage) {
+               self.setData({
+                    page: self.data.page - 1
+                });
             }
             else {
                 self.setData({
@@ -161,6 +164,9 @@ Page({
         self.data.page = self.data.page - 1;
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, order_state: self.data.order_state, todata: self.data.todata, tit: self.data.tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
             if (self.data.page < 1) {
+                self.setData({
+                    page: self.data.page + 1
+                });
             }
             else {
                 self.setData({

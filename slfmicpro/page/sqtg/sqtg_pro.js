@@ -40,7 +40,7 @@ Page({
     messageBox:function(){
         let self = this;
         if(this.data.Dynamic.length == this.data.messInx){
-            console.log('not');
+            console.log('没数据啦');
             return false;
         }else{
             let newMessage = this.data.Dynamic[this.data.messInx];
@@ -73,70 +73,31 @@ Page({
         }
         else
         {
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid: rd_session }, function (res) {
-         //  console.log('products', res);
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid: rd_session },function (res) {
             var totalSecond = res.data.products[0].bulk_endtime;
-
-            var interval = setInterval(function () {
-                // 秒数  
-                var second = totalSecond;
-
-                // 天数位  
-                var day = Math.floor(second / 3600 / 24);
-                var dayStr = day.toString();
-                if (dayStr.length == 1) dayStr = '0' + dayStr;
-
-                // 小时位  
-                //var hr = Math.floor((second - day * 3600 * 24) / 3600);
-                var hr = Math.floor(second / 3600);
-                var hrStr = hr.toString();
-                if (hrStr.length == 1) hrStr = '0' + hrStr;
-
-                // 分钟位  
-                //  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-                var min = Math.floor((second - hr * 3600) / 60);
-                var minStr = min.toString();
-                if (minStr.length == 1) minStr = '0' + minStr;
-
-                // 秒位  
-                // var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-                var sec = second - hr * 3600 - min * 60;
-                var secStr = sec.toString();
-                if (secStr.length == 1) secStr = '0' + secStr;
-
-
-                totalSecond--;
-
-                if (totalSecond < 0) {
-                    clearInterval(interval);
+   if (totalSecond < 0) {
                     self.setData({
-                      tEvaluate: res.data.tEvaluate,
-                      tEvaluateSum:res.data.tEvaluateSum,
-                      products: res.data.products,
-                      detailsList: res.data.pro_wapcon,
-                      recordList: res.data.recordList,
-                        Dynamic: res.data.Dynamic,
-                      sqstate: { hour: 0, min: 0, sec: 0 },
+                        products: res.data.products,
                       isEnd: true
                     });
                 }
                 else {
                     self.setData({
-                      tEvaluate: res.data.tEvaluate,
-                      tEvaluateSum:res.data.tEvaluateSum,
-                      products: res.data.products,
-                      detailsList: res.data.pro_wapcon,
-                      recordList: res.data.recordList,
-                          Dynamic: res.data.Dynamic,
-                      sqstate: { hour: hrStr, min: minStr, sec: secStr },
+                       products: res.data.products,
                       isEnd: false
                     });               
                 }
-            } .bind(this), 1000);
-            //console.log(res.data.products[0]);
-            setTimeout(function(){
-                self.messageBox();
-            }, 3000);
+           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid: rd_session },function (resc) {
+          self.setData({
+                      tEvaluate: resc.data.tEvaluate,
+                      tEvaluateSum:resc.data.tEvaluateSum,
+                      detailsList: resc.data.pro_wapcon,
+                      recordList: resc.data.recordList,
+                          Dynamic: resc.data.Dynamic
+                    
+                    });       
+        });
+
         });
      }
         wx.showShareMenu({
@@ -220,63 +181,34 @@ Page({
                             //console.log('wx.login',ures);
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
                             // wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+sqtgbountyid});
-                                server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid: ures.data.results[0].id }, function (res) {
-                                //  console.log('products', res);
-                                    var totalSecond = res.data.products[0].bulk_endtime;
+                                   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (res) {
+            var totalSecond = res.data.products[0].bulk_endtime;
+   if (totalSecond < 0) {
+                    self.setData({
+                        products: res.data.products,
+                      isEnd: true
+                    });
+                }
+                else {
+                    self.setData({
+                       products: res.data.products,
+                      isEnd: false
+                    });               
+                }
+           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (resc) {
+          self.setData({
+                      tEvaluate: resc.data.tEvaluate,
+                      tEvaluateSum:resc.data.tEvaluateSum,
+                      detailsList: resc.data.pro_wapcon,
+                      recordList: resc.data.recordList,
+                          Dynamic: resc.data.Dynamic
+                    
+                    });       
+        });
 
-                                    var interval = setInterval(function () {
-                                            // 秒数  
-                                            var second = totalSecond;
-
-                                            // 天数位  
-                                            var day = Math.floor(second / 3600 / 24);
-                                            var dayStr = day.toString();
-                                            if (dayStr.length == 1) dayStr = '0' + dayStr;
-
-                                            // 小时位  
-                                            //var hr = Math.floor((second - day * 3600 * 24) / 3600);
-                                            var hr = Math.floor(second / 3600);
-                                            var hrStr = hr.toString();
-                                            if (hrStr.length == 1) hrStr = '0' + hrStr;
-
-                                            // 分钟位  
-                                            //  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-                                            var min = Math.floor((second - hr * 3600) / 60);
-                                            var minStr = min.toString();
-                                            if (minStr.length == 1) minStr = '0' + minStr;
-
-                                            // 秒位  
-                                            // var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-                                            var sec = second - hr * 3600 - min * 60;
-                                            var secStr = sec.toString();
-                                            if (secStr.length == 1) secStr = '0' + secStr;
-                                            totalSecond--;
-                                            if (totalSecond < 0) {
-                                                clearInterval(interval);
-                                                self.setData({
-                                                    tEvaluate: res.data.tEvaluate,
-                                                    tEvaluateSum:res.data.tEvaluateSum,
-                                                    products: res.data.products,
-                                                    detailsList: res.data.pro_wapcon,
-                                                    recordList: res.data.recordList,
-                                                    Dynamic: res.data.Dynamic,
-                                                    sqstate: { hour: 0, min: 0, sec: 0 }
-                                                });
-                                            }
-                                            else {
-                                                self.setData({
-                                                    tEvaluate: res.data.tEvaluate,
-                                                    tEvaluateSum:res.data.tEvaluateSum,
-                                                    products: res.data.products,
-                                                    detailsList: res.data.pro_wapcon,
-                                                    recordList: res.data.recordList,
-                                                    Dynamic: res.data.Dynamic,
-                                                    sqstate: { hour: hrStr, min: minStr, sec: secStr }
-                                            });
-                                        }
-                                    } .bind(this), 1000);
-                                    });
-                                });
+        });
+  
+     });
                             }
                         });
 			        }

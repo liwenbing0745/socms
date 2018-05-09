@@ -25,7 +25,7 @@
               <text>{{item.pro_name}}</text>
             </view>
             <view class='flex_inline'>
-              <text class='fc_gray'>{{item.area}}</text>
+              <text class='fc_gray'>佣金:{{item.ourpri}}</text>
               <text class='fc_gray'>成交笔数：{{item.sales_sum}}笔</text>
             </view>
             <view class='flex_inline'>
@@ -38,12 +38,12 @@
           </view>
         </view>
         <view class='modify_box flex_box'>
-          <view class='left_space' data-isvalid = "{{item.isvalid}}" data-id="{{item.id}}" bindtap="tapFilters">
+          <!--<view class='left_space' data-isvalid = "{{item.isvalid}}" data-id="{{item.id}}" bindtap="tapFilters">
             <text>{{item.isvalid == 0 ? '已上架' : '上架'}}</text>
           </view>
           <view class='left_space' data-isvalid = "{{item.isvalid}}" data-id="{{item.id}}" bindtap="tapFilterx">
             <text>{{item.isvalid == 1 ? '已下架' : '下架'}}</text>
-          </view>
+          </view>-->
           <view>
             <!--生成海报  -->
             <navigator url='/page/sqtg/sqtg_share?sqtgbountyid={{item.id}}'>

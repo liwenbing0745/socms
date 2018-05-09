@@ -66,7 +66,7 @@ page {
   width: 100%;
   justify-content: space-between;
   flex-direction: column;
-  padding:15rpx;
+  padding:15rpx 15rpx 0 15rpx;
   border-bottom: 1px solid #ddd;
   background-color: #fff;
   box-sizing: border-box;
@@ -113,7 +113,8 @@ page {
 }
 .mbonus .mbonus_lists .items .order_btn_box{
   justify-content: flex-end;
+  padding:8rpx 0;
 }
-.mbonus .mbonus_lists .items .order_btn_box button{
-  margin:0 0 0 20rpx;
+.mbonus .mbonus_lists .items .order_btn_box .yellow{
+  color:#fc4b00;
 }

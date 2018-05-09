@@ -10,7 +10,7 @@
     <text wx:for="{{toactive}}" wx:key="{{index}}" class="{{activeIndex==index?'select':''}}" data-index="{{index}}" data-id="{{item.attr}}" bindtap='toActive'>{{item.text}}</text>
   </view> 
 
-  <scroll-view class='orderLists'  scroll-y="true"  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+  <scroll-view class='orderLists'  scroll-y="true"  style="height:780px;" >
     <view class='items' wx:for="{{orderDetails}}" wx:key="{{index}}">
       <view class='flex_box item_header'>
         <text>时间：{{item.time}}</text>
@@ -52,5 +52,7 @@
       </view>
       
     </view>
+    <view class="loading" bindtap="refesh">《《</view>
+    <view class="loading" bindtap="loadImages">》》</view>
   </scroll-view>
 </view>

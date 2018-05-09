@@ -10,7 +10,7 @@
     <text wx:for="{{toactive}}" wx:key="{{index}}" class="{{activeIndex==index?'select':''}}" data-index="{{index}}" data-id="{{item.attr}}" bindtap='toActive'>{{item.text}}</text>
   </view> 
 
-  <scroll-view class='orderLists'  scroll-y="true"  style="height:{{scrollHeight}}px" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+  <scroll-view class='orderLists'  scroll-y="true"  style="height:{{scrollHeight}}px" >
     <view class='items' wx:for="{{orderDetails}}" wx:key="{{index}}">
       <view class='item_top_box item_txt' style='{{item.txtStyle}}' data-index='{{index}}' bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">  
         <view class='flex_box item_header'>
@@ -58,6 +58,10 @@
       <view class='item_bottom_box' hidden="{{item.order_state=='1' || item.order_state=='2' || item.order_state=='6' || item.order_state=='7' || item.order_state=='8' ? false : true}}" data-id='{{item.id}}' bindtap='tapDele'>
         删除
       </view>
+    </view>
+    <view class='loading_btn flex_box'>
+      <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
+      <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
     </view>
   </scroll-view>
 </view>

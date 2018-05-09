@@ -197,50 +197,18 @@ onShow: function () {
     sqmc: res.data.pro[0].sqmc,
     fxaudit: res.data.pro[0].fxaudit,
     mobile: res.data.pro[0].mobile,
-                       products: res.data.results,
-                       skillProduct: res.data.issqtgseckill,
+                        skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
-                         Dynamic: res.data.Dynamic,
-                booking: res.data.products,
-                 cart: res.data.cart
+                  cart: res.data.cart
                     });
-                    //console.log(res.data.issqtgbk,res.data.issqtgseckill);
-//          var totalSecond = res.data.bulk_endtime - Date.parse(new Date()) / 1000;
-//          if (totalSecond>0)
-//          {
-//            var interval = setInterval(function () {
-//                // 秒数  
-//                var second = totalSecond;
-
-//                // 天数位  
-//                var day = Math.floor(second / 3600 / 24);
-//                var dayStr = day.toString();
-//                if (dayStr.length == 1) dayStr = '0' + dayStr;
-
-//                // 小时位  
-//                var hr = Math.floor((second - day * 3600 * 24) / 3600);
-//                var hrStr = hr.toString();
-//                if (hrStr.length == 1) hrStr = '0' + hrStr;
-
-//                // 分钟位  
-//                  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-//                 var minStr = min.toString();
-//                if (minStr.length == 1) minStr = '0' + minStr;
-
-//                // 秒位  
-//                 var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-//                 var secStr = sec.toString();
-//                if (secStr.length == 1) secStr = '0' + secStr;
-
-
-//                totalSecond--;
-//                    self.setData({
-//                        sqstate: { day: dayStr,hour: hrStr, min: minStr, sec: secStr }
-//                    });
-//            } .bind(this), 1000);
-//            }
-    
-          //console.log('products', res)
+      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
+               self.setData({
+                 products: reslayed.data.results,
+                    Dynamic: reslayed.data.Dynamic,
+                booking: reslayed.data.products
+            });
+        });
+   
       });
 
       if (this.data.fxaudit=='2'){
@@ -263,13 +231,18 @@ onShow: function () {
         var self = this;
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', {userid: wx.getStorageSync('rd_session'),tit: self.data.searchWords,scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
                self.setData({
-              products: res.data.results,
                skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
-                           Dynamic: res.data.Dynamic,
-              booking: res.data.products,
               cart: res.data.cart
             });
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),tit: self.data.searchWords,scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
+               self.setData({
+            products: reslayed.data.results,
+                    Dynamic: reslayed.data.Dynamic,
+                booking: reslayed.data.products
+            });
+        });
+ 
         });
     },
   onLoad: function (options) {
@@ -305,11 +278,8 @@ onShow: function () {
               sqmc: res.data.pro[0].sqmc,
               fxaudit: res.data.pro[0].fxaudit,
               mobile: res.data.pro[0].mobile,
-              products: res.data.results,
                skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
-                           Dynamic: res.data.Dynamic,
-              booking: res.data.products,
               cart: res.data.cart
             });
 
@@ -326,46 +296,15 @@ onShow: function () {
             }
           });
       }
-//          var totalSecond = res.data.bulk_endtime - Date.parse(new Date()) / 1000;
-//          if (totalSecond>0)
-//          {
-//            var interval = setInterval(function () {
-//                // 秒数  
-//                var second = totalSecond;
-
-//                // 天数位  
-//                var day = Math.floor(second / 3600 / 24);
-//                var dayStr = day.toString();
-//                if (dayStr.length == 1) dayStr = '0' + dayStr;
-
-//                // 小时位  
-//                var hr = Math.floor((second - day * 3600 * 24) / 3600);
-//                var hrStr = hr.toString();
-//                if (hrStr.length == 1) hrStr = '0' + hrStr;
-
-//                // 分钟位  
-//                  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-//                 var minStr = min.toString();
-//                if (minStr.length == 1) minStr = '0' + minStr;
-
-//                // 秒位  
-//                 var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-//                 var secStr = sec.toString();
-//                if (secStr.length == 1) secStr = '0' + secStr;
-
-
-//                totalSecond--;
-//                    self.setData({
-//                        sqstate: { day: dayStr,hour: hrStr, min: minStr, sec: secStr }
-//                    });
-//            } .bind(this), 1000);
-//            }
-    
-          //console.log('products', res)
-          setTimeout(function(){
-              //console.log('show');
-            self.messageBox();
-        }, 3000);
+      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:scene,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
+               self.setData({
+           products: reslayed.data.results,
+                    Dynamic: reslayed.data.Dynamic,
+                booking: reslayed.data.products
+            });
+        });
+ 
+         
       });
 
 
@@ -399,46 +338,21 @@ tapFilter: function (e) {
     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', { userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,typ: e.currentTarget.dataset.id, page: self.data.page, page_size: self.data.page_size }, function (res) {
       self.setData({
             filterId: e.currentTarget.dataset.id,
-            products: res.data.results,
              skillProduct: res.data.issqtgseckill,
                        bkProduct: res.data.issqtgbk,
-                           Dynamic: res.data.Dynamic,
-            booking: res.data.products,
             typ: e.currentTarget.dataset.id
                     });
-        //console.log('products', res)
+    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', { userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,typ: e.currentTarget.dataset.id, page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
+               self.setData({
+             products: reslayed.data.results,
+                    Dynamic: reslayed.data.Dynamic,
+                booking: reslayed.data.products
+            });
+        });
+ 
     });
 },
-// loadImages: function () {
-//     var self = this;
-//     self.data.page = self.data.page + 1;
-//     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', { userid: wx.getStorageSync('rd_session'),SearchKey: self.data.searchWords, typ: self.data.typ, page: self.data.page, page_size: self.data.page_size }, function (res) {
-//        if (self.data.page > res.data.allpage) {
-//         }else {
-//           self.setData({ scrollTop: 100,
-//             products: res.data.results,
-//             page: parseInt(res.data.page)
-//           });
-//         }
-//     });
-// },
-refesh: function () {
-    var self = this;
-    self.data.page = self.data.page - 1;
-    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', { userid: wx.getStorageSync('rd_session'),SearchKey: self.data.searchWords, typ: self.data.typ, page: self.data.page, page_size: self.data.page_size }, function (res) {
-       if (self.data.page < 1) {
-            }
-            else {   self.setData({ scrollTop: 100,
-                         products: res.data.results,
-                          skillProduct: res.data.issqtgseckill,
-                              Dynamic: res.data.Dynamic,
-                       bkProduct: res.data.issqtgbk,
-            page: parseInt(res.data.page)
-                    });
-                    }
-       // console.log('products', res)
-    });
-},
+
      previewImage: function (e) {
         var self = this;
         wx.previewImage({

@@ -17,14 +17,14 @@
           <text>可售{{products[0].stock_num}}份</text>-->
         </view>
       </view>
-      <view class='time_box flex_line flex_dir'>
+      <!--<view class='time_box flex_line flex_dir'>
         <text>距离结束还剩</text>
         <view>
           <text class='time_items'>{{sqstate.hour}}</text>:
           <text class='time_items'>{{sqstate.min}}</text>:
           <text class='time_items'>{{sqstate.sec}}</text>
         </view>
-      </view>
+      </view>-->
    </view>
   <!--价格&名称-->
   <view class="name_cont flex_box">
@@ -104,7 +104,6 @@
     <view class='content flex_box'>
       <view><image class='user_img' src='{{message.img}}'/></view>
       <view><text class='user_name'>{{message.title}}</text></view>
-      <view><text>购买成功</text></view>
     </view>
   </view>
 
