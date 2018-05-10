@@ -80,6 +80,7 @@ Page({
                         products: res.data.products,
                       isEnd: true
                     });
+                    
                 }
                 else {
                     self.setData({
@@ -97,6 +98,10 @@ Page({
                     
                     });       
         });
+        // 调用弹窗
+        setTimeout(function(){
+            self.messageBox();
+        }, 3000);
 
         });
      }

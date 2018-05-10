@@ -306,8 +306,10 @@ onShow: function () {
  
          
       });
-
-
+      // 调用弹窗
+      setTimeout(function(){
+        self.messageBox();
+    }, 3000);
       
     }
 

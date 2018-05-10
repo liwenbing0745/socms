@@ -14,7 +14,7 @@ Page({
     todata:0,
     tit:"",
     isTz: false,//判断是否为团长
-    activeIndex: 0,
+    activeIndex: 0, 
     dataIndex: 0,
     today:[
       {

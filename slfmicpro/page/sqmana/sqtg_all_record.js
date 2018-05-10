@@ -35,14 +35,26 @@ Page({
     loadImages: function () {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-    self.data.page = self.data.page + 1;
+        self.data.page = self.data.page + 1;
     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, page: self.data.page, page_size: self.data.page_size }, function (res) {
-        self.setData({ scrollTop: 100,
-                orderDetails: res.data.results,
-                try_user_money: res.data.try_user_money,
-                page: parseInt(res.data.page)
-            });
-            //console.log('products', res)
+        if (self.data.page > res.data.allpage) {
+            self.setData({
+                 page: self.data.page - 1
+             });
+         }
+         else {
+             self.setData({
+                 orderDetails: res.data.results,
+                 page: parseInt(res.data.page),
+                 scrollTop: 100,
+             });
+         }    
+        // self.setData({ scrollTop: 100,
+        //         orderDetails: res.data.results,
+        //         try_user_money: res.data.try_user_money,
+        //         page: parseInt(res.data.page)
+        //     });
+        //     console.log('products', res)
         });
     },
     refesh: function () {
@@ -50,11 +62,23 @@ Page({
         var rd_session = wx.getStorageSync('rd_session');
      self.data.page = self.data.page - 1;
      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, page: self.data.page, page_size: self.data.page_size }, function (res) {
-         self.setData({ scrollTop: 100,
-                orderDetails: res.data.results,
-                try_user_money: res.data.try_user_money,
-                page: parseInt(res.data.page)
+        if (self.data.page < 1) {
+            self.setData({
+                page: self.data.page + 1
             });
+        }
+        else {
+            self.setData({
+                orderDetails: res.data.results,
+                page: parseInt(res.data.page),
+                scrollTop: 100
+            });
+        }   
+        //  self.setData({ scrollTop: 100,
+        //         orderDetails: res.data.results,
+        //         try_user_money: res.data.try_user_money,
+        //         page: parseInt(res.data.page)
+        //     });
             //console.log('products', res)
         });
     }

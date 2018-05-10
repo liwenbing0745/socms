@@ -7,8 +7,8 @@
    </view>
    <view class='car_wrap flex_box {{products[0].boutysum >= products[0].freeord || isEnd ? "skill_over" : "" }}'>
       <view class='flex_inline content_box'>
-        <view class="car_market">
-          <text>￥{{products[0].price}}元</text>
+        <view class="car_market flex_inline">
+          <text>￥{{products[0].price}}元</text> 
           
         </view>
         <view class='flex_inline flex_dir'>

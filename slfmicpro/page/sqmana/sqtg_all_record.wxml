@@ -8,7 +8,7 @@
       </view>
     </view>
 
-    <scroll-view class='mbonus_lists' scroll-y="true"  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+    <scroll-view class='mbonus_lists' scroll-y="true"  style="height:780px;" >
     <view class='items' wx:for="{{orderDetails}}" wx:key="{{index}}">
       <view class='flex_box item_header bor_btm'>
         <text>时间：{{item.time}}</text>
@@ -39,6 +39,12 @@
       </view>
       
     </view>
+    
+    <view class='loading_btn flex_box'>
+      <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
+      <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
+    </view>
+    
   </scroll-view>
 
   </view>
