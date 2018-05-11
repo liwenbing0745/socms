@@ -25,7 +25,7 @@
         <text class='fc_red'>{{orders[0].order_statestr}}</text>
       </view>
       <view class='wrap' wx:for="{{pros}}" wx:key="id">
-        <navigator class='flex_box' url="/page/product/prodec?id={{item.id}}">  <image src='{{item.proimg}}' class="wrap_img" mode='widthFix'/>
+        <view class='flex_box'>  <image src='{{item.proimg}}' class="wrap_img" mode='widthFix'/>
         <view class='wrap_center'>
           <view class='title'>
             <text>{{item.proname}}</text>
@@ -42,7 +42,7 @@
             <text>佣金：{{item.fenxst3}}</text>
           </view>
         </view>
-        </navigator>
+        </view>
       </view>
 
       <view class='padding_el all_price bor_bt'>

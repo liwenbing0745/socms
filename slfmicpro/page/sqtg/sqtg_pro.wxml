@@ -6,14 +6,14 @@
         <image src="{{products[0].pro_pic}}" mode="widthFix"></image>
    </view>
    <view class='car_wrap flex_box {{products[0].boutysum >= products[0].freeord || isEnd ? "skill_over" : "" }}'>
-      <view class='flex_inline content_box'>
+      <view class='flex_box content_box'>
         <view class="car_market flex_inline">
-          <text>￥{{products[0].price}}元</text> 
-          
+          <text class='cart_price'>￥{{products[0].price}}元</text> 
+          <text class="car_markpri">￥{{products[0].pro_markpri}}</text>
         </view>
         <view class='flex_inline flex_dir'>
-          <text class="car_price">￥{{products[0].pro_markpri}}</text>
-          <!--<text>已售{{products[0].sales_sum}}份</text>
+          <!--<text class="car_price">￥{{products[0].pro_markpri}}</text>
+          <text>已售{{products[0].sales_sum}}份</text>
           <text>可售{{products[0].stock_num}}份</text>-->
         </view>
       </view>

@@ -82,6 +82,7 @@ page{
 .car_wrap .content_box{
   /* width: 70%; */
   color: #fff;
+  justify-content: flex-start;
 }
 .car_wrap .content_box .flex_inline{
   text-align: center;
@@ -89,17 +90,19 @@ page{
 }
 .car_wrap .content_box .car_market{
   justify-content: flex-start;
+  align-items:center;
 }
-.car_wrap .content_box .car_price{
+.car_wrap .content_box .car_markpri{
   text-decoration: line-through;
   font-size: 26rpx;
 }
 /* .car_wrap .car_market{
   width: 450rpx;
 } */
-.car_wrap .car_market text{
+.car_wrap .car_market .cart_price{
   font-size:40rpx;
   font-weight: 700;
+  padding-right: 15rpx;
 }
 .name_cont{
   width: 100%;

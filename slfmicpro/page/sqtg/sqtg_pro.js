@@ -97,6 +97,7 @@ Page({
                           Dynamic: resc.data.Dynamic
                     
                     });       
+                    //console.log(resc.data.Dynamic);
         });
         // 调用弹窗
         setTimeout(function(){
