@@ -25,6 +25,9 @@
             <text class='pro_title'>
               {{item.text}}
             </text>
+            <view class='time'>
+              <text class='fc_orange'>{{item.cust_thtime}}</text>
+            </view>
             <view class='flex_inline'>
               <text>数量：{{item.num}}</text>
               <!-- <text>佣金：{{item.commission}}</text> -->

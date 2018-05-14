@@ -46,13 +46,15 @@ formSubmit: function (e) {
      if (!rd_session) {
           flag = 1;  
              wx.showModal({
-      title: '提示',
+      title: '授权',
       content: '请授权登录之后再操作',
       success: function (res) {
-       
+        if (res.confirm) {
+        	self.login();
+        }
       }
     })
-     		self.login();
+     	
 	}
     if (flag==0){
       var formId = e.detail.formId;
@@ -85,7 +87,11 @@ formSubmit: function (e) {
             })
         }
         else {
-            wx.redirectTo({ url: '/page/sqtg/all_orderDetails' });
+          wx.showModal({
+            title: '提示',
+            content: res.data.results[0].errormess,
+          })
+            // wx.redirectTo({ url: '/page/sqtg/all_orderDetails' });
         }
     });
    }
@@ -118,17 +124,54 @@ onReady: function () {
                 scope: 'scope.userInfo',
                 success() {
                 wx.login({
-			success: function (res) {
+			success: function (rescode) {
        
              wx.getUserInfo({
                          success: function (ressucc) {
                          
-                server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: res.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
+                server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
            wx.setStorageSync('rd_session', ures.data.results[0].id);
    
             });
                    
-                         }
+                         },
+                fail: function () {
+                     // 显示提示弹窗
+                    wx.showModal({
+                        title: '授权',
+                        content: '拒绝授权将不能正常使用小程序，点确定重新授权',
+                        success: function (res) {
+                            if (res.confirm) {
+
+                                wx.openSetting({
+                                    success: function (data) {
+                                        if (data) {
+                                            if (data.authSetting["scope.userInfo"] == true) {
+                                                loginStatus = true;
+                                                wx.getUserInfo({
+                                                    withCredentials: false,
+                                                    success: function (data) {
+                                                  server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
+           wx.setStorageSync('rd_session', ures.data.results[0].id);
+   
+            });
+             
+                                                    },
+                                                    fail: function () {
+                                                        console.info("3授权失败返回数据");
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    },
+                                    fail: function () {
+                                        console.info("设置失败返回数据");
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
                      });
 			}
 		});

@@ -131,17 +131,31 @@
             </view>
             <view class='flex_box top_box padding_between'>
               <view class='fc_orange_two'>
-                开始时间：{{item.start_time}}
+                <view class='seckill_time' wx:if='{{item.seckillsate == "0"}}'>
+                  距离开始还剩
+                  <text class='times'>{{sqstate.hour}}</text> : 
+                  <text class='times'>{{sqstate.min}}</text> : 
+                  <text class='times'>{{sqstate.sec}}</text>
+                </view> 
+                <view class='seckill_time' wx:if='{{item.seckillsate != "0"}}'>
+                  距离结束仅剩
+                  <text class='times'>{{sqstate.hour}}</text> : 
+                  <text class='times'>{{sqstate.min}}</text> : 
+                  <text class='times'>{{sqstate.sec}}</text>
+                </view>
               </view>
               <view>
-                已售<text class='fc_red'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/{{item.seckillsate == "0" ? "限量": "还剩"}}<text>{{item.stock_num}}</text>份
               </view>
             </view>
-            <view class='bottom_box padding_between'>
-              <text class='fc_orange_two'>
+            <!-- <view class='bottom_box padding_between'>
+              <text class='fc_orange_two'  wx:if='{{seckillsate == "1"}}'>
                 结束时间：{{item.end_time}}
               </text>
-            </view>
+              <text class='endTime fc_orange_two' wx:if='{{seckillsate != "1"}}'>
+                <text>距离结束还剩：{{sqstate.hour}}小时{{sqstate.min}}分{{sqstate.sec}}秒</text>
+              </text>
+            </view> -->
           </navigator>
 
           <view class='flex_box price_wrap bottom_line padding_between'>
@@ -154,11 +168,11 @@
               </text>
             </view>
             <view>
-              <button size='mini' class='skill_btn btn' data-id="{{item.id}}" bindtap="tapBuyCart">立即秒杀</button>
+              <button size='mini' class='skill_btn btn {{item.seckillsate == "1" ? "" : "disabled"}}' data-id="{{item.id}}" bindtap="tapBuyCart">立即秒杀</button>
             </view>  
           </view>
 
-          <view class='user_box flex_box' wx:if='{{item.childData.length < 1}}'>
+          <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
             <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index > 3}}'>
               <image class="user_img" src="{{childData.user_img}}"/>
               <text> {{childData.user_name}}、</text>
@@ -205,7 +219,7 @@
             </view>  
           </view>
 
-          <view class='user_box flex_box' wx:if='{{item.childData.length < 1}}'>
+          <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
             <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}'>
               <image class="user_img" src="{{childData.user_img}}"/>
               <text> {{childData.user_name}}、</text>
@@ -315,7 +329,7 @@
           <view class="total">￥{{cart.total}}</view>
         </view>
         <view class='flex_box'>
-          <button class="yellow {{cart.count?'':'disabled'}}">去结算</button>
+          <button class="yellow {{cart.count > '0' ?'':'disabled'}}">去结算</button>
         </view>
       </view>
     </view>

@@ -30,6 +30,9 @@
           <view class='title'>
             <text>{{item.proname}}</text>
           </view>
+          <view class='time'>
+            <text class='fc_red'>{{item.cust_thtime}}</text>
+          </view>
         </view>
         <view class='wrap_right'>
           <view>

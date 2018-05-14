@@ -553,8 +553,21 @@ view, text{
 .sale_product .top_box{
   padding: 12rpx 15rpx;
 }
+.skill_product_list .top_box .fc_orange_two{
+  line-height: 0;
+}
+.skill_product_list .top_box .times{
+  padding: 5rpx 12rpx;
+  background-color: #f14e01;
+  color: #fff;
+  border-radius: 5rpx;
+}
 .sale_product .bottom_box{
   line-height:.5;
+}
+.sale_product .bottom_box .endTime{
+  font-size: 24rpx;
+  padding: 5rpx 0;
 }
 .sale_product .price_wrap{
   line-height: 1;
@@ -628,10 +641,14 @@ view, text{
   background-size: 100% 100%;
   z-index: 10;
 }
+.sale_product .disabled{
+  background-color: #F5F5F5;
+  color: #ACA899;
+}
 /* 18-05-08 左上角弹窗*/
 .message_box{
   position: fixed;
-  top:3%;
+  top:7%;
   left: 2%;
   width: auto;
   height: auto;
@@ -654,4 +671,9 @@ view, text{
   20%{opacity: .7;}
   80%{opacity: .7;}
   to{opacity: 0;}
+}
+
+.disabled{
+  background-color: #F5F5F5;
+  color: #ACA899;
 }

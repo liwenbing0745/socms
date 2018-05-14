@@ -25,7 +25,10 @@
             <text class='pro_title'>
               {{childData.text}}
             </text>
-            <view class='flex_inline'>
+            <text class='pro_orTime fc_orange'>
+              {{childData.cust_thtime}}
+            </text>
+            <view class='flex_inline'> 
               <text>数量：{{childData.num}}</text>
               <!--<text>佣金：{{item.commission}}</text>-->
             </view>

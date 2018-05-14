@@ -2,12 +2,12 @@ var app = getApp();
 var server = require('../../utils/server');
 Page({
     data: {
-//      sqstate: {
-//         day: 0,
-//            hour: 0,
-//            min: 0,
-//            sec: 0
-//        },
+      sqstate: {
+         day: 0,
+            hour: 0,
+            min: 0,
+            sec: 0
+        },
       uid: wx.getStorageSync('rd_session'),
       scrollTop: 100,
          searchWords: '',
@@ -105,17 +105,17 @@ Page({
     var formData = e.detail.value;
     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdateUsers.ashx', { uid: wx.getStorageSync('rd_session'),sqmcdipmc:formData.sqmcdipmc,ssshutongzi:formData.ssshutongzi,dpdesc:formData.dpdesc,mobile:formData.mobile,try_user_img:formData.try_user_img,storesImg:formData.storesImg,ysIs:formData.ysIs},      function (res) {
                 that.setData({
-                isModify: false,
-                  sqmcdipmc:ures.data.results.sqmcdipmc,
-                  ssshutongzi:ures.data.results.ssshutongzi,
-                  storesImg:ures.data.results.storesImg,
-                  weixinhao:ures.data.results.weixinhao,
-                  sqmctihoudian:ures.data.results.sqmctihoudian,
-                  try_user_img:ures.data.results.try_user_img,
-                  fxxcxewmimg:ures.data.results.fxxcxewmimg,
-                  sqmc:ures.data.results.sqmc,
-                  mobile:ures.data.results.mobile,
-                     ssshuqu:ures.data.results.ssshuqu
+                    isModify: false,
+                    sqmcdipmc:ures.data.results.sqmcdipmc,
+                    ssshutongzi:ures.data.results.ssshutongzi,
+                    storesImg:ures.data.results.storesImg,
+                    weixinhao:ures.data.results.weixinhao,
+                    sqmctihoudian:ures.data.results.sqmctihoudian,
+                    try_user_img:ures.data.results.try_user_img,
+                    fxxcxewmimg:ures.data.results.fxxcxewmimg,
+                    sqmc:ures.data.results.sqmc,
+                    mobile:ures.data.results.mobile,
+                    ssshuqu:ures.data.results.ssshuqu
             });
        });
   }
@@ -180,33 +180,101 @@ onShow: function () {
 
       });
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
-       
-         self.setData({
-             try_user_nickname: res.data.pro[0].try_user_nickname,
-             AreaSNF: res.data.pro[0].AreaSNF,
-           scene:res.data.scene,
-             phase:res.data.phase,
-          sqmcdipmc:res.data.pro[0].sqmcdipmc,
-    ssshutongzi:res.data.pro[0].ssshutongzi,
-    storesImg: res.data.pro[0].storesImg,
-    weixinhao: res.data.pro[0].weixinhao,
-    sqmctihoudian: res.data.pro[0].sqmctihoudian,
+            var totalSecond = 0;
+            //console.log(res.data.issqtgseckill[0]);
+            if (res.data.issqtgseckill[0] != undefined){
+              if (res.data.issqtgseckill[0].seckillsate == '0'){
+                totalSecond = res.data.issqtgseckill[0].bulk_begtimes;
+              }else{
+                totalSecond = res.data.issqtgseckill[0].bulk_endtimes;
+              }
+            }
+        
+            var interval = setInterval(function () {
+                // 秒数  
+                var second = totalSecond;
 
-    try_user_img: res.data.pro[0].try_user_img,
-    fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
-    sqmc: res.data.pro[0].sqmc,
-    fxaudit: res.data.pro[0].fxaudit,
-    mobile: res.data.pro[0].mobile,
-                        skillProduct: res.data.issqtgseckill,
-                       bkProduct: res.data.issqtgbk,
-                  cart: res.data.cart
+                // 天数位  
+                var day = Math.floor(second / 3600 / 24);
+                var dayStr = day.toString();
+                if (dayStr.length == 1) dayStr = '0' + dayStr;
+
+                // 小时位  
+                //var hr = Math.floor((second - day * 3600 * 24) / 3600);
+                var hr = Math.floor(second / 3600);
+                var hrStr = hr.toString();
+                if (hrStr.length == 1) hrStr = '0' + hrStr;
+
+                // 分钟位  
+                //  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
+                var min = Math.floor((second - hr * 3600) / 60);
+                var minStr = min.toString();
+                if (minStr.length == 1) minStr = '0' + minStr;
+
+                // 秒位  
+                // var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
+                var sec = second - hr * 3600 - min * 60;
+                var secStr = sec.toString();
+                if (secStr.length == 1) secStr = '0' + secStr;
+
+                totalSecond--;
+                if (totalSecond < 0) {
+                    clearInterval(interval);
+                          self.setData({
+                            try_user_nickname: res.data.pro[0].try_user_nickname,
+                            AreaSNF: res.data.pro[0].AreaSNF,
+                            scene:res.data.scene,
+                            phase:res.data.phase,
+                            sqmcdipmc:res.data.pro[0].sqmcdipmc,
+                            ssshutongzi:res.data.pro[0].ssshutongzi,
+                            storesImg: res.data.pro[0].storesImg,
+                            weixinhao: res.data.pro[0].weixinhao,
+                            sqmctihoudian: res.data.pro[0].sqmctihoudian,
+
+                            try_user_img: res.data.pro[0].try_user_img,
+                            fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
+                            sqmc: res.data.pro[0].sqmc,
+                            fxaudit: res.data.pro[0].fxaudit,
+                            mobile: res.data.pro[0].mobile,
+                            skillProduct: res.data.issqtgseckill,
+                            bkProduct: res.data.issqtgbk,
+                            cart: res.data.cart,
+                            sqstate: { hour: 0, min: 0, sec: 0 }
                     });
+                }
+                else {
+                         self.setData({
+                            try_user_nickname: res.data.pro[0].try_user_nickname,
+                            AreaSNF: res.data.pro[0].AreaSNF,
+                            scene:res.data.scene,
+                            phase:res.data.phase,
+                            sqmcdipmc:res.data.pro[0].sqmcdipmc,
+                            ssshutongzi:res.data.pro[0].ssshutongzi,
+                            storesImg: res.data.pro[0].storesImg,
+                            weixinhao: res.data.pro[0].weixinhao,
+                            sqmctihoudian: res.data.pro[0].sqmctihoudian,
+
+                            try_user_img: res.data.pro[0].try_user_img,
+                            fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
+                            sqmc: res.data.pro[0].sqmc,
+                            fxaudit: res.data.pro[0].fxaudit,
+                            mobile: res.data.pro[0].mobile,
+                            skillProduct: res.data.issqtgseckill,
+                            bkProduct: res.data.issqtgbk,
+                            cart: res.data.cart,
+                            sqstate: { hour: hrStr, min: minStr, sec: secStr }
+                        });
+                    console.log('bk' + res.data.issqtgseckill, 'skill' + self.data.bkProduct[0].seckillsate);
+                }
+            } .bind(this), 1000);
+            
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
                self.setData({
-                 products: reslayed.data.results,
+                    products: reslayed.data.results,
                     Dynamic: reslayed.data.Dynamic,
-                booking: reslayed.data.products
+                    booking: reslayed.data.products
             });
+            console.log('product' + reslayed.data.results);
         });
    
       });
@@ -262,26 +330,94 @@ onShow: function () {
 
       });
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', {userid: wx.getStorageSync('rd_session'),scene:scene,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
-          //console.log('products', res)
-         self.setData({
-             phase:res.data.phase,
-             scene: res.data.scene,
-             try_user_nickname: res.data.pro[0].try_user_nickname,
-             AreaSNF: res.data.pro[0].AreaSNF,
-               sqmcdipmc: res.data.pro[0].sqmcdipmc,
-             ssshutongzi: res.data.pro[0].ssshutongzi,
-              storesImg: res.data.pro[0].storesImg,
-              weixinhao: res.data.pro[0].weixinhao,
-              sqmctihoudian: res.data.pro[0].sqmctihoudian,
-              try_user_img: res.data.pro[0].try_user_img,
-              fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
-              sqmc: res.data.pro[0].sqmc,
-              fxaudit: res.data.pro[0].fxaudit,
-              mobile: res.data.pro[0].mobile,
-               skillProduct: res.data.issqtgseckill,
-                       bkProduct: res.data.issqtgbk,
-              cart: res.data.cart
-            });
+        var totalSecond = 0;
+        if (res.data.issqtgseckill[0] != undefined) {
+          if (res.data.issqtgseckill[0].seckillsate == '0') {
+            totalSecond = res.data.issqtgseckill[0].bulk_begtimes;
+          } else {
+            totalSecond = res.data.issqtgseckill[0].bulk_endtimes;
+          }
+        }
+             
+            var interval = setInterval(function () {
+                // 秒数  
+                var second = totalSecond;
+
+                // 天数位  
+                var day = Math.floor(second / 3600 / 24);
+                var dayStr = day.toString();
+                if (dayStr.length == 1) dayStr = '0' + dayStr;
+
+                // 小时位  
+                //var hr = Math.floor((second - day * 3600 * 24) / 3600);
+                var hr = Math.floor(second / 3600);
+                var hrStr = hr.toString();
+                if (hrStr.length == 1) hrStr = '0' + hrStr;
+
+                // 分钟位  
+                //  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
+                var min = Math.floor((second - hr * 3600) / 60);
+                var minStr = min.toString();
+                if (minStr.length == 1) minStr = '0' + minStr;
+
+                // 秒位  
+                // var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
+                var sec = second - hr * 3600 - min * 60;
+                var secStr = sec.toString();
+                if (secStr.length == 1) secStr = '0' + secStr;
+
+
+                totalSecond--;
+                if (totalSecond < 0) {
+                    clearInterval(interval);
+                          self.setData({
+                            try_user_nickname: res.data.pro[0].try_user_nickname,
+                            AreaSNF: res.data.pro[0].AreaSNF,
+                            scene:res.data.scene,
+                            phase:res.data.phase,
+                            sqmcdipmc:res.data.pro[0].sqmcdipmc,
+                            ssshutongzi:res.data.pro[0].ssshutongzi,
+                            storesImg: res.data.pro[0].storesImg,
+                            weixinhao: res.data.pro[0].weixinhao,
+                            sqmctihoudian: res.data.pro[0].sqmctihoudian,
+
+                            try_user_img: res.data.pro[0].try_user_img,
+                            fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
+                            sqmc: res.data.pro[0].sqmc,
+                            fxaudit: res.data.pro[0].fxaudit,
+                            mobile: res.data.pro[0].mobile,
+                            skillProduct: res.data.issqtgseckill,
+                            bkProduct: res.data.issqtgbk,
+                            cart: res.data.cart,
+                            sqstate: { hour: 0, min: 0, sec: 0 }
+                    });
+                }
+                else {
+                         self.setData({
+                            try_user_nickname: res.data.pro[0].try_user_nickname,
+                            AreaSNF: res.data.pro[0].AreaSNF,
+                            scene:res.data.scene,
+                            phase:res.data.phase,
+                            sqmcdipmc:res.data.pro[0].sqmcdipmc,
+                            ssshutongzi:res.data.pro[0].ssshutongzi,
+                            storesImg: res.data.pro[0].storesImg,
+                            weixinhao: res.data.pro[0].weixinhao,
+                            sqmctihoudian: res.data.pro[0].sqmctihoudian,
+
+                            try_user_img: res.data.pro[0].try_user_img,
+                            fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
+                            sqmc: res.data.pro[0].sqmc,
+                            fxaudit: res.data.pro[0].fxaudit,
+                            mobile: res.data.pro[0].mobile,
+                            skillProduct: res.data.issqtgseckill,
+                            bkProduct: res.data.issqtgbk,
+                            cart: res.data.cart,
+                            sqstate: { hour: hrStr, min: minStr, sec: secStr }
+                    });
+                  
+                }
+            } .bind(this), 1000);
+         
 
                   if ( res.data.pro[0].fxaudit!='2' && res.data.showModal=="0"){
           wx.showModal({
@@ -298,9 +434,9 @@ onShow: function () {
       }
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:scene,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
                self.setData({
-           products: reslayed.data.results,
+                    products: reslayed.data.results,
                     Dynamic: reslayed.data.Dynamic,
-                booking: reslayed.data.products
+                    booking: reslayed.data.products
             });
         });
  
@@ -375,7 +511,21 @@ tapFilter: function (e) {
 //    });
   },
     tapBuyCart: function (e) {
-        this.addCart(e.currentTarget.dataset.id, 1);
+        if(this.data.skillProduct[0].seckillsate == '1'){
+            this.addCart(e.currentTarget.dataset.id, 1);
+        }else{
+            wx.showModal({
+                title: '提示',
+                content: `本期截单时间已结束,下一期开启`,
+                success:function(res){
+                    if(res.confirm){
+                        //console.log('用户点击确定');
+                    }else if (res.cancel){
+                        //console.log('用户点击取消');
+                    };
+                }
+            })
+        }
     },
 
     addCart: function (id) {
@@ -405,18 +555,56 @@ tapFilter: function (e) {
                 scope: 'scope.userInfo',
                 success() {
                 wx.login({
-			success: function (res) {
+			success: function (rescode) {
          
              wx.getUserInfo({
                          success: function (ressucc) {
                          
-                server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: res.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
+                server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
       	  // //console.log('wx.login',ures);
            wx.setStorageSync('rd_session', ures.data.results[0].id);
         wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
             });
                    
-                         }
+                         },
+                fail: function () {
+                     // 显示提示弹窗
+                    wx.showModal({
+                        title: '授权',
+                        content: '拒绝授权将不能正常使用小程序，点确定重新授权',
+                        success: function (res) {
+                            if (res.confirm) {
+
+                                wx.openSetting({
+                                    success: function (data) {
+                                        if (data) {
+                                            if (data.authSetting["scope.userInfo"] == true) {
+                                                loginStatus = true;
+                                                wx.getUserInfo({
+                                                    withCredentials: false,
+                                                    success: function (data) {
+                                                      server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
+      	  // //console.log('wx.login',ures);
+           wx.setStorageSync('rd_session', ures.data.results[0].id);
+        wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
+            });
+             
+                                                    },
+                                                    fail: function () {
+                                                        console.info("3授权失败返回数据");
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    },
+                                    fail: function () {
+                                        console.info("设置失败返回数据");
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
                      });
 			}
 		});

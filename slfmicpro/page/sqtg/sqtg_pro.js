@@ -180,10 +180,10 @@ Page({
             scope: 'scope.userInfo',
             success() {
                 wx.login({
-                    success: function (res) {
+                    success: function (rescode) {
                         wx.getUserInfo({
                         success: function (ressucc) {
-                            server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: res.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
+                            server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
                             //console.log('wx.login',ures);
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
                             // wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+sqtgbountyid});
@@ -215,7 +215,72 @@ Page({
         });
   
      });
+                            },
+                fail: function () {
+                     // 显示提示弹窗
+                    wx.showModal({
+                        title: '授权',
+                        content: '拒绝授权将不能正常使用小程序，点确定重新授权',
+                        success: function (res) {
+                            if (res.confirm) {
+
+                                wx.openSetting({
+                                    success: function (data) {
+                                        if (data) {
+                                            if (data.authSetting["scope.userInfo"] == true) {
+                                                loginStatus = true;
+                                                wx.getUserInfo({
+                                                    withCredentials: false,
+                                                    success: function (data) {
+                                                 server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
+                            //console.log('wx.login',ures);
+                            wx.setStorageSync('rd_session', ures.data.results[0].id);
+                            // wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+sqtgbountyid});
+                                   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (res) {
+            var totalSecond = res.data.products[0].bulk_endtime;
+   if (totalSecond < 0) {
+                    self.setData({
+                        products: res.data.products,
+                      isEnd: true
+                    });
+                }
+                else {
+                    self.setData({
+                       products: res.data.products,
+                      isEnd: false
+                    });               
+                }
+           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (resc) {
+          self.setData({
+                      tEvaluate: resc.data.tEvaluate,
+                      tEvaluateSum:resc.data.tEvaluateSum,
+                      detailsList: resc.data.pro_wapcon,
+                      recordList: resc.data.recordList,
+                          Dynamic: resc.data.Dynamic
+                    
+                    });       
+        });
+
+        });
+  
+     });
+                          
+                                                    },
+                                                    fail: function () {
+                                                        console.info("3授权失败返回数据");
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    },
+                                    fail: function () {
+                                        console.info("设置失败返回数据");
+                                    }
+                                });
                             }
+                        }
+                    });
+                }
                         });
 			        }
 		        });   

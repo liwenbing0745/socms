@@ -81,13 +81,15 @@ Page({
         var rd_session = wx.getStorageSync('rd_session');
         if (!rd_session) {
             wx.showModal({
-                title: '提示',
+                title: '授权',
                 content: '请授权登录之后再操作',
                 success: function (res) {
-
+                 if (res.confirm) {
+        	  self.login(options.ssshuqu);
+        }
                 }
             })
-            self.login(options.ssshuqu);
+          
         }
         else
         {
@@ -158,12 +160,12 @@ Page({
                 scope: 'scope.userInfo',
                 success() {
                 wx.login({
-			success: function (res) {
+			success: function (rescode) {
        
              wx.getUserInfo({
                          success: function (ressucc) {
                          
-                server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: res.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
+                server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
            wx.setStorageSync('rd_session', ures.data.results[0].id);
        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (resorderNumList) {
           
@@ -182,7 +184,58 @@ Page({
     
             });
                    
-                         }
+                         },
+                fail: function () {
+                     // 显示提示弹窗
+                    wx.showModal({
+                        title: '授权',
+                        content: '拒绝授权将不能正常使用小程序，点确定重新授权',
+                        success: function (res) {
+                            if (res.confirm) {
+
+                                wx.openSetting({
+                                    success: function (data) {
+                                        if (data) {
+                                            if (data.authSetting["scope.userInfo"] == true) {
+                                                loginStatus = true;
+                                                wx.getUserInfo({
+                                                    withCredentials: false,
+                                                    success: function (data) {
+                                            server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
+           wx.setStorageSync('rd_session', ures.data.results[0].id);
+       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (resorderNumList) {
+          
+                self.setData({
+                    try_user_nickname: resorderNumList.data.pro[0].try_user_nickname,
+                    sqmctihoudian: resorderNumList.data.pro[0].sqmctihoudian,
+                    try_user_img: resorderNumList.data.pro[0].try_user_img,
+                    fxaudit: resorderNumList.data.pro[0].fxaudit,
+                    pfaudit: resorderNumList.data.pro[0].pfaudit,
+                    sqtgaudit: resorderNumList.data.pro[0].sqtgaudit,
+                    ssshuqu: resorderNumList.data.pro[0].ssshuqu,
+                    orderList: resorderNumList.data.orderList
+                })
+           
+        });
+    
+            });
+             
+                                                    },
+                                                    fail: function () {
+                                                        console.info("3授权失败返回数据");
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    },
+                                    fail: function () {
+                                        console.info("设置失败返回数据");
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
                      });
 			}
 		});

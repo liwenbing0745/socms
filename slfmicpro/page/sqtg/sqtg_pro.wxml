@@ -111,7 +111,7 @@
     <button id="btn" class="btn_index" size="mini" bindtap='backIndex'>
       <text>首页</text>
     </button>
-    <button id="btn" class="btn_buy {{isEnd ? 'disable' : ''}}" size="mini" wx:if='!{{products[0].id}}'  data-id="{{products[0].id}}" bindtap="tapBuyCart">
+    <button id="btn" class="btn_buy {{secbuysate == '1'|| seckillsate == '0' || seckillsate == '2' ? 'disable' : ''}}" size="mini" wx:if='!{{products[0].id}}'  data-id="{{products[0].id}}" bindtap="tapBuyCart">
       <text>立即抢购</text>
     </button>
   </view>
