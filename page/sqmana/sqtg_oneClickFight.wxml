@@ -1,0 +1,71 @@
+<!--page/sqmana/sqtg_oneClickFight.wxml-->
+<view class='container'>
+
+  <view class='section'>
+    <view class='bc_box'>
+      <search-box id="search-box" bind:searchData="onSearchData" />
+      <view class='flex_box sort select_group'>
+        <text class='{{sortSelect==index ? "select" : ""}}' wx:for="{{sortList}}" wx:key="{{index}}" data-index="{{index}}" data-id="{{item.attr}}" bindtap='toSort'>
+          {{item.text}}
+        </text>
+      </view>
+    </view>
+    <view class='flex_box complex select_group'>
+      <text class='{{complexSelect==index ? "select" : ""}}' wx:for="{{complexList}}" wx:key="{{index}}" data-index="{{index}}" data-id="{{item.attr}}" bindtap='toComplex'>
+          {{item.text}}
+        </text>
+    </view>
+
+    <scroll-view class='pro_lists'>
+      <view class='items' wx:for="{{proLists}}" wx:key="{{index}}" data-index="{{index}}">
+        <view class='items_wrap flex_box'>
+          <image src='{{item.img}}' class='pro_img' mode='widthFix'/>
+          <view class='items_content flex_inline'>
+            <view class='title'>
+              <text>{{item.pro_name}}</text>
+            </view>
+            <view class='flex_inline'>
+              <text class='fc_gray'>佣金:{{item.ourpri}}</text>
+              <text class='fc_gray'>成交笔数：{{item.sales_sum}}笔</text>
+            </view>
+            <view class='flex_inline'>
+              <text class='fc_orange'>市场价：￥{{item.pro_markpri}}</text>
+              <text class='fc_orange'>供货价：￥{{item.pro_sqtgpriptj}}</text>
+            </view>
+            <view class='content_absolute_icon'  hidden='{{item.ziying!="true"}}'>
+              <text>自营</text>
+            </view>
+          </view>
+        </view>
+        <view class='modify_box flex_box'>
+          <!--<view class='left_space' data-isvalid = "{{item.isvalid}}" data-id="{{item.id}}" bindtap="tapFilters">
+            <text>{{item.isvalid == 0 ? '已上架' : '上架'}}</text>
+          </view>
+          <view class='left_space' data-isvalid = "{{item.isvalid}}" data-id="{{item.id}}" bindtap="tapFilterx">
+            <text>{{item.isvalid == 1 ? '已下架' : '下架'}}</text>
+          </view>-->
+          <view>
+            <!--生成海报  -->
+            <navigator url='/page/sqtg/sqtg_share?sqtgbountyid={{item.id}}'>
+              <button type='primary' size='mini'>生成海报</button>
+            </navigator>
+          </view>
+          <view>
+          <!--跳转到修改页  -->
+            <!--<navigator url='/page/sqmana/{{item.ziying == "true" ? "sqtg_upload" : "sqtg_proDetails"}}?id={{item.id}}'>
+              <button type='primary' size='mini'>编辑</button>
+            </navigator>-->
+          </view>
+        </view>
+      </view>
+
+      <view class='loading_btn flex_box'>
+        <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
+        <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
+      </view>
+    </scroll-view>
+  </view>
+
+  
+
+</view>

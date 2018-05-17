@@ -1,0 +1,174 @@
+page{
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.header {
+	display: -webkit-flex;
+	padding: 20rpx;
+	background: #fff;
+}
+
+.header .icon {
+	width: 40rpx;
+	height: 40rpx;
+	vertical-align: top;
+}
+
+.header .search {
+	-webkit-flex: 1;
+	color: #000;
+	font-size: 30rpx;
+	line-height: 40rpx;
+	padding: 10rpx;
+	border-radius: 10rpx;
+	background: #eee;
+}
+
+.header .search .icon {
+	float: left;
+	margin: 1rpx 5rpx 0 0;
+}
+
+.header button {
+	margin-left: 20rpx;
+	font-size: 30rpx;
+}
+
+.header input {
+	height: 30rpx;
+	min-height: 40rpx;
+}
+
+.result {
+	padding: 0;
+}
+.result .shop_list{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify:space-between;
+}
+.result .filters {
+	z-index: 1;
+	position: relative;
+	display: -webkit-flex;
+	border-top: 1rpx solid #efefef;
+	border-bottom: 1rpx solid #efefef;
+	background: #fff;
+}
+
+.result .filters .filter {
+	-webkit-flex: 1;
+	text-align: center;
+	color: #696969;
+	font-size: 30rpx;
+	line-height: 3;
+}
+
+.result .filters .filter .v {
+	display: none;
+}
+
+.result .filters .filter.active {
+	color: #fb4b00;
+	font-weight: bold;
+}
+
+.result .filters .filter.active .v {
+	display: inline-block;
+}
+
+.result scroll-view {
+	position: absolute;
+	top: 200rpx;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+}
+.result .shop {
+  padding: 0 20rpx;
+  border-bottom: 1px solid #ddd;
+}
+.result .shop navigator{
+  display:inline-flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+
+
+.result .shop image {
+	width: 200rpx;
+}
+
+.result .shop .v{
+  font-size:32rpx;
+	display:flex;
+  padding-top:10rpx;
+}
+.result .shop .priceBox{
+  align-items: center;
+}
+.result .shop .price{
+  font-size: 32rpx;
+  color:#fb4b00;
+}
+
+.result .shop .market{
+  line-height: 65rpx;
+  color:#9fa0a0;
+}
+.result .shop .name{
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+  font-size:30rpx;
+  height:73rpx;
+  text-align:left;
+
+}
+.loading {
+	font-size: 32rpx;
+	text-align: center;
+	line-height: 2;
+	margin-bottom: 20rpx;
+}
+
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.fc_gray {
+    color: #898989;
+}
+.result .shop .shopText{
+  width: 70%;
+}
+.result .shop .fc_gray{
+  font-size: 26rpx;
+}
+.result .shop .priceBox{
+  width: auto;
+  font-size: 28rpx;
+  flex-direction: column;
+}
+.result .shop button{
+  margin: 0;
+  color: #fff;
+  background-color: #fc4b00;
+}

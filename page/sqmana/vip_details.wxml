@@ -1,0 +1,27 @@
+<!--page/sqmana/vip_details.wxml-->
+<view class='container'>
+  <view class='first'><text>会员订单情况</text></view>
+  <view class='content'>
+    <scroll-view scroll-y="true" class='box'  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+      <view class='items' wx:for="{{orderLists}}" wx:key="{{index}}">
+        <view style='background-color:#ddd;padding:10rpx 0;'>
+          <text>时间：{{item.time}}</text>
+          <text>订单号：{{item.orderNum}}</text>
+        </view>
+        <view class='wrap flex_box'>
+          <view>
+            <image src='{{item.img}}' class='pro_img' mode='widthFix'/>
+          </view>
+          <view class='flex_inline wrap_box'>
+            <text class='title'>{{item.text}}</text>
+            <view class='flex_inline'>
+              <text class='fc_orange'>{{item.active}}</text>
+              <text>价格：￥{{item.price}}</text>
+              <text>数量：{{item.num}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

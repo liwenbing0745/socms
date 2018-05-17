@@ -1,0 +1,90 @@
+<view class="container">
+
+  <!--图片-->
+  <view class="car_cont">
+    <swiper autoplay="true" duration="{{duration}}" class="car_pic">
+      <block wx:for="{{pro_album}}" wx:key="img">
+        <swiper-item>
+          <image src="http://www.so50.com{{item.img}}" mode="widthFix"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!--价格&名称-->
+  <view class="name_cont">
+    <text class="car_name">{{products[0].pro_name}}</text>
+    <view class="car_box">
+      <view>
+        <text class="car_price">￥{{products[0].pro_ourpri}}</text>
+        <text class="car_market">{{products[0].pro_markpri}}元</text>
+      </view>
+      <view class="quantity">
+        <view class="reduce" data-id="{{products[0].id}}" bindtap="proReduce">-</view>
+        <view class="num">{{products[0].buy_sum}}</view>
+        <view class="add" data-id="{{products[0].id}}" bindtap="proAdd">+</view>
+      </view>
+    </view>
+    <view class="car_detail">
+      <text>销量: {{products[0].sales_sum}}</text>
+      <text>库存: {{products[0].stock_num}}</text>
+    </view>
+  </view>
+  <view class="evaluation">
+    <view class="title">
+      商品评论({{tEvaluateSum}})
+    </view>
+    <view class="evaList">
+      
+      <view class="evaBox" wx:for="{{tEvaluate}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+        <view class="evaBoxs">
+          <view class="evaName">
+            <view class="evaNameL">
+              <view class="myName">
+                <text>{{tEvaluate[id].nickname}}</text>
+              </view>
+              <view class="start" wx:for="{{tEvaluate[id].com_integral}}" wx:for-index="com_in" wx:for-item="com_innum" wx:key="com_in">
+                <image src="/imgs/buy/start.png" mode="widthFix"></image>
+              </view>
+          
+
+            </view>
+            <text>
+              {{tEvaluate[id].addtime}}
+            </text>
+          </view>
+          <view class="evaText">
+            {{tEvaluate[id].com_con}}
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+    <view class="addEva">
+      <navigator url="/page/product/proeva?id={{products[0].id}}">
+        查看全部评论
+      </navigator>
+    </view>
+    
+  </view>
+  
+    <view  class="pro_wapcon_cont" wx:for="{{pro_wapcon}}" wx:key="img">
+        <image src="{{item.img}}" mode="widthFix"/>
+    </view>
+
+  
+  <view class="fix_btn">
+    <view class="btn_index" bindtap="tapIndex">
+      <navigator url="/page/index/index">
+        首页
+      </navigator>
+    </view>
+    <button id="btn" class="btn_save" size="mini" data-id="{{products[0].id}}" bindtap="tapAddColl">收藏</button>
+    <button id="btn" class="btn_add" size="mini" data-id="{{products[0].id}}" bindtap="tapAddCart">加入购物车</button>
+    <button id="btn" class="btn_buy" size="mini" data-id="{{products[0].id}}" bindtap="tapBuyCart">立即购买</button>
+    <view class="cartNum">
+      <text>{{tcartSum}}</text>
+    </view>
+  </view>
+
+</view>

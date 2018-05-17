@@ -1,0 +1,23 @@
+/* page/sqtg/components/search_box.wxss */
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.content{
+  padding: 10rpx 15rpx;
+  background-color: #fff;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.content input{
+  display: inline-flex;
+  border: 1px solid #ddd;
+  padding: 5rpx;
+  margin-left: 20rpx;
+  width: 65%;
+  border-radius: 15rpx;
+}

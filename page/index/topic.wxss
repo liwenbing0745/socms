@@ -1,0 +1,113 @@
+page{
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+  position: relative;
+}
+.header {
+	display: -webkit-flex;
+	padding: 20rpx;
+	background: #fff;
+}
+.header image{
+  width: 100%;
+  height:440rpx;
+}
+
+.result {
+	padding: 0;
+}
+.result .shop_list{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify:space-between;
+}
+.result .filters {
+	z-index: 1;
+	position: relative;
+	display: -webkit-flex;
+	border-top: 1rpx solid #efefef;
+	border-bottom: 1rpx solid #efefef;
+	background: #fff;
+}
+
+.result .filters .filter {
+	-webkit-flex: 1;
+	text-align: center;
+	color: #696969;
+	font-size: 30rpx;
+	line-height: 3;
+}
+
+.result .filters .filter .v {
+	display: none;
+}
+
+.result .filters .filter.active {
+	color: #fb4b00;
+	font-weight: bold;
+}
+
+.result .filters .filter.active .v {
+	display: inline-block;
+}
+
+.result scroll-view {
+	background: #fff;
+}
+
+.result .shop {
+	display:inline-flex;
+  width:47%;
+	padding: 10rpx 10rpx;
+  margin-bottom:10rpx;
+}
+.result .shop navigator{
+  display:inline-flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+.result .shop .shopText{
+  display:inline-flex;
+  flex-direction: column;
+  padding:0  10rpx;
+  border-bottom: 1rpx solid #efefef;
+  text-align:center;
+}
+
+.result .shop image {
+	width: 100%;
+  height:350rpx;
+}
+
+.result .shop .v{
+  font-size:32rpx;
+	display:flex;
+  padding-top:10rpx;
+}
+
+.result .shop .price{
+  font-size: 40rpx;
+  color:#fb4b00;
+}
+
+.result .shop .market{
+  text-decoration:line-through;
+  line-height: 65rpx;
+  color:#9fa0a0;
+}
+.result .shop .name{
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+  font-size:30rpx;
+  height:85rpx;
+}
+.loading {
+	font-size: 32rpx;
+	text-align: center;
+	line-height: 2;
+	margin-bottom: 20rpx;
+}

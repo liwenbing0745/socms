@@ -1,0 +1,99 @@
+/* page/sqtg/sqtg_orderDetails.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx; 
+  padding-bottom: 70rpx;
+}
+.container {
+	height: 100%;
+  position: relative;
+  
+}
+scroll-view {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.fc_blue{
+  color: #5c52bf;
+}
+.order_active,
+.todata{
+  padding: 15rpx 0;
+  justify-content: space-around;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.order_active text,
+.todata text{
+  padding: 8rpx 0;
+}
+
+.order_active .select,
+.todata .select{
+  color: #fc4b00;
+}
+.orderLists .items{
+  background-color: #fff;
+}
+.orderLists .items .items_img image{
+  width: 120rpx;
+}
+.orderLists{
+  margin-top: 30rpx;
+}
+.orderLists .items{
+  background-color: #fff;
+}
+.orderLists .items>view,
+.orderLists .items .items_wrap{
+  padding: 15rpx;
+}
+.orderLists .items .items_img{
+  width: 30%;
+  font-size: 0;
+  text-align:center;
+}
+.orderLists .items .items_img image{
+  width: 200rpx;
+}
+.orderLists .bor_btm{
+  border-bottom: 1px solid #ddd;
+}
+.orderLists .items .items_wrap_center{
+  width: 70%;
+  height:200rpx;
+  flex-direction: column;
+}
+.orderLists .items .pro_title{
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+}
+.orderLists .items .order_btn_box{
+  line-height:.8;
+  justify-content: flex-end;
+}
+.orderLists .items .order_btn_box button{
+  margin:0 0 0 10rpx;
+  color: #fc4b00;
+  border: 1px solid #fc4b00;
+  font-size: 22rpx;
+}

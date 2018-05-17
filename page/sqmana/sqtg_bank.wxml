@@ -1,0 +1,65 @@
+<!--page/sqmana/sqtg_bank.wxml-->
+<view class='container'>
+  <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+  <view class='header flex_box'> 
+    <image src='http://wx.so50.com/images/money_03.png' mode='widthFix'/>
+    <text>{{stroesInfo.title}}</text>
+    <text class='fs_mx'>￥{{stroesInfo.reval}}</text>
+  </view>
+  <view class='species items'>
+    <radio-group bindchange="giveActive" class="group_radio flex_box" name="radiogroup">
+      <label class='radio' wx:for="{{species}}" wx:key="{{index}}">
+        <radio class='fw_bold' checked='{{item.checked}}' name='{{item.name}}' value='{{item.value}}'>{{item.value}}</radio>
+      </label>
+    </radio-group>
+  </view>
+
+  <view class='bank_infor' hidden="{{!isBank}}">
+    <view class='flex_box item_wrap items'>
+      <text class='fw_bold'>姓名</text>
+      <input type='text' placeholder='请输入姓名'  name='username' value='{{stroesInfo.username}}'/>
+    </view>
+    <view class='flex_box item_wrap items'>
+      <text class='fw_bold'>开户行</text>
+      <input type='text' placeholder='请输入开户行'  name='bank' value='{{stroesInfo.bank}}'/>
+    </view>
+    <view class='flex_box item_wrap items'>
+      <text class='fw_bold'>账号</text>
+      <input placeholder='请输入银行账户' type='digit' name='bankcard' value='{{stroesInfo.bankcard}}'/>
+    </view>
+  </view>
+
+  <view class='flex_box item_wrap items' hidden="{{isBank}}">
+    <text class='fw_bold'>微信昵称</text>
+    <input type='text' placeholder='' name='try_user_nickname' value='{{try_user_nickname}}'/>
+  </view>
+  <view class='flex_box item_wrap items'>
+    <text class='fw_bold'>提现金额</text>
+    <input type='digit' name='txje' value='{{offermoney}}'/>
+  </view>
+  
+  <view class='money_species flex_box'>
+    <view data-id="100" bindtap="tapoffermoney">
+      <text>￥100</text>
+    </view>
+    <view data-id="200" bindtap="tapoffermoney">
+      <text>￥200</text>
+    </view>
+    <view data-id="500" bindtap="tapoffermoney">
+      <text>￥500</text>
+    </view>
+    <view data-id="{{stroesInfo.offermoney}}" bindtap="tapoffermoney">
+      <text>全部提现</text>
+    </view>
+  </view>
+
+  <view class='prompt'>
+    <text>提示:提现最低金额为30元。</text>
+  </view>
+    <view class="hide">
+      <input type="text" name="uid" value="{{uid}}" />
+    </view>
+
+    <button type='primary' formType="submit">提交申请</button>
+  </form>
+</view>

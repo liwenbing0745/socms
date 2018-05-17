@@ -1,0 +1,82 @@
+<!--page/sqtg/sqtg_sqtz.wxml-->
+        <view class="container">
+          <form bindsubmit="formSubmit" bindreset="formReset"  wx:if="{{sqtgaudit==0}}" report-submit="true">
+          <view class="list">
+            <view class="items flex_box">
+              <view>
+                <text class="fc_blue">
+                  手机号码
+                  </text>
+                </view>
+              <view>
+                <input placeholder="请输入手机号码" value="" type="digit" name="mobile"></input>
+                </view>
+              </view>
+              <view  class="hide">
+                <view>
+                  <text class="fc_blue">
+                    发送验证码
+                    </text>
+                  </view>
+                <view>
+                  <input placeholder="请填写验证码" type="digit" name="sec"></input>
+                  </view>
+                </view>
+                <view class="items flex_box">
+                  <view>
+                    <text class="fc_blue">
+                      所属小区
+                      </text>
+                    </view>
+                  <view>
+                  <view class=''>
+                    <picker mode="region" bindchange="CityChange" value="{{region}}" name="procity">
+                      <view class="city_picker">
+                        当前选择：{{region}}
+                      </view>
+                    </picker>
+                  </view>
+                    <input placeholder="请输入小区名称" value="" type="text" name="sqmc"></input>
+                    </view>
+                  </view>
+                  <view class="items flex_box">
+                    <view>
+                      <text class="fc_blue">
+                        取货地址
+                      </text>
+                      注意：填写取货地址后不能修改，请确认地址！
+                    </view>
+                    <view>
+                      <input placeholder="请填写取货地址" value="" type="text" name="sqmctihoudian"></input>
+                      </view>
+                    </view>
+                    </view>
+            <view class="hide">
+              <input type="text" name="uid" value="{{uid}}" />
+                   </view>
+            <view class='btn'>
+              <button class="yellow"  type="primary" form-type="submit">
+                确认提交
+              </button>
+      </view>
+  </form>
+  <view class='title' wx:if="{{sqtgaudit==1}}">
+    <text class='fc_orange'>
+      温馨提示：感谢您参与申请所属小区团长，我们正在加足马力审核，如您的资质符合要求，我们会在2个工作日跟您电话联系，请确保您的信息通畅，谢谢！（请准确填写你的取货地址，如填写有误，请马上联系0731-85011559）
+
+    </text>
+  </view>
+  <view class='title' wx:if="{{sqtgaudit==2}}">
+    <text class='fc_orange'>
+      温馨提示：您已是小区团长，请勿重复申请！
+    </text>
+  </view>
+  <view class='title' wx:if="{{sqtgaudit==3}}">
+    <text class='fc_orange'>
+      温馨提示：很抱歉，经过审核，您的信息不符合小区团长的审核要求，小区团长审核不允通过，谢谢！
+
+    </text>
+  </view>
+
+</view>
+              

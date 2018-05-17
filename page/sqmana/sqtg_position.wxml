@@ -1,0 +1,43 @@
+<!--page/sqtg/sqtg_position.wxml-->
+<view class='container'>
+
+  <search-box id="search-box" bind:searchData="onSearchData" />
+
+  <view bindtap='toIndex' class='toIndex'>
+    <text>进入搜农坊总站</text>
+  </view>
+
+  <view class='section'>
+    <view class='new_position'>
+      <text>当前定位：</text>
+      <text>{{detailsLists[0].sqmcdipmc}}-{{detailsLists[0].sqmc}}</text>
+    </view>
+    <!--<view class='items flex_box item_box' wx:for="{{products}}" wx:key="id">
+      <image class='items_img' src="http://wx.so50.com/images/个人中心_02_03.png" mode='widthFix'/>
+      <view class='items_content'>
+        <view>
+          <text class='title'>{{item.pro_name}}-{{item.pro_name}}</text>
+        </view>
+        <text class='supple'>{{item.pro_name}}</text>
+      </view>
+    </view>-->
+    <!--附近区域  -->
+    <view class='posi_lists' wx:for="{{categories}}" wx:key="id">
+      <scroll-view scroll-y="true" class='posi_scroll_box'>
+        <view class='items flex_box'>
+          <navigator  url="/page/sqtg/sqtg_index?scene={{item.id}}">
+            <image class='items_img' src="http://wx.so50.com/images/个人中心_02_03.png" mode='widthFix'/>
+            <view class='items_content'>
+              <view>
+                <text class='title'>{{item.sqmcdipmc}}-{{item.sqmc}}</text>
+              </view>
+              <text class='supple'>{{item.sqmctihoudian}}</text>
+            </view>
+          </navigator>
+        </view>
+      </scroll-view>
+    </view>
+
+  </view>
+
+</view>

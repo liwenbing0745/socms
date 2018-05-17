@@ -1,0 +1,168 @@
+/* page/sqtg/sqtg_PersonCenter.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+  background-color: #efefef;
+  padding-bottom: 80rpx;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.text_undeline{
+  text-decoration: underline;
+}
+.lists{
+  margin-bottom: 25rpx;
+  background-color: #fff;
+}
+.lists .items{
+  width: 20%;
+  text-align: center;
+}
+.lists .items text{
+  line-height: 22rpx;
+}
+.lists .items .item_text{
+  line-height: 8rpx;
+}
+.lists .icon_img image{
+  width: 60rpx;
+}
+.my_order .icon_img{
+  position: relative;
+}
+.my_order .absolute_icon{
+  position: absolute;
+  top:-13%;
+  right: -22%;
+  width: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #fc4b00;
+  color: #fff;
+  font-size: 20rpx;
+}
+.lists .items .flex_inline{
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 20rpx 0;
+}
+.list_item{
+  position: relative;
+  padding: 30rpx 50rpx 30rpx 70rpx;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+.list_item text{
+  font-size: 32rpx;
+}
+.list_item::after{
+  content: "";
+  display: block;
+  width: 20rpx;
+  height: 20rpx;
+  border-top: 1px solid #fc4b00;
+  border-left: 1px solid #fc4b00;
+  transform-origin: 50%;
+  transform: rotate(135deg);
+  position: absolute;
+  right: 2%;
+  top: 42%;
+}
+.list_item::before{
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 2%;
+  width: 40rpx;
+  height: 40rpx;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.my_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_02_03.png);
+}
+.t_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_01_14.png);
+}
+.ress_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_02_06.png);
+}
+.kf_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_02_09.png);
+}
+.tg_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_2_03.png);
+}
+.tg1_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_2_06.png);
+}
+.pf_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_2_09.png);
+}
+.tgou_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_03_03.png);
+}
+.ll_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_2_16.png);
+}
+.sc_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_2_18.png);
+}
+.yj_icon::before{
+  background-image: url(http://wx.so50.com/images/个人中心_2_21.png);
+}
+.header .user_img{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+.header .user_img image{
+  width: 100%;
+}
+.header{
+  align-items: center;
+  flex-direction: column;
+  background-color: #e12e27;
+  padding-top: 95rpx;
+  margin-bottom: 10rpx;
+  color: #fff;
+}
+.header>view{
+  margin: 8rpx 0;
+}
+.header .ress text{
+  display: block;
+  width: 600rpx;
+  height: 40rpx;
+  text-align: center;
+  overflow: hidden;
+}
+.section{
+  padding: 0 0 120rpx;
+  background-color: #efefef;
+}
+

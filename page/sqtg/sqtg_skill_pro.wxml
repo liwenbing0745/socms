@@ -1,0 +1,83 @@
+<!--page/sqtg/sqtg_skill_pro.wxml-->
+<view class="container">
+
+  <!--图片-->
+  <view class="car_cont">
+        <image src="{{products[0].pro_pic}}" mode="widthFix"></image>
+   </view>
+  <!--价格&时间-->
+  <view class='pro_content'>
+    <view class="car_box">
+        <text class="car_price">￥{{products[0].price}}</text>
+        <text class="car_market">{{products[0].pro_markpri}}元</text>
+     </view>
+    <view class="car_detail">
+      <text>距离结束还有</text>
+      <text>{{sqstate.hour}}:{{sqstate.min}}:{{sqstate.sec}}</text>
+    </view>
+  </view>
+  <!-- 名称 -->
+  <view class='name_cont {{products[0].boutysum >= products[0].freeord ? "skill_over" : "" }}'> 
+  <!-- <view class="name_cont_box flex_box">
+      <view class='flex_line flex_dir name'>
+        <view class="car_name">
+          <text class='skill_text' hidden='{{products[0].issqtgseckill!=1}}'>【秒杀】</text>
+          <text class='pro_name'>{{products[0].pro_name}}</text>
+        </view>
+        <view class='title'>
+          <text class='fc_gray'>{{products[0].pro_subtitle}}</text>
+        </view>
+      </view>
+      <view class="car_box flex_line">
+        <navigator url='/page/sqtg/sqtg_share?sqtgbountyid={{products[0].id}}'> <image src='http://wx.so50.com/images/scode_03.jpg' mode='widthFix' />
+        <view>
+          <text>图文分享</text>
+        </view>
+        </navigator>
+      </view>
+    </view> -->
+    <text class="car_name">{{products[0].pro_name}}</text>
+    <view class="car_detail">
+      <text>库存: {{products[0].stock_num}}</text>
+      <text>限购: {{products[0].xg}}</text>
+    </view>
+  </view>
+
+  <view class='user_img_box' wx:key="{{index}}" bindtap='isShowDetails'>
+      <view class='group_num'>
+        <text>秒杀人数({{tEvaluateSum}})</text>
+      </view>
+      
+      <view class='content_box flex_box'>
+        
+        <view class='items flex_inline' wx:for="{{tEvaluate}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+          <view class='img_box'>
+            <image class='user_img' src='{{tEvaluate[id].img}}'/>
+          </view>
+          <text class='user_name'>{{tEvaluate[id].name}}</text>
+        </view>
+        
+      </view>
+      
+    </view>
+  
+  <view class='pro_text'>
+    <text>商品详情</text>
+  </view>
+  
+  <view class='details_img'>
+    <view wx:for="{{detailsList}}" wx:key="{{img}}">
+      <image src='{{item.img}}' mode="widthFix" />
+    </view>
+  </view>
+  
+  <view class="fix_btn">
+    <button id="btn" class="btn_index" size="mini" bindtap='backIndex'>
+      <text>首页</text>
+    </button>
+    <button id="btn" class="btn_buy" size="mini" wx:if='!{{products[0].id}}'  data-id="{{products[0].id}}" bindtap="tapBuyCart">
+      <text>立即抢购</text>
+    </button>
+  </view>
+
+</view>

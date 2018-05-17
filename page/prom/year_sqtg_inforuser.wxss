@@ -1,0 +1,57 @@
+page{
+  position:relative;
+  padding-bottom: 120rpx;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+
+.evaluation{
+  display:flex;
+  flex-direction:column;
+  padding:15rpx 10rpx 10rpx 20rpx;
+  margin:15rpx 0;
+  background-color:#fff;
+}
+.evaluation .evaBoxs{
+  display:flex;
+  flex-direction:column;
+  padding:5rpx;
+  border-bottom: 1px solid #ddd;
+}
+.evaluation .evaBox .evaName{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+.evaluation .evaBoxs .evaNameL{
+ display:flex;
+}
+.evaluation .evaBoxs .myName{
+ padding-right: 10rpx;
+}
+.evaluation .evaBoxs .start{
+  width:26rpx;
+}
+.evaluation .evaBoxs .start image{
+  width:100%;
+}
+.evaluation .evaBox view{
+  padding:8rpx 0;
+}
+.evaluation .title,
+.evaluation .addEva{
+  padding:5rpx;
+  text-align:center;
+}
+.evaluation .addEva{
+  padding:15rpx 5rpx; 
+}
+
+.productPicture{
+  display:flex;
+  flex-direction:column;
+}
+.productPicture image{
+  width:100%;
+  height:100%;
+}

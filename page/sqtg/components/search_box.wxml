@@ -1,0 +1,8 @@
+<!--page/sqtg/components/search_box.wxml-->
+<view class='container'>
+  <view class='content flex_box'>
+    <icon type='search' size='20'></icon>
+    <input type='text' placeholder='请输入搜索内容' bindinput='userSearch'></input>
+    <button size='mini' type='primary' bindtap="Search">搜索</button>
+  </view>
+</view>

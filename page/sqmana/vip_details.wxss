@@ -1,0 +1,51 @@
+/* page/sqmana/vip_details.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx; 
+  padding-bottom: 70rpx;
+}
+.container {
+	height: 100%;
+  position: relative;
+  
+}
+scroll-view {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.first{
+  padding: 12rpx;
+  color: #e4393c;
+  background-color: #c0c0c0;
+}
+.content .items{
+  
+  background-color: #fff;
+}
+.content .pro_img{
+  width:200rpx;
+}
+.content .wrap_box{
+  width: 70%;
+  flex-direction: column;
+}
+.content .wrap_box .flex_inline{
+  width: 100%;
+  padding: 10rpx; 
+}

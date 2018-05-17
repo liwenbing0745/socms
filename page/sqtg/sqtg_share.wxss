@@ -1,0 +1,36 @@
+/* page/sqtg/sqtg_share.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+}
+.content{
+  position: relative;
+  height: 100%;
+  background-image: url(http://wx.so50.com/images/分享到朋友圈_bg_02.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.share_img{
+  position: absolute;
+  top: 22%;
+  left: 15.5%;
+  width: 500rpx;
+}
+.down_btn{
+  position: absolute;
+  bottom: 3%;
+  left: 30%;
+  display: inline-flex;
+  width: 230rpx;
+  height: 40rpx;
+  padding: 15rpx 12rpx;
+  background-color: #ffe224;
+  border-radius: 36rpx;
+  text-align: center;
+  justify-content: space-around;
+}
+

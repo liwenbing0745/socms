@@ -1,0 +1,24 @@
+<!--page/sqmana/export_order.wxml-->
+<view class='container'>
+  <view class='items'>
+    <view>
+      <text class='title'>今日订单：</text>
+    </view>
+    <view  wx:for="{{recordList}}" wx:key="{{index+1}}">
+      <text class='title'>{{index+1}}:{{item.name}}：</text>
+      
+      <view class='items_wrap flex_box bor_btm' wx:for='{{item.pro_name}}' wx:for-item='pro_name' wx:key='{{index}}'>
+        <view class='flex_inline items_wrap_center'>
+          <text class='pro_title'>
+            {{pro_name.pro}} (已付)
+          </text>
+       </view>
+      </view>
+
+      
+    </view>
+  </view>
+  <view class='fix_btn'>
+    <button type='primary' bindtap="copyTBL">一键复制</button>
+  </view>
+</view>

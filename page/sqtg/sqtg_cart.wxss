@@ -1,0 +1,122 @@
+/* page/sqtg/sqtg_cart.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+  background-color: #efefef;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.shop_img image{
+  width: 200rpx;
+}
+.delete_img image{
+  width: 40rpx;
+}
+.shop_lists{
+  padding-bottom: 300rpx;
+}
+.shop_lists .items{
+  background-color: #fff;
+  padding: 15rpx 10rpx;
+  margin-bottom: 10rpx;
+} 
+.shop_lists .title text{
+  width: 400rpx;
+  height: 70rpx;
+  overflow: hidden;
+}
+.shop_lists .shop_content{
+  width: 60%;
+  padding-left: 15rpx;
+}
+.shop_lists .shop_content>view{
+  padding: 15rpx 0;
+}
+.select{
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  cursor: pointer;
+  background-size: 60rpx;
+}
+.not_check{
+  background-image: url(http://wx.so50.com/images/购物车_01_03.png);
+}
+.select_check{
+  background-image: url(http://wx.so50.com/images/购物车_1_03.png);
+}
+.shop_lists .title text{
+  display: inline-flex;
+  width: 100%;
+  height: 70rpx;
+  overflow: hidden;
+}
+.shop_lists .price{
+  line-height:0;
+}
+.shop_lists .market text{
+  font-size: 26rpx;
+  text-decoration: line-through;
+}
+.shop_lists .price text{
+  color: #fc4b00;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+.shop_lists .change_box{
+  align-items: center;
+}
+.shop_lists .change_box>view{
+  width: 50rpx;
+  height: 50rpx;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.shop_lists .change_box .reduce,
+.shop_lists .change_box .add{
+  background-color: #e5e5e5;
+}
+.footer_cart{
+  position: fixed;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+  padding-left: 8rpx;
+  background-color: #fff;
+}
+.footer_cart text{
+  font-size: 26rpx;
+}
+.footer_cart button{
+  height: 100%;
+  width: 200rpx;
+  background-color: #fc4b00;
+  border-radius: 0;
+  color: #fff;
+}
+.footer_cart .price{
+  color: #fc4b00;
+  font-size: 36rpx;
+  line-height: 0;
+}
+.footer_cart .disabled{
+  background-color: #ddd;
+}

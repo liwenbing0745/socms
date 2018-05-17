@@ -1,0 +1,64 @@
+<!--page/sqtg/sqtg_cart.wxml-->
+<view class='container'>
+  <view class='shop_lists'>
+    <scroll-view scrlly-y="true" class='list'>
+      <view class='items flex_box' wx:for="{{goodsList}}" data-index="{{index}}" wx:key="{{item.id}}">
+        <view class='shop_img flex_inline' data-id="{{item.id}}" data-index="{{index}}" bindtap="ToCheck">
+          <label class="select {{item.checked=='true' ? 'select_check':'not_check'}}">
+            <checkbox hidden vlue="{{item.id}}" checked='={{item.checked}}'></checkbox>
+          </label>
+          <image src="{{item.img}}" mode='widthFix' alt=""/>
+        </view>
+        <view class='shop_content '>
+          <view class='title'>
+            <text>{{item.title}}</text>
+          </view>
+          <view class='market'>
+            <text>{{item.pro_markpri}}</text>
+          </view>
+          <view class='shop_info flex_box'>
+            <view class='price'>
+              <text>
+                ￥{{item.price}}
+              </text>
+            </view>
+            <view class='flex_inline change_box'>
+              <view class='reduce' data-id="{{item.id}}" bindtap="tapReduceCart">
+                -
+              </view>
+              <view class='num'>{{item.buy_sum}}</view>
+              <view class='add' data-id="{{item.id}}" bindtap="tapAddCart">
+                +
+              </view>
+            </view>
+            <view class='delete_img' data-id="{{item.id}}" bindtap='deleteCheck'>
+              <image src="http://wx.so50.com/images/购物车_03.png" mode='widthFix' alt=""/>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class='footer_cart flex_box'>
+    <view class='flex_inline' bindtap='selectAll'>
+      <label class='select {{select_all=="true"? "select_check" : "not_check"}}'>
+        <checkbox hidden value='all'></checkbox>
+      </label>
+      <text>全选</text>
+    </view>
+    <view class='flex_inline'>
+      <text>合计:￥</text>
+      <text class='price'>{{cart.total}}</text>
+      <text class='fc_orange'>(优惠：{{cart.youhui}}元)</text>
+    </view>
+    <view class='flex_inline'>
+      <form bindsubmit="submit" report-submit="true">
+      <button class="btn {{checkActive ? '' : 'disabled'}}" formType="submit">去结算</button>
+      </form>
+    </view>
+  </view>
+
+  <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}"/>
+
+</view>

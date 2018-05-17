@@ -1,0 +1,110 @@
+/* page/sqmana/mana.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.fc_orange{
+  color: #fc4b00;
+}
+.fc_gray{
+  color: #979797;
+}
+.fw_bold{
+  font-weight: 700;
+  font-size: 44rpx;
+}
+.header .stores{
+  padding: 20rpx;
+  background-image: url(http://wx.so50.com/images/now_home_01.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.header .stores_img image{
+  width: 135rpx;
+  height: 135rpx;
+}
+.header .undeline{
+  text-decoration: underline;
+}
+.header .stores_name>text{
+  font-weight: 700;
+}
+.header .stores_infor{
+  padding-left: 15rpx;
+  flex-direction: column;
+  color: #fff;
+}
+.header .stores_infor>view{
+  padding: 6rpx 0;
+}
+.header .income{
+  flex-direction: column;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 10rpx;
+}
+.header .income_wrap .items{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 
+.header .income_wrap .items text,
+.header .cum_sales text{
+  padding: 7rpx 0;
+}
+.header .cum_sales{
+  flex-direction: column;
+  padding: 15rpx 0;
+}
+.header .income_wrap{
+  justify-content: space-around;
+}
+
+
+.section .mana_list{
+  flex-wrap: wrap;
+  justify-content:flex-start;
+}
+.section .mana_list .items{
+  width: 33%;
+  padding: 25rpx 0;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.section .mana_list .items:nth-child(10),
+.section .mana_list .items:nth-child(11),
+.section .mana_list .items:nth-child(12){
+  border-bottom: none;
+}
+.section .mana_list .items:nth-child(3),
+.section .mana_list .items:nth-child(6),
+.section .mana_list .items:nth-child(9),
+.section .mana_list .items:nth-child(12){
+  border-right: none;
+}
+.section .mana_list .items image{
+  width: 85rpx;
+}
+.section .mana_list .items:nth-child(10) image,
+.section .mana_list .items:nth-child(11) image,
+.section .mana_list .items:nth-child(12) image{
+  width:64rpx;
+}
+

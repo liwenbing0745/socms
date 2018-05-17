@@ -1,0 +1,316 @@
+/* page/sqtg/sqtg_pro.wxss */
+page{ 
+  position:relative;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+	height: 100%;
+  padding-bottom: 90rpx;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.flex_dir{
+  flex-direction: column;
+}
+.fc_red{
+  color: #e4393c;
+}
+.fc_gray{
+  color: #7d7d7d;
+}
+.car_cont image,
+.details_img image{
+  display:block;
+  width:100%;
+}
+.car_box image{
+  width: 50rpx;
+}
+.car_wrap{
+  width: 100%;
+  padding: 10rpx;
+  /* background-image: url(http://wx.so50.com/images/拼团详情tg_1_02.jpg); */
+  background-color:#48b24e;
+  /* background-size: 100%;
+  background-repeat: no-repeat; */
+  line-height:1.7;
+}
+.skill_over{
+  position: relative;
+}
+.skill_over::after{
+  content: '';
+  position: absolute;
+  top: -15%;
+  left: 35%;
+  width: 200rpx;
+  height: 200rpx;
+  background-image: url(http://wx.so50.com/images/seconds_end.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+}
+/* .pro_seckill .skill_over::after{
+  background-image: url(http://wx.so50.com/images/seconds_mail.png);
+} */
+.pro_seckill .skill_over::after{
+  background-image: url(http://wx.so50.com/images/seconds_over.png);
+}
+.car_wrap .time_box{
+  width: 30%;
+  text-align: center;
+  line-height:1.5;
+}
+.car_wrap text{
+  font-size: 26rpx;
+}
+.car_wrap .time_box>text{
+  color: #fc4b00;
+}
+.car_wrap .time_box .time_items{
+  padding: 4rpx 7rpx;
+  margin: 0 5rpx;
+  color: #fff;
+  border-radius: 7rpx;
+  background-color: #5f330c;
+}
+.car_wrap .content_box{
+  /* width: 70%; */
+  color: #fff;
+  justify-content: flex-start;
+}
+.car_wrap .content_box .flex_inline{
+  text-align: center;
+  justify-content: space-around;
+}
+.car_wrap .content_box .car_market{
+  justify-content: flex-start;
+  align-items:center;
+}
+.car_wrap .content_box .car_markpri{
+  text-decoration: line-through;
+  font-size: 26rpx;
+}
+/* .car_wrap .car_market{
+  width: 450rpx;
+} */
+.car_wrap .car_market .cart_price{
+  font-size:40rpx;
+  font-weight: 700;
+  padding-right: 15rpx;
+}
+.name_cont{
+  width: 100%;
+  padding: 15rpx 20rpx 0 20rpx;
+  background-color: #fff;
+  border-bottom: .1rpx solid #EFEFEF;
+}
+.name_cont .skill_text{
+  color: #e4393c;
+  font-weight: 700;
+}
+.name_cont .name{
+  width: 70%;
+}
+.name_cont .title,
+.name_cont .car_name{
+  display: inline-block;
+  width: 100%;
+  height: 40rpx;
+  overflow: hidden;
+}
+.name_cont .car_name{
+  height: 55rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.name_cont .car_box{
+  width: 30%;
+  text-align: center;
+}
+.car_number_box{
+  padding: 10rpx 20rpx;
+  background-color: #fff;
+}
+.car_number_box .car_time{
+  justify-content: space-between;
+}
+.car_number_box .pro_name{
+  color: #e4393c;
+  font-size: 22rpx;
+}
+.footer .controller{
+  justify-content: space-around;
+  padding: 15rpx 20rpx;
+}
+.footer .controller .seclet{
+  border-bottom: 1px solid #fc4b00;
+  color: #fc4b00;
+}
+.footer .record{
+  background-color: #fff;
+}
+.footer .record scroll-view{
+  height: 500rpx;
+}
+.footer .record .items{
+  max-height:100rpx;
+  padding: 12rpx;
+  border-bottom: 1px solid #ddd;
+}
+.footer .record image{
+  width: 60rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.footer .record .user_name{
+  width: 200rpx;
+  height: 40rpx;
+  overflow: hidden;
+}
+.footer .user_img_box{
+  margin-bottom: 15rpx;
+  background-color: #fff;
+}
+.footer .user_img_box .group_num {
+  padding:15rpx 0;
+  text-align: center;
+}
+.footer .user_img_box .content_box {
+  justify-content: flex-start;
+}
+.footer .user_img_box .group_num text{
+  color: #e4393c;
+}
+.footer .user_img_box .items{
+  width: 25%;
+  flex-direction: column;
+}
+.footer .user_img_box .items .img_box{
+  text-align: center;
+}
+.footer .user_img_box .user_img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.footer .user_img_box .user_name{
+  width: 100%;
+  height: 36rpx;
+  padding: 8rpx 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+
+
+.fix_btn{
+  position:fixed;
+  left:0;
+  bottom:0;
+  justify-content: flex-start;
+  display: flex;
+  width:100%;
+  background-color:#fff;
+  z-index:5;
+}
+.fix_btn button{
+  color:#fff;
+  width:50%;
+}
+#btn{
+  font-family: "Microsoft YaHei";
+  font-size:30rpx;
+  padding:15rpx 5rpx;
+  border-radius:0;
+  overflow: hidden;
+}
+button::after{
+  border:none;
+  border-radius: 0;
+}
+.fix_btn .btn_index navigator{
+  width:100%;
+  height:100%;
+  line-height:70rpx;
+  text-align: center;
+}
+.fix_btn button{
+  background-color:transparent;
+}
+.fix_btn .btn_buy{
+  background-color:#e4393c;
+}
+.fix_btn .btn_index{
+  color: #000;
+  border-right:1px solid #ddd;
+  background-color: #fff;
+}
+.fix_btn .btn_add{
+  background-color:#ff971c;
+}
+.fix_btn .cartNum{
+  position: absolute;
+  top:2%;
+  left:58%;
+  width:40rpx;
+  height:40rpx;
+  background:#fff;
+  overflow: hidden;
+  border-radius:50%;
+  text-align: center;
+  line-height: 140%;
+}
+.fix_btn .cartNum text{
+  font-size:24rpx;
+}
+.fix_btn .disable{
+  background-color: #F5F5F5;
+  color: #ACA899;
+}
+.fix_btn .will_btn{
+  font-size:30rpx;
+  padding:15rpx 5rpx;
+  border-radius:0;
+  color: #fff;
+  background-color: rgb(41, 165, 41);
+}
+/* 18-05-08 左上角弹窗*/
+.message_box{
+  position: fixed;
+  top:3%;
+  left: 2%;
+  width: auto;
+  height: auto;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  background-color: #000;
+  opacity: .7;
+}
+.message_box text{
+  color: #fff;
+}
+.message_box .user_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@keyframes show{
+  from{opacity: .0;}
+  20%{opacity: .7;}
+  80%{opacity: .7;}
+  to{opacity: 0;}
+}

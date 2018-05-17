@@ -1,0 +1,26 @@
+<!--page/sqmana/my_vip.wxml-->
+<view class='container'>
+  <view class='content'>
+  
+    <scroll-view class='box' scroll-y="true"  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+      <view class='items' wx:for="{{peopleLists}}" wx:key="{{index}}">
+        <view class='flex_box about_box'>
+          <view>
+            <image src='{{item.returngoodsimg}}' class='vip_img' mode='widthFix'/>
+          </view>
+          <view class='flex_inline text_box'>
+            <view>
+              <text>{{item.feedcontent}}</text>
+            </view>
+            <view>
+              <text>时间:{{item.addtime}}</text>
+            </view>
+          </view>
+       
+        </view>
+        
+      </view>
+    </scroll-view>
+  </view>
+
+</view>

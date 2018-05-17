@@ -1,0 +1,27 @@
+<!--page/sqmana/export_pro.wxml-->
+
+
+<view class='container'>
+  <view>
+    <view class='title'>
+      <text>今日开团:</text>
+    </view>
+    <view class='items' wx:for="{{products}}" wx:key="{{index}}">
+      <view class='pro_name'>
+        <text>❤{{item.pro_name}}</text>
+      </view>
+      <view class='market'>
+        <text>❌市场价：{{item.pro_markpri}}元/斤</text>
+      </view>
+      <view class='price'>
+        <text>💕团购价：{{item.price}}元/斤</text>
+      </view>
+      <view class='ress'>
+        <text>【产地： {{item.area}}, {{item.weight_units}}】</text>
+      </view>
+    </view>
+  </view>
+  <view class='fix_btn'>
+    <button type='primary' bindtap="copyTBL">一键复制</button>
+  </view>
+</view>

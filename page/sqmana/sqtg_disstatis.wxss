@@ -1,0 +1,137 @@
+/* page/sqmana/sqtg_statistics.wxss */
+page {
+	height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx; 
+  padding-bottom: 70rpx;
+}
+.container {
+	height: 100%;
+}
+scroll-view {
+	height: 100%;
+}
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.flex_inline{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.stati_index .first_img image{
+  width: 100%;
+}
+.stati_index .number_box {
+  flex-wrap: wrap;
+}
+.stati_index .number_box .item_box{
+  width: 49%;
+  margin: 15rpx 0;
+  padding: 20rpx 5rpx;
+  justify-content: space-around;
+  background-color: #fff;
+}
+.stati_index .number_box .item_box:first-child .fc_color{
+  color: #e5c80a;
+}
+.stati_index .number_box .item_box:nth-child(2) .fc_color{
+  color: #3f8cfe;
+}
+.stati_index .number_box .item_box:nth-child(3) .fc_color{
+  color: #3ca344;
+}
+.stati_index .number_box .item_box:last-child .fc_color{
+  color: #0fafde;
+}
+.stati_index .number_box .item_box .flex_inline{
+  flex-direction: column;
+  text-align: center;
+}
+
+.stati_index .number_box .box_img{
+  width: 120rpx;
+}
+
+.stati_index .order_lists{
+  padding: 15rpx;
+}
+.stati_index .order_lists scroll-view{
+  height: 550rpx;
+}
+.stati_index .order_lists .items{
+  position: relative;
+  height: 80rpx;
+  padding: 20rpx;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+.stati_index .order_lists .items>text{
+  display: inline-flex;
+  width: 30%;
+  overflow: hidden;
+}
+.stati_index .order_lists .items>text:first-child{
+  justify-content: flex-start;
+}
+.stati_index .order_lists .items>text:nth-child(2){
+  width: 40%;
+  justify-content: flex-start;
+}
+.stati_index .order_lists .items>text:last-child{
+  justify-content: flex-end;
+}
+/* .stati_index .order_lists .items::before{
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 3%;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #e5c80a;
+} */
+.box_title{
+  padding: 20rpx;
+  background-color: #ddd;
+}
+
+.big_select{
+  justify-content: space-around;
+  background-color: #ddd;
+}
+.big_select .items{
+  width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  cursor: pointer;
+}
+.big_select .select{
+  background-color: #fff;
+}
+.big_select .select text{
+  color: #fc4b00;
+}
+
+.small_select{
+  justify-content: space-around;
+  background-color: #fff;
+}
+.small_select .items{
+  width: 20%;
+  height: 70rpx;
+  line-height: 24rpx;
+  text-align: center;
+  cursor: pointer;
+}
+.small_select .select text{
+  color: #e4393c;
+  text-decoration: underline;
+}

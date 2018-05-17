@@ -1,0 +1,64 @@
+<!--page/sqmana/sqtg_u.wxml-->
+<view class='container'>
+  <!-- <view class='toggle flex_box' bindtap='Toggle'>
+    <text class='{{toggle ? "" : "select" }}'>上传商品</text>
+    <text class='{{toggle ? "select" : "" }}'>商品管理</text>
+  </view> -->
+<!--上传产品  -->
+  <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+  <view class='upload_box' wx:if="{{!toggle}}">
+
+    <view class='section'>
+      <view class='items flex_box'>
+        <text>产品标题</text>
+        <text class='right_text'> {{pro[0].pro_name}}</text>
+      </view>
+      <view class='items flex_box'>
+        <text>产品类目</text>
+        <text class='right_text'> {{array[selectInx]}}</text>
+      </view>
+      <view class='items flex_box'>
+        <text>产品规格</text>
+        <text class='right_text'>{{pro[0].weight_units}}</text>
+      </view>
+      <view class='items flex_box'>
+        <text>产品产地</text>
+        <text class='right_text'>{{pro[0].area}}</text>
+      </view>
+      <view class='items flex_box'>
+        <text>排序</text>
+        <input  class='right_text' type='digit' name="sort" value="{{pro[0].sort}}"/>
+      </view>
+      <view class='items flex_box'>
+        <text>市场价</text>
+        <text class='right_text'> {{pro[0].pro_markpri}}</text>
+      </view>
+      <!--<view class='items flex_box'>
+        <text>本站价</text>
+        <text class='right_text'> {{pro[0].pro_ourpri}}</text>
+      </view>-->
+      <view class='items flex_box'>
+        <text>建议价格</text>
+        <text class='right_text'>{{pro[0].pro_sqtgpri}}</text>
+      </view>
+      <view class='items flex_box'>
+        <text>供货价</text>
+        <text class='right_text'>{{pro[0].pro_sqtgpriptj}}</text>
+      </view>
+      <view class='items flex_box'>
+        <text>设置价格</text>
+        <input class='right_text' type='digit' name="price" value="{{pro[0].price}}"/>
+      </view>
+    </view>
+
+    <view  class="hide">
+      <input type="text" name="uid" value="{{uid}}" />
+      <input type="text" name="id" value="{{pro[0].proid}}" />
+    </view>
+  
+
+    <button class='btn' type='primary' formType="submit" >确认提交</button>
+  </view>
+  </form>
+
+</view>

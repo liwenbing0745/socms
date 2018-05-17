@@ -1,0 +1,53 @@
+<view class="container">
+  <view class="detail_cont detailTitle bg">
+    <view class="content title">
+      <text id="detail">订单编号:{{orders[0].order_no}}</text>
+      <text id="detail">下单日期:{{orders[0].oreder_time}}</text>
+      <text id="detail" class="red">订单状态:{{orders[0].order_statestr}}</text>
+    </view>
+    <view class="content">
+      <text class="car_name">收货人:{{orders[0].consigneepeo}}</text>
+      <text class="car_name">手机:{{orders[0].consigneemobile}}</text>
+    </view>
+    <view class="content">
+      <text class="car_name">收货地址:{{orders[0].address}}</text>
+    </view>
+  </view>
+
+  <view class="car_detail bg">
+    <scroll-view scroll-y="true">
+      <view class="shop" wx:for="{{pros}}" wx:key="id">
+        <navigator url="/page/product/prodec?id={{item.id}}">
+          <view class="orderDetails">
+            <view>
+             <image src="{{item.proimg}}"/>
+            </view>
+            <view class="orderName">
+              <text class="v">{{item.proname}}</text>
+              <text class="v">￥{{item.pro_price}}</text>
+              <text class="v">数量：{{item.probuysum}}</text>
+            </view>
+          </view>
+         </navigator>
+     </view>
+    </scroll-view>
+  </view>
+
+  <view class="name_cont detailFix bg">
+    <view class="content">
+    <text class="car_name">商品总数量:{{orders[0].buy_sum}}</text>
+    <text class="car_name">商品金额:{{orders[0].money_sum}}</text>
+    <text class="car_name">运费:￥{{orders[0].freight}}</text>
+    </view>
+    <view class="content">
+    <text class="car_name">实际金额:{{orders[0].money_deal}}</text>
+    </view>
+    <view class="detail_cont bg content">
+      <view data-id="{{orders[0].id}}" class="v" bindtap="tapPay" hidden="{{orders[0].order_state=='2' ? false :true}}">{{orders[0].order_state=='2'?'立即支付':''}}</view>
+      <view data-id="{{orders[0].id}}" class="v" bindtap="tapRei" hidden="{{orders[0].order_state=='4' ? false :true}}">{{orders[0].order_state=='4'?'确认收货':''}}</view>
+      <view data-id="{{orders[0].id}}" class="v" bindtap="tapRes" hidden="{{orders[0].order_state=='3' || orders[0].order_state=='4' ? false :true}}">{{orders[0].order_state=='3'||orders[0].order_state=='4'?'申请退款':''}}</view>
+    </view>
+  </view>
+  
+
+</view>

@@ -1,0 +1,340 @@
+<!--page/sqtg/sqtg_index.wxml-->
+<page>
+<view class='container'>
+  <!--***团长编辑按钮***  -->
+  <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+  <view class='tzBtn flex_box'>
+    <button type='warn' size='mini' bindtap="modifyActive">编辑</button>
+    <button type='primary' size="mini" formType="submit">预览</button>
+  </view>
+  
+  <view class='header'>
+
+    <view class='location flex_box'>
+      <view>
+        <navigator class='flex_box' url='/page/sqmana/sqtg_position'>
+          <image src='http://wx.so50.com/images/搜农坊首页--7_03.png' mode='widthFix'/>
+          <text class='ress'>{{user.sqmcdipmc}}({{user.sqmc}})</text>
+        </navigator>
+      </view>
+      <!-- <view>
+        <navigator src="" class='flex_box'>
+          <icon type='search' size='20'></icon>
+        </navigator>
+      </view> -->
+    </view>
+   
+    <view class='shop_info'>
+      <view class='modify_big'>
+        <image class="shop_img"src='{{storesImg}}' mode='widthFix'/>
+        {{phase}}
+        <!--***修改图片***  -->
+        <view class='modify_img' hidden='{{!isModify}}' bindtap="openLocationuser_img"></view>
+      </view>
+      <view class='shop_box'>
+        <view class='shop_name flex_box'>
+          <view class='img_box'>
+            <image class="user_img" src='{{try_user_img}}'/>
+            <!--***修改图片***  -->
+            <!--<view class='modify_img' hidden='{{!isModify}}'  bindtap="openLocationstoresImg" ></view>-->
+          </view>
+          <view class='shop_wrap flex_inline'> 
+            <view class='flex_box'>
+              <view class='flex_inline number_box'>
+                <text class='number'>编号：{{AreaSNF}}</text>
+              </view>
+              <navigator  class='flex_box phone_box text_img' bindtap="makePhone">
+                <!--<image class="phone" src='http://wx.so50.com/images/搜农坊首页--3_04_03.png' mode='widthFix'/>-->
+                <text>联系团长</text>
+              </navigator>
+            </view>
+            <view class='flex_box'>
+              <view class='flex_box'>
+                <text class='bold name' hidden="{{isModify}}">{{user.sqmcdipmc}}</text>
+                <!--***修改名字***  -->
+                <input hidden='{{!isModify}}' class="bold" type='text' value='{{user.sqmcdipmc}}'  name='sqmcdipmc'/>
+              </view>
+              <view class='flex_inline text_img' bindtap="previewImage" style='width:400rpx;'>
+                <image class='share_code' src='http://wx.so50.com/images/搜农坊首页--8_03.png' mode='widthFix'/>
+                <text>分享二维码</text>
+              </view>
+            </view>
+            <view>
+              <text class='bold'>提货点：</text><text class='fc_red'>{{sqmctihoudian}}</text>
+            </view>
+            <!--<view class='flex_box tongzhi'>
+              <text class='bold'>通知：</text>
+              <input hidden='{{!isModify}}' type="text" value='{{user.ssshutongzi}}' name='ssshutongzi'/>
+              <text hidden="{{isModify}}">{{user.ssshutongzi}}</text>
+            </view>-->
+
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='shop_ress'>
+      <!--<navigator class='flex_box'>
+        <view>
+        <image class="ress_cart" src='http://wx.so50.com/images/搜农坊首页--3_05_03.png' mode='widthFix' />
+        </view>
+        <view>
+          <text class='bold'>提货点：</text><text>{{user.sqmctihoudian}}</text>
+        </view>
+      </navigator>-->
+    </view>
+      <view class="hide">
+        <input type="text" name="uid" value="{{uid}}" />
+        <input type="text" name="storesImg" value="{{storesImg}}" />
+        <input type="text" name="try_user_img" value="{{try_user_img}}" />
+      </view>
+    
+  </view>
+  </form>
+  <view class='section'>
+
+    <view class='filters flex_box'>
+      <view class="filter ft_black {{filterId==0?'active':''}}" data-id="0" bindtap="tapFilter">
+        爆款
+      </view>
+      <view class="filter ft_black {{filterId==158?'active':''}}" data-id="158" bindtap="tapFilter">
+        原产地
+      </view>
+			<view class="filter ft_black {{filterId==281?'active':''}}" data-id="281" bindtap="tapFilter">
+        地标产品
+      </view>
+			<view class="filter ft_black {{filterId==159?'active':''}}" data-id="159" bindtap="tapFilter">
+        老字号
+      </view>
+      <view class="filter ft_black {{filterId==161?'active':''}}" data-id="161" bindtap="tapFilter">
+        礼盒
+      </view>
+    </view>
+
+    <!-- <view class='skill_notice flex_box' hidden='{{filterId!=0}}'>
+      
+     <view>
+      <text>3月6日主推开团</text>
+     </view>
+      
+      <view>
+        <text>距结束还剩</text>
+        <text class='time_box day'>{{sqstate.day}}</text>
+        <text>天</text>
+        <text class='time_box hour'>{{sqstate.hour}}</text>
+        <text>:</text>
+        <text class='time_box minute'>{{sqstate.min}}</text>
+        <text>:</text>
+        <text class='time_box second'>{{sqstate.sec}}</text>
+      </view>
+    </view> -->
+    <scroll-view class='product'  scroll-y="true"  style="height:100%;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+      
+      <view class='skill_product_list sale_product'>
+        <view class='item' wx:for='{{skillProduct}}' wx:key='{{index}}'>
+
+          <navigator class='item_box' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+            <view>
+              <image class="item_img" src="{{item.img}}" mode="widthFix"/>
+            </view>
+            <view class='pro_title'>
+              <text class='tip_box'>秒</text><text class='tip_box'>杀</text>
+              {{item.pro_name}}
+            </view>
+            <view class='flex_box top_box'>
+              <view class='fc_orange_two'>
+                开始时间：{{item.start_time}}
+              </view>
+              <view>
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
+              </view>
+            </view>
+            <view class='bottom_box'>
+              <text class='fc_orange_two'>
+                结束时间：{{item.end_time}}
+              </text>
+            </view>
+          </navigator>
+
+          <view class='flex_box price_wrap'>
+            <view class='price_box flex_inline'>
+              <text class='price fc_orange_one'>
+                ￥{{item.price}}
+              </text>
+              <text class='market fc_gary_one fs_line'>
+                {{item.pro_markpri}}
+              </text>
+            </view>
+            <view>
+              <button size='mini' class='skill_btn btn' bindtap=''>立即秒杀</button>
+            </view>  
+          </view>
+          <!--05/04 修改价格-->
+          <!--<view>
+            <input hidden='{{!isModify}}' type="text" value='' name=''/>
+            <text hidden="{{isModify}}"></text>
+          </view>-->
+
+        </view>
+      </view>
+
+      <!--爆款产品列表-->
+      <view class='bk_product_list sale_product'>
+        <view class='item' wx:for='{{bkProduct}}' wx:key='{{index}}'>
+
+          <navigator class='item_box' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+            <view>
+              <image class="item_img" src="{{item.img}}" mode="widthFix"/>
+            </view>
+            <view class='pro_title'>
+              <text class='fc_orange'>【爆款】</text>
+              {{item.pro_name}}
+            </view>
+            <view class='flex_box top_box'>
+              <view class='fc_orange_two'>
+                提货时间：{{item.remark}}
+              </view>
+              <view>
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/限量<text>{{item.stock_num}}</text>份
+              </view>
+            </view>
+          </navigator>
+
+          <view class='flex_box price_wrap'>
+            <view class='price_box flex_inline'>
+              <text class='price fc_orange_one'>
+                ￥{{item.price}}
+              </text>
+              <text class='market fc_gary_one fs_line'>
+                {{item.pro_markpri}}
+              </text>
+            </view>
+            <view>
+              <button size='mini' class='skill_btn btn' bindtap=''>加入购物车</button>
+            </view>  
+          </view>
+          <!--05/04 修改价格-->
+          <!--<view>
+            <input hidden='{{!isModify}}' type="text" value='' name=''/>
+            <text hidden="{{isModify}}"></text>
+          </view>-->
+
+        </view>
+      </view>
+      
+      <view class='product_list'>
+
+        <view class='item' wx:for="{{products}}" wx:key="id">
+          <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}" class='flex_box {{item.issqtgseckill == 1 ? "skill_box" : ""}} '>
+          <view class='item_box flex_box'>
+            <view class='imgs_box'>
+              <image class="item_img" src="{{item.img}}" mode="widthFix"/>
+            </view>
+            <view class='item_wrap {{item.boutysum >= item.freeord && item.issqtgseckill == 1 ? "skill_over" : "" }}'>
+                <view class='pro_title title'>
+                  {{item.pro_name}}
+                </view>
+                <view class='th_time' hidden='{{filterId!=0}}'>
+                  <text>提货时间：{{item.remark}}</text>
+                </view>
+                <view class='flex_box market'>
+                  <text class='fc_gary_one fs_line'>{{item.pro_markpri}}</text>
+                  <text class='fc_gary_one'>已售{{item.sales_sum}}件 仅剩{{item.stock_num}}件</text>
+                </view>
+             
+              <view class='flex_inline price' hidden="{{isModify}}">
+                <text class='ft_ys'>￥{{item.price}}</text>
+                <image class="icon_cart" src='http://wx.so50.com/images/搜农坊首页--3_03.png' mode='widthFix'/>
+              </view>
+            </view>
+          </view>
+          </navigator>
+          <!--***修改价格***  -->
+          <view class='modify_box flex_box' hidden='{{!isModify}}'>
+            <view class='poster'>
+              <navigator url='/page/sqtg/sqtg_share?sqtgbountyid={{item.id}}'>
+                <button size='mini' type='primary'>生成海报</button>
+              </navigator>
+            </view>
+            <view class='flex_inline modify_content'>
+              <view>
+                <text class='fc_orange'>社区供货价：{{item.pro_sqtgpriptj}}</text>
+              </view>
+              <!--<view class='flex_inline'>
+                <text class='fc_orange'>
+                  设置价:
+                </text>
+                <input class='modify_btn fc_orange' type='digit' confirm-type ="done" value='{{item.price}}' data-id="{{item.id}}" bindblur="bindReplaceInput"/>   
+              </view>
+              <text class='profit fc_orange'>
+                毛利：【￥{{item.ourpri}}】
+              </text>-->
+            </view>
+          </view>
+         
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class='booking_list'>
+      <view>
+        <image src='http://wx.so50.com/images/搜农坊首页--3_08_02.jpg' style='width:100%;' mode='widthFix' />
+      </view>
+      <view class='items flex_box' wx:for="{{booking}}" wx:key="id">
+        <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}" class='flex_box'>
+          <image class="item_img" src="{{item.img}}" mode='widthFix'/>
+        <view class='item_wrap flex_box'>
+          <text class='title'>{{item.pro_name}}</text>
+          <!--<view class='text flex_box'>
+            <view class='flex_box'>
+              <text>{{item.text_one}}</text>
+              <text class='fc_gary'>{{item.text_two}}</text>
+            </view>
+            <view class='flex_box'>
+              <text>{{item.text_there}}</text>
+              <text class='fc_gary'>{{item.text_four}}</text>
+            </view>
+          </view>-->
+          <view class='fc_gary description'>
+            产地:{{item.area}}
+          </view>
+          <!-- <view class='specification'>
+            {{item.weight_units}}
+          </view> -->
+          <view class='price flex_box'>
+            <text class='ft_ys'>￥{{item.price}}</text>
+            <image class="icon_cart" src='http://wx.so50.com/images/搜农坊首页--3_07.png' mode='widthFix' />
+          
+          </view>
+          <!--***增加团长毛利显示***  -->
+          <!--<view class='frofit' wx:if="{{isModify}}">
+            <text>毛利：【￥{{item.ourpri}}】</text>
+          </view>-->
+        </view>
+        </navigator>
+      </view>
+    </view>
+
+  </view>
+  <view class='nav_footer flex_box'>
+    <view class='items'>
+      <view class='flex_box' bindtap='toIndex'>
+        <image src="http://wx.so50.com/images/xcx_footer_img_01_01.png" mode='widthFix'/>
+        <text>首页</text>
+      </view>
+    </view>
+    <view class='items'>
+      <view class='flex_box' bindtap='toCart'>
+        <image src="http://wx.so50.com/images/xcx_footer_img_02_01.png" mode='widthFix'/>
+        <text>去结算</text>
+      </view>
+    </view>
+    <view class='items'>
+      <view class='flex_box' bindtap='toPercenter'>
+        <image src="http://wx.so50.com/images/xcx_footer_img_03_01.png" mode='widthFix'/>
+        <text>我的</text>
+      </view>
+    </view>
+  </view>
+</view>
+</page>

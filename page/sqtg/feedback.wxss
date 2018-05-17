@@ -1,0 +1,9 @@
+page{
+  background-color: #fff;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.header,.page-body-form-item{
+  padding:15rpx 10rpx;
+  border-bottom:1px solid #ddd;
+}
