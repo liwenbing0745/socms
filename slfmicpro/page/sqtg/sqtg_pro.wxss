@@ -52,14 +52,20 @@ page{
 .skill_over::after{
   content: '';
   position: absolute;
-  top: 8%;
+  top: -15%;
   left: 35%;
   width: 200rpx;
   height: 200rpx;
-  background-image: url(http://wx.so50.com/images/seconds_over.png);
+  background-image: url(http://wx.so50.com/images/seconds_end.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
+}
+/* .pro_seckill .skill_over::after{
+  background-image: url(http://wx.so50.com/images/seconds_mail.png);
+} */
+.pro_seckill .skill_over::after{
+  background-image: url(http://wx.so50.com/images/seconds_over.png);
 }
 .car_wrap .time_box{
   width: 30%;
@@ -273,6 +279,13 @@ button::after{
 .fix_btn .disable{
   background-color: #F5F5F5;
   color: #ACA899;
+}
+.fix_btn .will_btn{
+  font-size:30rpx;
+  padding:15rpx 5rpx;
+  border-radius:0;
+  color: #fff;
+  background-color: rgb(41, 165, 41);
 }
 /* 18-05-08 左上角弹窗*/
 .message_box{

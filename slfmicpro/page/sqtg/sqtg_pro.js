@@ -9,6 +9,7 @@ Page({
     data: {
         isDetailsShow: true,
         tEvaluateSum: 0,
+        sqtgbountyid:0,
         tEvaluate: [],
         sqstate: {
             hour: 0,
@@ -75,31 +76,33 @@ Page({
         {
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid: rd_session },function (res) {
             var totalSecond = res.data.products[0].bulk_endtime;
-   if (totalSecond < 0) {
+            if (totalSecond <= 0) {
                     self.setData({
                         products: res.data.products,
+                          sqtgbountyid: sqtgbountyid,
                       isEnd: true
                     });
-                    
                 }
                 else {
                     self.setData({
                        products: res.data.products,
+                          sqtgbountyid: sqtgbountyid,
                       isEnd: false
-                    });               
+                    });     
+                    console.log(res.data.products);          
                 }
-           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid: rd_session },function (resc) {
-          self.setData({
-                      tEvaluate: resc.data.tEvaluate,
-                      tEvaluateSum:resc.data.tEvaluateSum,
-                      detailsList: resc.data.pro_wapcon,
-                      recordList: resc.data.recordList,
-                          Dynamic: resc.data.Dynamic
-                    
-                    });       
-                    //console.log(resc.data.Dynamic);
-        });
-        // 调用弹窗
+                server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid: rd_session },function (resc) {
+                    self.setData({
+                                tEvaluate: resc.data.tEvaluate,
+                                tEvaluateSum:resc.data.tEvaluateSum,
+                                detailsList: resc.data.pro_wapcon,
+                                recordList: resc.data.recordList,
+                                    Dynamic: resc.data.Dynamic
+                              
+                              });       
+                             
+                  });
+                // 调用弹窗
         setTimeout(function(){
             self.messageBox();
         }, 3000);
@@ -129,7 +132,7 @@ Page({
         }else{
             wx.showModal({
                 title: '提示',
-                content: `本期截单时间已结束,下一期${this.data.products[0].pro_show}开启`,
+                content:'本期截单时间已结束,下一期'+this.data.products[0].pro_show+'开启',
                 success:function(res){
                     if(res.confirm){
                         wx.redirectTo({ url: '/page/sqtg/sqtg_index' });
@@ -176,17 +179,12 @@ Page({
     },
     login: function(sqtgbountyid) {
 	    var self = this;
-        wx.authorize({
-            scope: 'scope.userInfo',
-            success() {
-                wx.login({
+          wx.login({
                     success: function (rescode) {
                         wx.getUserInfo({
                         success: function (ressucc) {
                             server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
-                            //console.log('wx.login',ures);
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
-                            // wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+sqtgbountyid});
                                    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (res) {
             var totalSecond = res.data.products[0].bulk_endtime;
    if (totalSecond < 0) {
@@ -228,14 +226,12 @@ Page({
                                     success: function (data) {
                                         if (data) {
                                             if (data.authSetting["scope.userInfo"] == true) {
-                                                loginStatus = true;
+                                           
                                                 wx.getUserInfo({
                                                     withCredentials: false,
                                                     success: function (data) {
                                                  server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
-                            //console.log('wx.login',ures);
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
-                            // wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+sqtgbountyid});
                                    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (res) {
             var totalSecond = res.data.products[0].bulk_endtime;
    if (totalSecond < 0) {
@@ -265,17 +261,13 @@ Page({
   
      });
                           
-                                                    },
-                                                    fail: function () {
-                                                        console.info("3授权失败返回数据");
                                                     }
+                                                   
                                                 });
                                             }
                                         }
-                                    },
-                                    fail: function () {
-                                        console.info("设置失败返回数据");
                                     }
+                                  
                                 });
                             }
                         }
@@ -284,8 +276,6 @@ Page({
                         });
 			        }
 		        });   
-            }
-        });
     }
     
 })

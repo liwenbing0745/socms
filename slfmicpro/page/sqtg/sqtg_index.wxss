@@ -274,6 +274,9 @@ view, text{
 .item_wrap view{
   padding: 5rpx 10rpx;
 }
+.item_wrap view.price{
+  padding-left:30rpx;
+}
 .item_wrap .market text{
   font-size:28rpx;
 }
@@ -588,6 +591,13 @@ view, text{
   color: #fff;
   background-color: #fc4b00;
 }
+.skill_product_list .will_btn{
+  font-size: 24rpx;
+  border-radius: 25rpx;
+  color: rgb(41, 165, 41);
+  border:1px solid rgb(41, 165, 41);
+  background-color: #fff;
+}
 .bk_product_list .btn{
   display:inline-block;
   padding:10rpx 20rpx;
@@ -617,7 +627,7 @@ view, text{
 .sale_product .item_img_box{
   position: relative;
 }
-.sale_product .skill_over .item_img_box::after{
+/* .sale_product .skill_over .item_img_box::after{
   content: '';
   position: absolute;
   top: 0;
@@ -625,6 +635,21 @@ view, text{
   width: 100%;
   height: 100%;
   background-image: url(http://wx.so50.com/images/indexmask.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+} */
+.sale_product .skill_over{
+  position:relative;
+}
+.sale_product .skill_over::after{
+  content: '';
+  position: absolute;
+  top: 80%;
+  left: 35%;
+  width: 200rpx;
+  height: 200rpx;
+  background-image: url(http://wx.so50.com/images/seconds_over.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
@@ -656,6 +681,7 @@ view, text{
   border-radius: 10rpx;
   background-color: #000;
   opacity: .7;
+  z-index: 100;
 }
 .message_box text{
   color: #fff;

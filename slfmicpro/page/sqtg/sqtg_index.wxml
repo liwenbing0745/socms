@@ -121,7 +121,7 @@
       <view class='skill_product_list sale_product'>
         <view class='item' wx:for='{{skillProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box {{item.boutysum >= item.freeord ? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+          <navigator class='item_box {{item.boutysum >= item.freeord || item.seckillsate == "2" || item.stock_num== "0"? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
@@ -168,12 +168,13 @@
               </text>
             </view>
             <view>
-              <button size='mini' class='skill_btn btn {{item.seckillsate == "1" ? "" : "disabled"}}' data-id="{{item.id}}" bindtap="tapBuyCart">立即秒杀</button>
+              <button size='mini' wx:if='{{item.seckillsate != 0}}' class='skill_btn btn {{item.seckillsate == "1" ? "" : "disabled"}}' data-id="{{item.id}}" bindtap="tapBuyCart">立即秒杀</button>
+              <button size='mini' wx:if='{{item.seckillsate == 0}}' class='skill_btn btn will_btn'>{{item.pro_show}}销售</button>
             </view>  
           </view>
 
           <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
-            <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index > 3}}'>
+            <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index < 3}}'>
               <image class="user_img" src="{{childData.user_img}}"/>
               <text> {{childData.user_name}}、</text>
             </view>

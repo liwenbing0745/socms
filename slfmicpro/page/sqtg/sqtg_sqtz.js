@@ -145,10 +145,7 @@ wx.showModal({
 },
 	login: function() {
 	    var self = this;
-         wx.authorize({
-                scope: 'scope.userInfo',
-                success() {
-                wx.login({
+         wx.login({
 			success: function (rescode) {
        
              wx.getUserInfo({
@@ -172,25 +169,18 @@ wx.showModal({
                                     success: function (data) {
                                         if (data) {
                                             if (data.authSetting["scope.userInfo"] == true) {
-                                                loginStatus = true;
+                                               
                                                 wx.getUserInfo({
-                                                    withCredentials: false,
                                                     success: function (data) {
                                                      server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
            wx.setStorageSync('rd_session', ures.data.results[0].id);
    
             });
               
-                                                    },
-                                                    fail: function () {
-                                                        console.info("3授权失败返回数据");
                                                     }
                                                 });
                                             }
                                         }
-                                    },
-                                    fail: function () {
-                                        console.info("设置失败返回数据");
                                     }
                                 });
                             }
@@ -200,9 +190,6 @@ wx.showModal({
                      });
 			}
 		});
-        	    
-                }
-            });
 	}
 
 })

@@ -1,11 +1,11 @@
 <!--page/sqtg/sqtg_pro.wxml-->
-<view class="container">
+<view class='container {{products[0].issqtgseckill == "1" ? "pro_seckill" : "" }}'>
   
   <!--图片-->
   <view class="car_cont">
         <image src="{{products[0].pro_pic}}" mode="widthFix"></image>
    </view>
-   <view class='car_wrap flex_box {{products[0].boutysum >= products[0].freeord || isEnd ? "skill_over" : "" }}'>
+   <view class='car_wrap flex_box'>
       <view class='flex_box content_box'>
         <view class="car_market flex_inline">
           <text class='cart_price'>￥{{products[0].price}}元</text> 
@@ -27,7 +27,7 @@
       </view>-->
    </view>
   <!--价格&名称-->
-  <view class="name_cont flex_box">
+  <view class='name_cont flex_box {{products[0].boutysum >= products[0].freeord || isEnd ? "skill_over"  : ""}}'>
     <view class='flex_line flex_dir name'>
       <view class="car_name">
         <text class='skill_text' hidden='{{products[0].issqtgseckill!=1}}'>【秒杀】</text>
@@ -52,7 +52,7 @@
         <text class='pro_name'>提货时间：{{products[0].remark}}</text>
       </view>
       <view class='car_number'>
-        已售<text class='fc_red'>{{products[0].sales_sum}}</text>份/限量<text>{{products[0].stock_num}}</text>份
+        已售<text class='fc_red'>{{products[0].sales_sum}}</text>份/{{products[0].issqtgseckill == '1' && products[0].seckillsate == '0' ? '限量':'还剩'}}<text>{{products[0].stock_num}}</text>份
       </view>
     </view>
   </view>
@@ -111,9 +111,10 @@
     <button id="btn" class="btn_index" size="mini" bindtap='backIndex'>
       <text>首页</text>
     </button>
-    <button id="btn" class="btn_buy {{secbuysate == '1'|| seckillsate == '0' || seckillsate == '2' ? 'disable' : ''}}" size="mini" wx:if='!{{products[0].id}}'  data-id="{{products[0].id}}" bindtap="tapBuyCart">
-      <text>立即抢购</text>
+    <button id="btn" style='display:{{products[0].issqtgseckill == "1" && products[0].seckillsate == "0" ? "none" : ""}}' class="btn btn_buy {{products[0].secbuysate == '1' || products[0].seckillsate == '2' || isEnd == true ? 'disable' : ''}}" size="mini" wx:if='!{{products[0].id}}'  data-id="{{products[0].id}}" bindtap="tapBuyCart">
+      立即抢购
     </button>
+     <button size='mini' wx:if='{{products[0].issqtgseckill == "1" && products[0].seckillsate == "0"}}' class='btn will_btn'>{{products[0].pro_show}}销售,敬请期待</button>
   </view>
 
 </view>

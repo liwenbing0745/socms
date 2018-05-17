@@ -144,7 +144,7 @@ page {
 }
 .modify_box{
   padding: 8rpx 15rpx;
-
+  justify-content:flex-end;
 }
 .modify_box text{
   color: #989898;
@@ -180,4 +180,20 @@ page {
 }
 .modify_box .left_space:nth-child(2)::before{
   background-image: url(http://wx.so50.com/images/17_商品管理一键拼团改_05.png);
+}
+.loading_btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 20;
+}
+.loading_btn button{
+  width: 50%;
+  padding: 15rpx 0;
+  color: #fff;
+  border-radius: 0;
+}
+.loading_btn .green{
+  background-color: green;
 }

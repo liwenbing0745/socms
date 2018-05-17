@@ -260,7 +260,7 @@
               <view>
                 <text class='fc_orange'>社区供货价：{{item.pro_sqtgpriptj}}</text>
               </view>
-              <view class='flex_inline'>
+              <!--<view class='flex_inline'>
                 <text class='fc_orange'>
                   设置价:
                 </text>
@@ -268,7 +268,7 @@
               </view>
               <text class='profit fc_orange'>
                 毛利：【￥{{item.ourpri}}】
-              </text>
+              </text>-->
             </view>
           </view>
          
@@ -307,9 +307,9 @@
           
           </view>
           <!--***增加团长毛利显示***  -->
-          <view class='frofit' wx:if="{{isModify}}">
+          <!--<view class='frofit' wx:if="{{isModify}}">
             <text>毛利：【￥{{item.ourpri}}】</text>
-          </view>
+          </view>-->
         </view>
         </navigator>
       </view>

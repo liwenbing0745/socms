@@ -189,94 +189,81 @@ onShow: function () {
                 totalSecond = res.data.issqtgseckill[0].bulk_endtimes;
               }
             }
-        
-            var interval = setInterval(function () {
-                // 秒数  
-                var second = totalSecond;
 
-                // 天数位  
-                var day = Math.floor(second / 3600 / 24);
-                var dayStr = day.toString();
-                if (dayStr.length == 1) dayStr = '0' + dayStr;
+            // 秒数  
+            var second = totalSecond;
 
-                // 小时位  
-                //var hr = Math.floor((second - day * 3600 * 24) / 3600);
-                var hr = Math.floor(second / 3600);
-                var hrStr = hr.toString();
-                if (hrStr.length == 1) hrStr = '0' + hrStr;
+            // 天数位  
+            var day = Math.floor(second / 3600 / 24);
+            var dayStr = day.toString();
+            if (dayStr.length == 1) dayStr = '0' + dayStr;
 
-                // 分钟位  
-                //  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-                var min = Math.floor((second - hr * 3600) / 60);
-                var minStr = min.toString();
-                if (minStr.length == 1) minStr = '0' + minStr;
+            // 小时位  
+            //var hr = Math.floor((second - day * 3600 * 24) / 3600);
+            var hr = Math.floor(second / 3600);
+            var hrStr = hr.toString();
+            if (hrStr.length == 1) hrStr = '0' + hrStr;
 
-                // 秒位  
-                // var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-                var sec = second - hr * 3600 - min * 60;
-                var secStr = sec.toString();
-                if (secStr.length == 1) secStr = '0' + secStr;
+            // 分钟位  
+            //  var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
+            var min = Math.floor((second - hr * 3600) / 60);
+            var minStr = min.toString();
+            if (minStr.length == 1) minStr = '0' + minStr;
 
-                totalSecond--;
-                if (totalSecond < 0) {
-                    clearInterval(interval);
-                          self.setData({
-                            try_user_nickname: res.data.pro[0].try_user_nickname,
-                            AreaSNF: res.data.pro[0].AreaSNF,
-                            scene:res.data.scene,
-                            phase:res.data.phase,
-                            sqmcdipmc:res.data.pro[0].sqmcdipmc,
-                            ssshutongzi:res.data.pro[0].ssshutongzi,
-                            storesImg: res.data.pro[0].storesImg,
-                            weixinhao: res.data.pro[0].weixinhao,
-                            sqmctihoudian: res.data.pro[0].sqmctihoudian,
+            // 秒位  
+            // var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
+            var sec = second - hr * 3600 - min * 60;
+            var secStr = sec.toString();
+            if (secStr.length == 1) secStr = '0' + secStr;
 
-                            try_user_img: res.data.pro[0].try_user_img,
-                            fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
-                            sqmc: res.data.pro[0].sqmc,
-                            fxaudit: res.data.pro[0].fxaudit,
-                            mobile: res.data.pro[0].mobile,
-                            skillProduct: res.data.issqtgseckill,
-                            bkProduct: res.data.issqtgbk,
-                            cart: res.data.cart,
-                            sqstate: { hour: 0, min: 0, sec: 0 }
-                    });
-                }
-                else {
-                         self.setData({
-                            try_user_nickname: res.data.pro[0].try_user_nickname,
-                            AreaSNF: res.data.pro[0].AreaSNF,
-                            scene:res.data.scene,
-                            phase:res.data.phase,
-                            sqmcdipmc:res.data.pro[0].sqmcdipmc,
-                            ssshutongzi:res.data.pro[0].ssshutongzi,
-                            storesImg: res.data.pro[0].storesImg,
-                            weixinhao: res.data.pro[0].weixinhao,
-                            sqmctihoudian: res.data.pro[0].sqmctihoudian,
+            totalSecond--;
+            if (totalSecond <= 0) {
+                self.setData({
+                    try_user_nickname: res.data.pro[0].try_user_nickname,
+                    AreaSNF: res.data.pro[0].AreaSNF,
+                    scene:res.data.scene,
+                    phase:res.data.phase,
+                    sqmcdipmc:res.data.pro[0].sqmcdipmc,
+                    ssshutongzi:res.data.pro[0].ssshutongzi,
+                    storesImg: res.data.pro[0].storesImg,
+                    weixinhao: res.data.pro[0].weixinhao,
+                    sqmctihoudian: res.data.pro[0].sqmctihoudian,
 
-                            try_user_img: res.data.pro[0].try_user_img,
-                            fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
-                            sqmc: res.data.pro[0].sqmc,
-                            fxaudit: res.data.pro[0].fxaudit,
-                            mobile: res.data.pro[0].mobile,
-                            skillProduct: res.data.issqtgseckill,
-                            bkProduct: res.data.issqtgbk,
-                            cart: res.data.cart,
-                            sqstate: { hour: hrStr, min: minStr, sec: secStr }
-                        });
-                    console.log('bk' + res.data.issqtgseckill, 'skill' + self.data.bkProduct[0].seckillsate);
-                }
-            } .bind(this), 1000);
-            
-      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
-               self.setData({
-                    products: reslayed.data.results,
-                    Dynamic: reslayed.data.Dynamic,
-                    booking: reslayed.data.products
-            });
-            console.log('product' + reslayed.data.results);
-        });
-   
+                    try_user_img: res.data.pro[0].try_user_img,
+                    fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
+                    sqmc: res.data.pro[0].sqmc,
+                    fxaudit: res.data.pro[0].fxaudit,
+                    mobile: res.data.pro[0].mobile,
+                    skillProduct: res.data.issqtgseckill,
+                    bkProduct: res.data.issqtgbk,
+                    cart: res.data.cart,
+                    sqstate: { hour: 0, min: 0, sec: 0 }
+                });         
+            }
+            else {
+                self.setData({
+                    try_user_nickname: res.data.pro[0].try_user_nickname,
+                    AreaSNF: res.data.pro[0].AreaSNF,
+                    scene:res.data.scene,
+                    phase:res.data.phase,
+                    sqmcdipmc:res.data.pro[0].sqmcdipmc,
+                    ssshutongzi:res.data.pro[0].ssshutongzi,
+                    storesImg: res.data.pro[0].storesImg,
+                    weixinhao: res.data.pro[0].weixinhao,
+                    sqmctihoudian: res.data.pro[0].sqmctihoudian,
+
+                    try_user_img: res.data.pro[0].try_user_img,
+                    fxxcxewmimg: res.data.pro[0].fxxcxewmimg,
+                    sqmc: res.data.pro[0].sqmc,
+                    fxaudit: res.data.pro[0].fxaudit,
+                    mobile: res.data.pro[0].mobile,
+                    skillProduct: res.data.issqtgseckill,
+                    bkProduct: res.data.issqtgbk,
+                    cart: res.data.cart,
+                    sqstate: { hour: hrStr, min: minStr, sec: secStr }
+                });
+            }  
+            console.log(res.data.issqtgseckill);
       });
 
       if (this.data.fxaudit=='2'){
@@ -432,13 +419,6 @@ onShow: function () {
             }
           });
       }
-      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:scene,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
-               self.setData({
-                    products: reslayed.data.results,
-                    Dynamic: reslayed.data.Dynamic,
-                    booking: reslayed.data.products
-            });
-        });
  
          
       });
@@ -454,7 +434,15 @@ onShow: function () {
     });
   },
   onReady: function () {
-    
+    var self = this;
+      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
+               self.setData({
+                    products: reslayed.data.results,
+                    Dynamic: reslayed.data.Dynamic,
+                    booking: reslayed.data.products
+            });
+        });
+   
   },
   onShareAppMessage: function (res) {
     var self = this;
@@ -511,21 +499,7 @@ tapFilter: function (e) {
 //    });
   },
     tapBuyCart: function (e) {
-        if(this.data.skillProduct[0].seckillsate == '1'){
-            this.addCart(e.currentTarget.dataset.id, 1);
-        }else{
-            wx.showModal({
-                title: '提示',
-                content: `本期截单时间已结束,下一期开启`,
-                success:function(res){
-                    if(res.confirm){
-                        //console.log('用户点击确定');
-                    }else if (res.cancel){
-                        //console.log('用户点击取消');
-                    };
-                }
-            })
-        }
+        this.addCart(e.currentTarget.dataset.id, 1);
     },
 
     addCart: function (id) {
@@ -551,18 +525,14 @@ tapFilter: function (e) {
     },
     login: function(scene) {
 	    var self = this;
-         wx.authorize({
-                scope: 'scope.userInfo',
-                success() {
-                wx.login({
+       wx.login({
 			success: function (rescode) {
          
              wx.getUserInfo({
                          success: function (ressucc) {
                          
                 server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
-      	  // //console.log('wx.login',ures);
-           wx.setStorageSync('rd_session', ures.data.results[0].id);
+      	    wx.setStorageSync('rd_session', ures.data.results[0].id);
         wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
             });
                    
@@ -579,9 +549,9 @@ tapFilter: function (e) {
                                     success: function (data) {
                                         if (data) {
                                             if (data.authSetting["scope.userInfo"] == true) {
-                                                loginStatus = true;
+                                            
                                                 wx.getUserInfo({
-                                                    withCredentials: false,
+                                                   
                                                     success: function (data) {
                                                       server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
       	  // //console.log('wx.login',ures);
@@ -589,16 +559,11 @@ tapFilter: function (e) {
         wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
             });
              
-                                                    },
-                                                    fail: function () {
-                                                        console.info("3授权失败返回数据");
                                                     }
+                                                 
                                                 });
                                             }
                                         }
-                                    },
-                                    fail: function () {
-                                        console.info("设置失败返回数据");
                                     }
                                 });
                             }
@@ -608,9 +573,6 @@ tapFilter: function (e) {
                      });
 			}
 		});
-        	    
-                }
-            });
 	}
 });
 

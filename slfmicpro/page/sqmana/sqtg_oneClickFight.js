@@ -51,9 +51,6 @@ Page({
              attr: '2'
  }
     ],
-    select_all: false,//全选判断
-    checkActive: false,//购物车disabled判断
-    allProNum: 0,
     proLists:[
      
     ]
@@ -93,7 +90,7 @@ Page({
     let tit = this.dialog.searchData();
       var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdata.ashx', { userid: rd_session,tit:tit, typ: self.data.typ, ord: self.data.ord, page: self.data.page, page_size: self.data.page_size }, function (res) {
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdata.ashx', { userid: rd_session,tit:tit,ord: self.data.ord, page: self.data.page, page_size: self.data.page_size }, function (res) {
             self.setData({
                 proLists: res.data.results,
                  tit: tit

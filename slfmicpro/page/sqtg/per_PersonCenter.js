@@ -11,12 +11,12 @@ Page({
         uid: wx.getStorageSync('rd_session'),
         try_user_nickname: "",
         sqmctihoudian: "",
-        try_user_img:"",
+        try_user_img: "",
         fxaudit: "",
         pfaudit: "",
         sqtgaudit: "",
-        ssshuqu:"",
-    
+        ssshuqu: "",
+
         orderList: [
       {
           url: '/page/sqtg/all_orderDetails?order_state=2',
@@ -25,10 +25,10 @@ Page({
           num: 1
       },
       {
-        url: '/page/sqtg/sqtg_orderDetails',
-        icon_img: 'http://wx.so50.com/images/34模板、框架-线性(1).png',
-        text: "社区自提",
-        num: 1
+          url: '/page/sqtg/sqtg_orderDetails',
+          icon_img: 'http://wx.so50.com/images/34模板、框架-线性(1).png',
+          text: "社区自提",
+          num: 1
       },
       {
           url: '/page/sqtg/all_orderDetails?order_state=4',
@@ -78,11 +78,25 @@ Page({
     */
     onLoad: function (options) {
         var self = this;
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: options.ssshuqu }, function (res) {
-//            if (res.data.ssshuqup != "0") {
-//                wx.redirectTo({ url: '/page/sqtg/sqtg_index?scene=' + res.data.ssshuqup });
-//            }
-           
+        var rd_session = wx.getStorageSync('rd_session');
+        if (!rd_session) {
+            wx.showModal({
+                title: '授权',
+                content: '请授权登录之后再操作',
+                success: function (res) {
+                    if (res.confirm) {
+                        self.login(options.ssshuqu);
+                    }
+                }
+            })
+
+        }
+        else {
+            server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: options.ssshuqu }, function (res) {
+                //            if (res.data.ssshuqup != "0") {
+                //                wx.redirectTo({ url: '/page/sqtg/sqtg_index?scene=' + res.data.ssshuqup });
+                //            }
+
                 self.setData({
                     try_user_nickname: res.data.pro[0].try_user_nickname,
                     sqmctihoudian: res.data.pro[0].sqmctihoudian,
@@ -93,9 +107,9 @@ Page({
                     ssshuqu: res.data.pro[0].ssshuqu,
                     orderList: res.data.orderList
                 })
-           
-        });
 
+            });
+        }
     },
     makePhone: function (e) {
         wx.makePhoneCall({
@@ -138,5 +152,88 @@ Page({
         else {
             wx.navigateTo({ url: '/page/prom/sqtaudit' });
         }
+    },
+    login: function (ssshuqu) {
+        var self = this;
+        wx.login({
+            success: function (rescode) {
+
+                wx.getUserInfo({
+                    success: function (ressucc) {
+
+                        server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: ressucc.rawData, encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature }, function (ures) {
+                            wx.setStorageSync('rd_session', ures.data.results[0].id);
+                            server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (res) {
+                                //            if (res.data.ssshuqup != "0") {
+                                //                wx.redirectTo({ url: '/page/sqtg/sqtg_index?scene=' + res.data.ssshuqup });
+                                //            }
+
+                                self.setData({
+                                    try_user_nickname: res.data.pro[0].try_user_nickname,
+                                    sqmctihoudian: res.data.pro[0].sqmctihoudian,
+                                    try_user_img: res.data.pro[0].try_user_img,
+                                    fxaudit: res.data.pro[0].fxaudit,
+                                    pfaudit: res.data.pro[0].pfaudit,
+                                    sqtgaudit: res.data.pro[0].sqtgaudit,
+                                    ssshuqu: res.data.pro[0].ssshuqu,
+                                    orderList: res.data.orderList
+                                })
+
+                            });
+   
+                        });
+
+                    },
+                    fail: function () {
+                        // 显示提示弹窗
+                        wx.showModal({
+                            title: '授权',
+                            content: '拒绝授权将不能正常使用小程序，点确定重新授权',
+                            success: function (res) {
+                                if (res.confirm) {
+
+                                    wx.openSetting({
+                                        success: function (data) {
+                                            if (data) {
+                                                if (data.authSetting["scope.userInfo"] == true) {
+
+                                                    wx.getUserInfo({
+
+                                                        success: function (data) {
+                                                            server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: data.rawData, encryptedData: data.encryptedData, iv: data.iv, signature: data.signature }, function (ures) {
+                                                                wx.setStorageSync('rd_session', ures.data.results[0].id);
+                                                                server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (res) {
+                                                                    //            if (res.data.ssshuqup != "0") {
+                                                                    //                wx.redirectTo({ url: '/page/sqtg/sqtg_index?scene=' + res.data.ssshuqup });
+                                                                    //            }
+
+                                                                    self.setData({
+                                                                        try_user_nickname: res.data.pro[0].try_user_nickname,
+                                                                        sqmctihoudian: res.data.pro[0].sqmctihoudian,
+                                                                        try_user_img: res.data.pro[0].try_user_img,
+                                                                        fxaudit: res.data.pro[0].fxaudit,
+                                                                        pfaudit: res.data.pro[0].pfaudit,
+                                                                        sqtgaudit: res.data.pro[0].sqtgaudit,
+                                                                        ssshuqu: res.data.pro[0].ssshuqu,
+                                                                        orderList: res.data.orderList
+                                                                    })
+
+                                                                });
+   
+                                                            });
+
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 })

@@ -161,9 +161,7 @@ Page({
   },
   login: function (sqtgbountyid) {
     var self = this;
-    wx.authorize({
-      scope: 'scope.userInfo',
-      success() {
+
         wx.login({
           success: function (rescode) {
 
@@ -247,7 +245,7 @@ Page({
                                     success: function (data) {
                                         if (data) {
                                             if (data.authSetting["scope.userInfo"] == true) {
-                                                loginStatus = true;
+                                              
                                                 wx.getUserInfo({
                                                     withCredentials: false,
                                                     success: function (data) {
@@ -335,7 +333,5 @@ Page({
           }
         });
 
-      }
-    });
   }
 })
