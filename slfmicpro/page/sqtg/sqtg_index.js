@@ -2,54 +2,55 @@ var app = getApp();
 var server = require('../../utils/server');
 Page({
     data: {
-      sqstate: {
+        sqstate: {
          day: 0,
             hour: 0,
             min: 0,
             sec: 0
         },
-      uid: wx.getStorageSync('rd_session'),
-      scrollTop: 100,
-         searchWords: '',
-      phase: '0',
-      AreaSNF:"",
-      sqmcdipmc:"",
-      ssshutongzi:"",
-      storesImg: "",
-      weixinhao: "",
-      ssshuqu: "",
-      sqmctihoudian: "",
-      try_user_img:"",
-      fxxcxewmimg:"",
-      sqmc:"",
-      fxaudit: "",
-      mobile: "",
-      scene: 0,
-      winWidth: 0,
-      winHeight: 0,
-      currentTab: 0,
-      page: 1,
-      page_size: 4,
-      typ: 0,
-      filterId: 0,
-      searchWords: '',
-      img_index:0,
-      isTuanZhang: false,
-      isModify:false,
-      products: [],
-      Dynamic: [],
-      messageDisplay:false,
-      messInx:0,
-      message:{},
-      cart: {
-        count: 0,
-        total: 0,
-        list: {}
-      },
-      booking: [],
-      scrollFix: false,
-      skillProduct:[],
-    bkProduct:[]
+        uid: wx.getStorageSync('rd_session'),
+        scrollTop: 100,
+        searchWords: '',
+        phase: '0',
+        AreaSNF:"",
+        sqmcdipmc:"",
+        ssshutongzi:"",
+        storesImg: "",
+        weixinhao: "",
+        ssshuqu: "",
+        sqmctihoudian: "",
+        try_user_img:"",
+        fxxcxewmimg:"",
+        sqmc:"",
+        fxaudit: "",
+        mobile: "",
+        scene: 0,
+        winWidth: 0,
+        winHeight: 0,
+        currentTab: 0,
+        page: 1,
+        page_size: 4,
+        typ: 0,
+        filterId: 0,
+        searchWords: '',
+        img_index:0,
+        isTuanZhang: false,
+        isModify:false,
+        products: [],
+        Dynamic: [],
+        messageDisplay:false,
+        messInx:0,
+        message:{},
+        cart: {
+            count: 0,
+            total: 0,
+            list: {}
+        },
+        booking: [],
+        scrollFix: false,
+        skillProduct:[],
+        bkProduct:[],
+        hotProduct:[]
      
   },
   toCart:function(){
@@ -263,7 +264,7 @@ onShow: function () {
                     sqstate: { hour: hrStr, min: minStr, sec: secStr }
                 });
             }  
-            console.log(res.data.issqtgseckill);
+            //console.log(res.data.issqtgseckill);
       });
 
       if (this.data.fxaudit=='2'){
@@ -285,15 +286,16 @@ onShow: function () {
     doSearch: function () {
         var self = this;
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', {userid: wx.getStorageSync('rd_session'),tit: self.data.searchWords,scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
-               self.setData({
-               skillProduct: res.data.issqtgseckill,
-                       bkProduct: res.data.issqtgbk,
-              cart: res.data.cart
+            self.setData({
+                skillProduct: res.data.issqtgseckill,
+                bkProduct: res.data.issqtgbk,
+                cart: res.data.cart
             });
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),tit: self.data.searchWords,scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
-               self.setData({
-            products: reslayed.data.results,
-                    Dynamic: reslayed.data.Dynamic,
+            self.setData({
+                products: reslayed.data.results,
+                hotProduct: reslayed.data.HotStyle,
+                Dynamic: reslayed.data.Dynamic,
                 booking: reslayed.data.products
             });
         });
@@ -404,7 +406,6 @@ onShow: function () {
                   
                 }
             } .bind(this), 1000);
-         
 
                   if ( res.data.pro[0].fxaudit!='2' && res.data.showModal=="0"){
           wx.showModal({
@@ -438,9 +439,11 @@ onShow: function () {
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
                self.setData({
                     products: reslayed.data.results,
+                    hotProduct: reslayed.data.HotStyle,
                     Dynamic: reslayed.data.Dynamic,
                     booking: reslayed.data.products
             });
+            console.log( reslayed.data.HotStyle);
         });
    
   },
@@ -462,16 +465,17 @@ onShow: function () {
 tapFilter: function (e) {
     var self = this;
     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', { userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,typ: e.currentTarget.dataset.id, page: self.data.page, page_size: self.data.page_size }, function (res) {
-      self.setData({
+        self.setData({
             filterId: e.currentTarget.dataset.id,
-             skillProduct: res.data.issqtgseckill,
-                       bkProduct: res.data.issqtgbk,
+            skillProduct: res.data.issqtgseckill,
+            bkProduct: res.data.issqtgbk,
             typ: e.currentTarget.dataset.id
-                    });
+        });
     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', { userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,typ: e.currentTarget.dataset.id, page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
-               self.setData({
-             products: reslayed.data.results,
-                    Dynamic: reslayed.data.Dynamic,
+            self.setData({
+                products: reslayed.data.results,
+                hotProduct: reslayed.data.HotStyle,
+                Dynamic: reslayed.data.Dynamic,
                 booking: reslayed.data.products
             });
         });

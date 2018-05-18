@@ -69,9 +69,7 @@ formSubmit: function (e) {
                 'signType': 'MD5',
                 'paySign': res.data.results[0].paySign,
                 'success': function (succres) {
-                  server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId,action:"Postdatasqtddzfcgtz",id: res.data.results[0].id}, function (sendTemplate) {
-    
-    });
+              
   
                     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdateOrderState.ashx', { id: res.data.results[0].id, sp_billno: res.data.results[0].order_no }, function (payres) {
                         wx.redirectTo({ url: '/page/sqtg/all_orderDetails' });

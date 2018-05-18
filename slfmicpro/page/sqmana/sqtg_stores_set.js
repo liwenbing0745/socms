@@ -130,8 +130,10 @@ Page({
 
 
 
-},
-tapbgImgsid: function (e) {
+
+},
+
+tapbgImgsid: function (e) {
     var self = this;
     self.setData({
         storesImg: e.currentTarget.dataset.id
@@ -142,8 +144,6 @@ Page({
       var that = this;
       var formData = e.detail.value;
         var formId = e.detail.formId;
-   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId }, function (sendTemplate) {
-    });
    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdateUsers.ashx', { uid: wx.getStorageSync('rd_session'), try_user_nickname: formData.try_user_nickname, sqmcdipmc: formData.sqmcdipmc, ssshutongzi: formData.ssshutongzi, dpdesc: formData.dpdesc, mobile: formData.mobile, try_user_img: formData.try_user_img, storesImg: formData.storesImg, ysIs: formData.ysIs}, function (res) {
                 that.setData({
                    confirmSubmit: true

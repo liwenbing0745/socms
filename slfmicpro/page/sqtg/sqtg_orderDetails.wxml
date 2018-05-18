@@ -55,7 +55,9 @@
       </view>
       
     </view>
-    <view class="loading" bindtap="refesh">《《</view>
-    <view class="loading" bindtap="loadImages">》》</view>
+    <view class='loading_btn flex_box'>
+      <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
+      <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
+    </view>
   </scroll-view>
 </view>

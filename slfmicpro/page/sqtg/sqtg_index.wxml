@@ -221,7 +221,54 @@
           </view>
 
           <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
-            <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}'>
+            <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index < 3}}'>
+              <image class="user_img" src="{{childData.user_img}}"/>
+              <text> {{childData.user_name}}、</text>
+            </view>
+            <view><text class='fc_gary_one'>等刚购买了此商品</text></view>
+          </view>
+
+        </view>
+      </view>
+
+      <!--新品列表-->
+      <view class='bk_product_list sale_product'>
+        <view class='item' wx:for='{{hotProduct}}' wx:key='{{index}}'>
+
+          <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+            <view class='item_img_box'>
+              <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
+            </view>
+            <view class='pro_title bottom_line padding_between'>
+              <text class='fc_orange_two'>【新品】</text>
+              {{item.pro_name}}
+            </view>
+            <view class='flex_box top_box padding_between'>
+              <view class='fc_orange_two'>
+                提货时间：{{item.remark}}
+              </view>
+              <view>
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/仅剩<text>{{item.stock_num}}</text>份
+              </view>
+            </view>
+          </navigator>
+
+          <view class='flex_box price_wrap bottom_line padding_between'>
+            <view class='price_box flex_inline'>
+              <text class='price fc_orange_one'>
+                ￥{{item.price}}
+              </text>
+              <text class='market fc_gary_one fs_line'>
+                {{item.pro_markpri}}
+              </text>
+            </view>
+            <view>
+              <text class='skill_btn btn' data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</text>
+            </view>  
+          </view>
+
+          <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
+            <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index < 3}}'>
               <image class="user_img" src="{{childData.user_img}}"/>
               <text> {{childData.user_name}}、</text>
             </view>
@@ -231,10 +278,10 @@
         </view>
       </view>
       
-      <!--普通产品列表-->
+      <!--普通产品列表 过滤新品-->
       <view class='product_list'>
 
-        <view class='item' wx:for="{{products}}" wx:key="id">
+        <view class='item' wx:for="{{products}}" wx:key="id" wx:if='{{item.HotStyle != "1"}}'>
           <view class='item_box flex_box'>
             <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}" class='imgs_box'>
             <view>

@@ -119,8 +119,6 @@ Page({
         });
       var formData = e.detail.value;
          var formId = e.detail.formId;
-   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId }, function (sendTemplate) {
-    });
   
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdatePros.ashx', { uid: wx.getStorageSync('rd_session'),pro_pic:formData.pro_pic,pro_name:formData.pro_name,pro_Fittingids:formData.pro_Fittingids,weight_units:formData.weight_units,area:formData.area,pro_wapcon:formData.pro_wapcon,pro_ourpri:formData.pro_ourpri,price:formData.price,pro_markpri:formData.pro_markpri,pro_sqtgpri:formData.pro_sqtgpri, sort: formData.sort,id:formData.id}, function (res) {
                 that.setData({

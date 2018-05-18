@@ -46,9 +46,6 @@ scroll-view {
 .todata .select{
   color: #fc4b00;
 }
-.orderLists .items{
-  background-color: #fff;
-}
 .orderLists .items .items_img image{
   width: 120rpx;
 }
@@ -58,12 +55,11 @@ scroll-view {
 }
 .orderLists .items{
   position:relative;
-  height:450rpx;
+  height:auto;
   background-color: #fff;
-  overflow: hidden;
 }
 .orderLists .items .item_top_box{
-  position:absolute;
+  position:relative;
   top:0;
   left:0;
   width: 100%;
@@ -75,6 +71,9 @@ scroll-view {
   z-index: 5;
   padding:0 10rpx;
   transition: left 0.2s ease-in-out;
+}
+.orderLists .items .item_header{
+  border-bottom: 1px solid #ddd;
 }
 .orderLists .items .item_bottom_box{
   position:absolute;
