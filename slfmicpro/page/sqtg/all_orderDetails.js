@@ -169,7 +169,6 @@ Page({
                 self.setData({ 
                     orderDetails: res.data.results,
                     page: parseInt(res.data.page),
-                    scrollTop: 100
                 });
             }
             //console.log('products', res)
@@ -189,7 +188,6 @@ Page({
             }
             else {
                 self.setData({ 
-                  scrollTop: 100,
                   orderDetails: res.data.results,
                   page: parseInt(res.data.page),
                 });
@@ -392,10 +390,10 @@ Page({
 
     if( oinx == inx){
 
-      return false
+      return false;
 
-    }else if( oinx ){
-
+    }else if(oinx != null){
+      
       list[oinx].txtStyle = 'left:0px';
 
       this.setData({

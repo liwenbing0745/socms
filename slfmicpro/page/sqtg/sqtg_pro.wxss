@@ -314,3 +314,33 @@ button::after{
   80%{opacity: .7;}
   to{opacity: 0;}
 }
+
+.add_data{
+  height:80rpx;
+  line-height:80rpx;
+  margin-top:20rpx;
+  text-align: center;
+  cursor: pointer;
+}
+.add_data text{
+  display:inline-block;
+  width:330rpx;
+  padding:20rpx 25rpx;
+  background-color:#eee;
+  border:1px solid #ddd;
+  border-radius:10rpx;
+  color:#fc4b00;
+  line-height:1;
+}
+
+/* mask */
+.max{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .7;
+  z-index: 1000;
+}

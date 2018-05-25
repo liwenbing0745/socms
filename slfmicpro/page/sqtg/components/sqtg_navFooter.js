@@ -53,6 +53,10 @@ Component({
             this.setData({
                 imgIndex: inx
             })
+        },
+        tapnav: function (event) {
+            var inx = event.currentTarget.dataset.id;
+            wx.redirectTo({ url: inx });
         }
     }
 })

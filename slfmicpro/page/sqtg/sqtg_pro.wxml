@@ -97,6 +97,9 @@
           <text class='time'>{{item.time}}</text>
         </view>
       </scroll-view>
+      <view class='add_data' bindtap='loadImages' hidden='{{loaddata!=0}}'>
+        <text>加载更多</text>
+      </view>
     </view>
   </view>
 
@@ -117,4 +120,8 @@
      <button size='mini' wx:if='{{products[0].issqtgseckill == "1" && products[0].seckillsate == "0"}}' class='btn will_btn'>{{products[0].pro_show}}销售,敬请期待</button>
   </view>
 
+  <view class='max' hidden="{{hiddenLoading}}">
+    <loading hidden="{{hiddenLoading}}">正在加载</loading>
+  </view>
+  
 </view>

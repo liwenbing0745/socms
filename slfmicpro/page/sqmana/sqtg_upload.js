@@ -14,19 +14,19 @@ Page({
     savaWapcon:false,
     id:"0",
     selectInx: 0,
-    array:['原产地','礼品礼盒','老字号','地标产品'],
+    array:['水果','礼盒','食材','零食'],
     sortSelect: 0,
    sortList:[
       {
-        text: '原产地',
+        text: '水果',
         attr: '158'
       },
       {
-        text: '地标产品',
+        text: '零食',
            attr: '281'
    },
       {
-        text: '老字号',
+        text: '食材',
             attr: '159'
   },
       {

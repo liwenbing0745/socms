@@ -244,14 +244,16 @@ view, text{
 }
 .product_list .item,
 .booking_list .items{
-  padding: 30rpx 20rpx;
+  padding: 30rpx 15rpx;
   border-bottom: 1px solid #ddd;
 }
 .product_list .item_img{
   width:100%;
+  height: auto;
 }
 .booking_list .item_img{
   width: 250rpx;
+  height: 250rpx;
 }
 .product_list .icon_cart{
   width: 70rpx;
@@ -276,6 +278,15 @@ view, text{
 }
 .item_wrap view.price{
   padding-left:30rpx;
+}
+.item_wrap .cart_btn{
+  display:inline-block;
+  border-radius:20rpx;
+  color:#b28435;
+  background-color:#fff;
+  border:1px solid #b28435;
+  font-size: 24rpx;
+  margin:0;
 }
 .item_wrap .market text{
   font-size:28rpx;
@@ -529,6 +540,7 @@ view, text{
 }
 .sale_product .item_img{
   width: 100%;
+  height:auto;
 }
 .sale_product .pro_title{
   width:100%;
@@ -600,7 +612,6 @@ view, text{
 }
 .bk_product_list .btn{
   display:inline-block;
-  padding:10rpx 20rpx;
   border-radius:20rpx;
   color:#b28435;
   background-color:#fff;
@@ -645,7 +656,7 @@ view, text{
 .sale_product .skill_over::after{
   content: '';
   position: absolute;
-  top: 80%;
+  top: 50%;
   left: 35%;
   width: 200rpx;
   height: 200rpx;
@@ -665,6 +676,10 @@ view, text{
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
+}
+.skill_product_list .skill_over .skill_btn{
+  background-color: #F5F5F5;
+  color: #ACA899;
 }
 .sale_product .disabled{
   background-color: #F5F5F5;
@@ -702,4 +717,15 @@ view, text{
 .disabled{
   background-color: #F5F5F5;
   color: #ACA899;
+}
+/* mask */
+.max{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .7;
+  z-index: 1000;
 }

@@ -72,7 +72,7 @@
       </view>
     </form>
   </view>
-
+  <form bindsubmit="GetFormId"  report-submit="true">
   <view class='section'>
 
     <view class='filters flex_box {{scrollFix == true ? "fix_scroll" : ""}} '>
@@ -80,13 +80,13 @@
         爆款
       </view>
       <view class="filter ft_black {{filterId==158?'active':''}}" data-id="158" bindtap="tapFilter">
-        原产地
+        水果
       </view>
 			<view class="filter ft_black {{filterId==281?'active':''}}" data-id="281" bindtap="tapFilter">
-        地标产品
+        零食
       </view>
 			<view class="filter ft_black {{filterId==159?'active':''}}" data-id="159" bindtap="tapFilter">
-        老字号
+        食材
       </view>
       <view class="filter ft_black {{filterId==161?'active':''}}" data-id="161" bindtap="tapFilter">
         礼盒
@@ -121,7 +121,7 @@
       <view class='skill_product_list sale_product'>
         <view class='item' wx:for='{{skillProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box {{item.boutysum >= item.freeord || item.seckillsate == "2" || item.stock_num== "0"? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+          <navigator class='item_box {{item.boutysum >= item.freeord || item.seckillsate == "2" || item.stock_num== "0"? "skill_over" : "" }}'   formType="submit"  data-id="{{item.id}}" bindtap="tappronav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
@@ -156,7 +156,7 @@
                 <text>距离结束还剩：{{sqstate.hour}}小时{{sqstate.min}}分{{sqstate.sec}}秒</text>
               </text>
             </view> -->
-          </navigator>
+          
 
           <view class='flex_box price_wrap bottom_line padding_between'>
             <view class='price_box flex_inline'>
@@ -168,10 +168,11 @@
               </text>
             </view>
             <view>
-              <button size='mini' wx:if='{{item.seckillsate != 0}}' class='skill_btn btn {{item.seckillsate == "1" ? "" : "disabled"}}' data-id="{{item.id}}" bindtap="tapBuyCart">立即秒杀</button>
+              <button size='mini' wx:if='{{item.seckillsate != 0}}' class='skill_btn btn {{item.seckillsate == "1" ? "" : "disabled"}}' data-id="{{item.id}}">立即秒杀</button>
               <button size='mini' wx:if='{{item.seckillsate == 0}}' class='skill_btn btn will_btn'>{{item.pro_show}}销售</button>
             </view>  
           </view>
+          </navigator>
 
           <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
             <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index < 3}}'>
@@ -188,7 +189,7 @@
       <view class='bk_product_list sale_product'>
         <view class='item' wx:for='{{bkProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+          <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}'  formType="submit" data-id="{{item.id}}" bindtap="tappronav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
@@ -216,7 +217,7 @@
               </text>
             </view>
             <view>
-              <text class='skill_btn btn' data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</text>
+              <button class='skill_btn btn'  formType="submit" data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</button>
             </view>  
           </view>
 
@@ -235,7 +236,7 @@
       <view class='bk_product_list sale_product'>
         <view class='item' wx:for='{{hotProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}' url='/page/sqtg/sqtg_pro?scene={{item.id}}'>
+          <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}'  formType="submit" data-id="{{item.id}}" bindtap="tappronav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
@@ -263,7 +264,7 @@
               </text>
             </view>
             <view>
-              <text class='skill_btn btn' data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</text>
+              <button class='skill_btn btn'  formType="submit" data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</button>
             </view>  
           </view>
 
@@ -283,18 +284,18 @@
 
         <view class='item' wx:for="{{products}}" wx:key="id" wx:if='{{item.HotStyle != "1"}}'>
           <view class='item_box flex_box'>
-            <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}" class='imgs_box'>
+            <navigator  formType="submit" data-id="{{item.id}}" bindtap="tappronav" class='imgs_box'>
             <view>
               <image class="item_img" src="{{item.img}}" mode="widthFix"/>
             </view>
             </navigator>
             <view class='item_wrap'>
-              <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}" class='flex_box'>
+              <navigator  formType="submit" data-id="{{item.id}}" bindtap="tappronav" class='flex_box'>
                 <view class='pro_title title'>
                   {{item.pro_name}}
                 </view>
                 <view class='th_time' hidden='{{filterId!=0}}'>
-                  <text>{{item.remark}}</text>
+                  <text>提货时间:{{item.remark}}</text>
                 </view>
                 <view class='flex_box market'>
                   <text class='fc_gary_one fs_line'>{{item.pro_markpri}}</text>
@@ -310,7 +311,8 @@
               </navigator>
               <view class='flex_inline price'>
                 <text class='ft_ys'>￥{{item.price}}</text>
-                <image class="icon_cart" src='http://wx.so50.com/images/搜农坊首页--3_03.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart"/>
+                <button class='cart_btn btn' size='mini' formType="submit" data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</button>
+                <!--<image class="icon_cart" src='http://wx.so50.com/images/搜农坊首页--3_03.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart"/>-->
               </view>
             </view>
           </view>
@@ -327,10 +329,10 @@
         <image src='http://wx.so50.com/images/搜农坊首页--3_08_02.jpg' style='width:100%;' mode='widthFix' />
       </view>
       <view class='items flex_box' wx:for="{{booking}}" wx:key="id">
-        <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}" class='imgs_box'> <image class="item_img" src="{{item.img}}" mode='widthFix'/>
-        </navigator>
+        <button  formType="submit" data-id="{{item.id}}" bindtap="tappronav" class='imgs_box'> <image class="item_img" src="{{item.img}}" mode='widthFix'/>
+        </button>
         <view class='item_wrap flex_box'>
-          <navigator url="/page/sqtg/sqtg_pro?scene={{item.id}}">   <view class='title'>{{item.pro_name}}</view>
+          <navigator  formType="submit" data-id="{{item.id}}" bindtap="tappronav">   <view class='title'>{{item.pro_name}}</view>
           <!--<view class='text flex_box'>
             <view class='flex_box'>
               <text>{{item.text_one}}</text>
@@ -350,8 +352,8 @@
           </view> -->
           <view class='price flex_box' data-id="{{item.id}}">
             <text class='ft_ys'>￥{{item.price}}</text>
-           <image class="icon_cart" src='http://wx.so50.com/images/搜农坊首页--3_07.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart" />
-           
+            <!--<button class="icon_cart"  formType="submit" src='http://wx.so50.com/images/搜农坊首页--3_07.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart" />-->
+            <button class='cart_btn btn' size='mini' formType="submit" data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</button>
           </view>
 
         </view>
@@ -377,11 +379,16 @@
           <view class="total">￥{{cart.total}}</view>
         </view>
         <view class='flex_box'>
-          <button class="yellow {{cart.count > '0' ?'':'disabled'}}">去结算</button>
+          <button formType="submit" class="yellow {{cart.count > '0' ?'':'disabled'}}">去结算</button>
         </view>
       </view>
     </view>
 
+  </view>
+  </form>
+  <!--mask-->
+  <view class='max' hidden="{{hiddenLoading}}">
+    <loading hidden="{{hiddenLoading}}">正在加载</loading>
   </view>
 
    <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}"/>

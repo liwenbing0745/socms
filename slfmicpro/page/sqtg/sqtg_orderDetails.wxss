@@ -8,12 +8,11 @@ page {
 .container {
 	height: 100%;
   position: relative;
-  
 }
 scroll-view {
 	height: 100%;
 }
-.flex_box{
+.flex_box{ 
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -47,19 +46,48 @@ scroll-view {
 .todata .select{
   color: #fc4b00;
 }
-.orderLists .items{
-  background-color: #fff;
-}
 .orderLists .items .items_img image{
   width: 120rpx;
 }
 .orderLists{
   margin-top: 30rpx;
+  padding-bottom:100rpx;
 }
 .orderLists .items{
+  position:relative;
+  height:auto;
   background-color: #fff;
 }
-.orderLists .items>view,
+.orderLists .items .item_top_box{
+  position:relative;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+  background-color: #fff;
+}
+.orderLists .items .item_txt{
+  width: 100%;
+  z-index: 5;
+  padding:0 10rpx;
+  transition: left 0.2s ease-in-out;
+}
+.orderLists .items .item_header{
+  border-bottom: 1px solid #ddd;
+}
+.orderLists .items .item_bottom_box{
+  position:absolute;
+  top:0;
+  right: 0;
+  width: 180rpx;
+  height: 100%;
+  line-height:450rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #e64340;
+  z-index: 4;
+}
+.orderLists .items .item_top_box>view,
 .orderLists .items .items_wrap{
   padding: 15rpx;
 }
@@ -70,6 +98,7 @@ scroll-view {
 }
 .orderLists .items .items_img image{
   width: 200rpx;
+  height: 200rpx;
 }
 .orderLists .bor_btm{
   border-bottom: 1px solid #ddd;
@@ -88,14 +117,25 @@ scroll-view {
   overflow: hidden; 
 }
 .orderLists .items .order_btn_box{
-  line-height:.8;
+  position: relative;
   justify-content: flex-end;
 }
 .orderLists .items .order_btn_box button{
-  margin:0 0 0 10rpx;
+  width:135rpx;
+  padding:0;
+  margin:0 0 0 5rpx;
   color: #fc4b00;
   border: 1px solid #fc4b00;
-  font-size: 22rpx;
+}
+.orderLists .items .order_btn_box .noPay{
+  position: absolute;
+  top: 30%;
+  left: 3%;
+  padding: 5rpx 10rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: #fc4b00;
+  border: 1px solid #ddd;
 }
 .loading_btn{
   position: fixed;

@@ -27,7 +27,7 @@
                 {{childData.text}}
               </text>
               <text class='pro_orTime fc_orange'>
-                {{childData.cust_thtime}}
+                提货时间:{{childData.cust_thtime}}
               </text>
               <view class='flex_inline'>
                 <text>数量：{{childData.num}}</text>
