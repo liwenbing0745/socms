@@ -15,6 +15,7 @@
 }
 .nav_footer image{
   width: 60rpx;
+  height: auto;
 }
 .nav_footer .flex_box{
   flex-direction: column;

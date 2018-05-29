@@ -82,15 +82,15 @@ Page({
             if (totalSecond <= 0) {
                     self.setData({
                         products: res.data.products,
-                          sqtgbountyid: sqtgbountyid,
-                      isEnd: true
+                        sqtgbountyid: sqtgbountyid,
+                        isEnd: true
                     });
                 }
                 else {
                     self.setData({
-                       products: res.data.products,
-                          sqtgbountyid: sqtgbountyid,
-                      isEnd: false
+                        products: res.data.products,
+                        sqtgbountyid: sqtgbountyid,
+                        isEnd: false
                     });     
                     console.log(res.data.products);          
                 }

@@ -14,7 +14,7 @@ Page({
     savaWapcon:false,
     id:"0",
     selectInx: 0,
-    array:['水果','礼盒','食材','零食'],
+    array:['水果','礼品','食材','零食'],
     sortSelect: 0,
    sortList:[
       {
@@ -30,7 +30,7 @@ Page({
             attr: '159'
   },
       {
-        text: '礼盒',
+        text: '礼品',
              attr: '161'
  }
     ],

@@ -107,7 +107,7 @@
         食材
       </view>
       <view class="filter ft_black {{filterId==161?'active':''}}" data-id="161" bindtap="tapFilter">
-        礼盒
+        礼品
       </view>
     </view>
 

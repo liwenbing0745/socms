@@ -16,7 +16,7 @@ Page({
         },
         confirmSubmit: false
     },
-    onShow: function (options) {
+    onLoad: function (options) {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
         server.getJSON('https://xcx.so50.com/Pages/Ajax/GetOrderData.ashx', { userid: rd_session }, function (res) {
@@ -26,7 +26,7 @@ Page({
                 goodsList: res.data.goodsList,
                 goods: res.data.goods,
                 cart: res.data.cart
-            })
+            });
         });
     },
     tapAddCart: function (e) {
@@ -160,12 +160,7 @@ Page({
                         //                        });
                     },
                     'fail': function (res) {
-                      //  console.log(res)
-                        //                        wx.showModal({
-                        //                            title: '提示',
-                        //                            content: "支付失败",
-                        //                            showCancel: false
-                        //                        });
+                        wx.redirectTo({ url: '/page/sqtg/all_orderDetails' });
                     }
                 })
             }

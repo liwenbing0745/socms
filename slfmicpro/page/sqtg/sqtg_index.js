@@ -51,8 +51,9 @@ Page({
         skillProduct:[],
         bkProduct:[],
         hotProduct:[],
-        hiddenLoading: false
-     
+        hiddenLoading: false,
+        disabledBtn: false,
+        closeTitle: false
     },
     toCart:function(){
         wx.redirectTo({
@@ -61,8 +62,13 @@ Page({
     },
     modifyActive:function(){
         this.setData({
-        isModify: true
+            isModify: true
         });
+    },
+    titleBox:function(){
+        this.setData({
+            closeTitle: false
+        })
     },
     messageBox:function(){
         let self = this;
@@ -246,14 +252,15 @@ Page({
                 cart: res.data.cart,
                 hiddenLoading: true
             });
-                    var totalSecond = 0;
+            //console.log(res.data.issqtgseckill, res.data.issqtgbk);
+            var totalSecond = 0;
             if (res.data.issqtgseckill[0] != undefined) {
-            if (res.data.issqtgseckill[0].seckillsate == '0') {
-                totalSecond = res.data.issqtgseckill[0].bulk_begtimes;
-            } else {
-                totalSecond = res.data.issqtgseckill[0].bulk_endtimes;
-            }
-            }
+                if (res.data.issqtgseckill[0].seckillsate == '0') {
+                    totalSecond = res.data.issqtgseckill[0].bulk_begtimes;
+                } else {
+                    totalSecond = res.data.issqtgseckill[0].bulk_endtimes;
+                }
+            };
                 var interval = setInterval(function () {
                     // 秒数  
                     var second = totalSecond;
@@ -298,7 +305,7 @@ Page({
                 } .bind(this), 1000);
         }
 
-
+        
         if (StorageSecond- Date.parse(new Date())/1000<0) {
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexuse.ashx', {userid: wx.getStorageSync('rd_session'),scene:scene,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
             wx.setStorageSync('GetProdatasqtindexuse', res);
@@ -368,8 +375,8 @@ Page({
                         booking: reslayed.data.products,
                         hiddenLoading: true
                 });
-        }
-            if (StorageSecond- Date.parse(new Date())/1000<0) {
+        };
+        if (StorageSecond- Date.parse(new Date())/1000<0) {
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
                 wx.setStorageSync('GetProdatasqtindexusedelayed', reslayed);
                     self.setData({
@@ -379,23 +386,33 @@ Page({
                         booking: reslayed.data.products,
                         hiddenLoading: true
                 });
-                console.log(reslayed.data.HotStyle);
             });
-    }
+        };
+        // 截单后按钮变灰
+        let proEnd = null;
+        proEnd = this.data.products[0].cust_endtime1 || this.data.bkProduct[0].cust_endtime1;
+        proEnd = Date.parse( new Date(proEnd) ) /1000;
+        let newTime = Date.parse( new Date() ) /1000;
+        if( newTime >= proEnd){
+            self.setData({
+                disabledBtn: true,
+                closeTitle:true
+            })
+        }
     },
     onShareAppMessage: function (res) {
         var self = this;
 
         return {
-        title:  self.data.try_user_nickname + '邀您参加搜农坊社区团购',
-        path: '/page/sqtg/sqtg_index?scene=' + self.data.scene,
-        //imageUrl:self.data.fxxcxewmimg,
-        success: function (res) {
-            // 转发成功
-        },
-        fail: function (res) {
-            // 转发失败
-        }
+            title:  self.data.try_user_nickname + '邀您参加搜农坊社区团购',
+            path: '/page/sqtg/sqtg_index?scene=' + self.data.scene,
+            //imageUrl:self.data.fxxcxewmimg,
+            success: function (res) {
+                // 转发成功
+            },
+            fail: function (res) {
+                // 转发失败
+            }
         }
     },
     tapFilter: function (e) {
@@ -443,7 +460,27 @@ Page({
     //    });
     },
     tapBuyCart: function (e) {
-        this.addCart(e.currentTarget.dataset.id, 1);
+        // 截单后除产品预订外产品点击提示
+        let yd = null;
+        yd = e.currentTarget.dataset.yd;
+        if(!yd && this.data.disabledBtn){
+            let pro_show = null;
+            pro_show = this.data.skillProduct[0].pro_show || this.data.products[0].pro_show || this.data.bkProduct[0].pro_show;
+
+            wx.showModal({
+                title: '提示',
+                content:`本期截单时间已结束,下一期开启时间10:00开启,敬请期待！`,
+                success:function(res){
+                    if(res.confirm){
+                        //console.log('用户点击确定');
+                    }else if (res.cancel){
+                        //console.log('用户点击取消');
+                    };
+                }
+            })
+        }else{
+            this.addCart(e.currentTarget.dataset.id, 1);
+        };
     },
 
     addCart: function (id) {

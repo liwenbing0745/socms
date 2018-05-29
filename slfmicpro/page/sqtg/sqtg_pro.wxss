@@ -276,7 +276,7 @@ button::after{
 .fix_btn .cartNum text{
   font-size:24rpx;
 }
-.fix_btn .disable{
+.fix_btn .disabled{
   background-color: #F5F5F5;
   color: #ACA899;
 }

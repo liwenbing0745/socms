@@ -79,11 +79,11 @@
       </navigator>
     </view>
     <button id="btn" class="btn_save" size="mini" data-id="{{products[0].id}}" bindtap="tapAddColl">收藏</button>
-    <button id="btn" class="btn_add" size="mini" data-id="{{products[0].id}}" bindtap="tapAddCart">加入购物车</button>
+    <!--<button id="btn" class="btn_add" size="mini" data-id="{{products[0].id}}" bindtap="tapAddCart">加入购物车</button>-->
     <button id="btn" class="btn_buy" size="mini" data-id="{{products[0].id}}" bindtap="tapBuyCart">立即购买</button>
-    <view class="cartNum">
+    <!--<view class="cartNum">
       <text>{{tcartSum}}</text>
-    </view>
+    </view>-->
   </view>
 
 </view>

@@ -186,9 +186,12 @@ button::after{
   width:35%;
   background-color:#e4393c;
 }
+.fix_btn .btn_buy{
+  width: 50%;
+}
 .fix_btn .btn_index,
 .fix_btn .btn_save{
-  width:15%;
+  width:25%;
   color:#000;
   border-top:1px solid #ddd;
 }
