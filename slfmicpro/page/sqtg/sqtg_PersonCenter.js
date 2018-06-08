@@ -16,7 +16,11 @@ Page({
         pfaudit: "",
         sqtgaudit: "",
         ssshuqu:"",
-    
+        cart: {
+            count: 0,
+            total: 0,
+            list: {}
+        },
         orderList: [
       {
           url: '/page/sqtg/all_orderDetails?order_state=2',
@@ -106,6 +110,7 @@ Page({
                     pfaudit: res.data.pro[0].pfaudit,
                     sqtgaudit: res.data.pro[0].sqtgaudit,
                     ssshuqu: res.data.pro[0].ssshuqu,
+                    cart: res.data.cart,
                     orderList: res.data.orderList
                 })
            

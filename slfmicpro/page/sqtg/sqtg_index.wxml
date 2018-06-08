@@ -20,7 +20,7 @@
     <view class='shop_info'>
       <view class='modify_big'>
         <!--<image class="shop_img" src='{{storesImg}}' />-->
-        <image class="shop_img" src='http://wx.so50.com/images/小程序期数背景图_20180508144856.jpg' />
+        <image class="shop_img" src='http://wx.so50.com/images/小程序期数背景图_201805081448564.jpg' mode='widthFix'/>
         <text class='phase'>{{phase}}</text>
       </view>
       <view class='shop_box'>
@@ -93,15 +93,15 @@
       </view>
     </view>
     <!--搜索到产品直接跳转-->
-    <view class='search_pro_box flex_box'>
+    <!--<view class='search_pro_box flex_box'>
       <input type="text" name="" placeholder='输入商品名称，搜索商品' bindinput="inputSearch"/>
       <button bindtap="doSearch" size='mini' type='primary'>搜索</button>
-    </view>
+    </view>-->
 
     <!--截单提示框-->
     <view class='title_box flex_box' wx:if='{{closeTitle}}' bindtap='titleBox'>
       <text>
-        本期截单时间已结束,下一期开启时间10:00开启,敬请期待！
+        本期已截单，下一期9：00开启，敬请期待！！
       </text>
       <icon size='20' type='cancel' color='green' />
     </view>
@@ -129,7 +129,7 @@
       <view class='skill_product_list sale_product {{disabledBtn == true ? "time_end" : "" }}'>
         <view class='item' wx:for='{{skillProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box {{item.boutysum >= item.freeord || item.seckillsate == "2" || item.stock_num== "0"? "skill_over" : "" }}'   formType="submit"  data-id="{{item.id}}" bindtap="tappronav">
+          <navigator class='item_box {{item.boutysum >= item.freeord || item.seckillsate == "2" || item.stock_num== "0"? "skill_over" : "" }}'  formType="submit"  data-id="{{item.id}}" bindtap="tappronav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
@@ -166,7 +166,7 @@
             </view> -->
           
 
-          <view class='flex_box price_wrap bottom_line padding_between'>
+          <view class='flex_box price_wrap padding_between'>
             <view class='price_box flex_inline'>
               <text class='price fc_orange_one'>
                 ￥{{item.price}}
@@ -215,7 +215,7 @@
             </view>
           </navigator>
 
-          <view class='flex_box price_wrap bottom_line padding_between'>
+          <view class='flex_box price_wrap padding_between'>
             <view class='price_box flex_inline'>
               <text class='price fc_orange_one'>
                 ￥{{item.price}}
@@ -262,7 +262,7 @@
             </view>
           </navigator>
 
-          <view class='flex_box price_wrap bottom_line padding_between'>
+          <view class='flex_box price_wrap padding_between'>
             <view class='price_box flex_inline'>
               <text class='price fc_orange_one'>
                 ￥{{item.price}}
@@ -288,7 +288,7 @@
       </view>
       
       <!--普通产品列表 过滤新品-->
-      <view class='product_list {{disabledBtn == true ? "time_end" : "" }}'>
+      <!--<view class='product_list {{disabledBtn == true ? "time_end" : "" }}'>
 
         <view class='item' wx:for="{{products}}" wx:key="id" wx:if='{{item.HotStyle != "1"}}'>
           <view class='item_box flex_box'>
@@ -320,64 +320,168 @@
               <view class='flex_inline price'>
                 <text class='ft_ys'>￥{{item.price}}</text>
                 <button class='cart_btn btn' size='mini' formType="submit" data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</button>
-                <!--<image class="icon_cart" src='http://wx.so50.com/images/搜农坊首页--3_03.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart"/>-->
+                TODO隐藏
+                <image class="icon_cart" src='http://wx.so50.com/images/搜农坊首页--3_03.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart"/>
               </view>
             </view>
           </view>
-         
         </view>
-      </view>
+      </view>-->
+      
       <!--<view class='add_data' bindtap='loadImages' hidden='{{filterId!=0}}'>
         <text>加载更多</text>
       </view>-->
+
+      <view class='product_list sale_product pt_product {{disabledBtn == true ? "time_end" : "" }}'>
+        <view class='item' wx:for="{{products}}" wx:key="id" wx:if='{{item.HotStyle != "1"}}'>
+
+          <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}' formType="submit" data-id="{{item.id}}" bindtap="tappronav">
+            <view class='item_img_box'>
+              <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
+            </view>
+            <view class='pro_title bottom_line padding_between'>
+              {{item.pro_name}}
+            </view>
+            <view class='flex_box top_box padding_between'>
+              <view class='fc_orange_two'>
+                提货时间：{{item.remark}}
+              </view>
+              <view>
+                已售<text class='fc_red'>{{item.sales_sum}}</text>份/仅剩<text>{{item.stock_num}}</text>份
+              </view>
+            </view>
+          </navigator>
+
+          <view class='flex_box price_wrap padding_between'>
+            <view class='price_box flex_inline'>
+              <text class='price fc_orange_one'>
+                ￥{{item.price}}
+              </text>
+              <text class='market fc_gary_one fs_line'>
+                {{item.pro_markpri}}
+              </text>
+            </view>
+            <view>
+              <button class='pt_btn btn'  formType="submit" data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</button>
+            </view>  
+          </view>
+
+          <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
+            <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index < 3}}'>
+              <image class="user_img" src="{{childData.user_img}}"/>
+              <text> {{childData.user_name}}、</text>
+            </view>
+            <view><text class='fc_gary_one'>等刚购买了此商品</text></view>
+          </view>
+
+        </view>
+      </view>
+
     </scroll-view>
 
-    <view class='booking_list'>
+    <!--<view class='booking_list'>
       <view>
         <image src='http://wx.so50.com/images/搜农坊首页--3_08_02.jpg' style='width:100%;' mode='widthFix' />
       </view>
       <view class='items flex_box' wx:for="{{booking}}" wx:key="id">
-        <button  formType="submit" data-id="{{item.id}}" bindtap="tappronav" class='imgs_box'> <image class="item_img" src="{{item.img}}" mode='widthFix'/>
+        <button  formType="submit" data-id="{{item.id}}" bindtap="tappronav" class='imgs_box'> 
+          <image class="item_img" src="{{item.img}}" mode='widthFix'/>
         </button>
         <view class='item_wrap flex_box'>
-          <navigator  formType="submit" data-id="{{item.id}}" bindtap="tappronav">   <view class='title'>{{item.pro_name}}</view>
-          <!--<view class='text flex_box'>
-            <view class='flex_box'>
-              <text>{{item.text_one}}</text>
-              <text class='fc_gary'>{{item.text_two}}</text>
+          <navigator  formType="submit" data-id="{{item.id}}" bindtap="tappronav">   
+            <view class='title'>{{item.pro_name}}</view>
+            TODO隐藏
+            <view class='text flex_box'>
+              <view class='flex_box'>
+                <text>{{item.text_one}}</text>
+                <text class='fc_gary'>{{item.text_two}}</text>
+              </view>
+              <view class='flex_box'>
+                <text>{{item.text_there}}</text>
+                <text class='fc_gary'>{{item.text_four}}</text>
+              </view>
             </view>
-            <view class='flex_box'>
-              <text>{{item.text_there}}</text>
-              <text class='fc_gary'>{{item.text_four}}</text>
-            </view>
-          </view>-->
+
           <view class='fc_gary description'>
             产地:{{item.area}}
           </view>
           </navigator>
-          <!-- <view class='specification'>
+          TODO隐藏
+          <view class='specification'>
             {{item.weight_units}}
-          </view> -->
+          </view>
+          
           <view class='price flex_box' data-id="{{item.id}}">
             <text class='ft_ys'>￥{{item.price}}</text>
-            <!--<button class="icon_cart"  formType="submit" src='http://wx.so50.com/images/搜农坊首页--3_07.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart" />-->
+            TODO隐藏
+            <button class="icon_cart"  formType="submit" src='http://wx.so50.com/images/搜农坊首页--3_07.png' mode='widthFix' data-id="{{item.id}}" bindtap="tapBuyCart" />
+            
             <button class='cart_btn btn' size='mini' formType="submit" data-id="{{item.id}}" data-yd='{{item.id}}' bindtap="tapBuyCart">加入购物车</button>
           </view>
 
         </view>
 
       </view>
-    </view>
+    </view>-->
 
+    <view class='booking_list sale_product yd_product {{disabledBtn == true ? "time_end" : "" }}'>
+
+      <view>
+        <image src='http://wx.so50.com/images/搜农坊首页--3_08_02.jpg' style='width:100%;' mode='widthFix' />
+      </view>
+
+      <view class='item' wx:for="{{booking}}" wx:key="id">
+
+        <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}' formType="submit" data-id="{{item.id}}" bindtap="tappronav">
+          <view class='item_img_box'>
+            <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
+          </view>
+          <view class='pro_title bottom_line padding_between'>
+            {{item.pro_name}}
+          </view>
+          <view class='flex_box top_box padding_between'>
+            <view class='fc_orange_two'>
+              提货时间：{{item.remark}}
+            </view>
+            <view>
+              已售<text class='fc_red'>{{item.sales_sum}}</text>份/仅剩<text>{{item.stock_num}}</text>份
+            </view>
+          </view>
+        </navigator>
+
+        <view class='flex_box price_wrap padding_between'>
+          <view class='price_box flex_inline'>
+            <text class='price fc_orange_one'>
+              ￥{{item.price}}
+            </text>
+            <text class='market fc_gary_one fs_line'>
+              {{item.pro_markpri}}
+            </text>
+          </view>
+          <view>
+            <button class='yd_btn btn'  formType="submit" data-id="{{item.id}}" bindtap="tapBuyCart">加入购物车</button>
+          </view>  
+        </view>
+
+        <view class='user_box flex_box' wx:if='{{item.childData.length > 1}}'>
+          <view class='user_infor flex_inline' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}' wx:if='{{index < 3}}'>
+            <image class="user_img" src="{{childData.user_img}}"/>
+            <text> {{childData.user_name}}、</text>
+          </view>
+          <view><text class='fc_gary_one'>等刚购买了此商品</text></view>
+        </view>
+
+      </view>
+    </view>
+    <!--message-->
     <view class='message_box' style='animation:show 5s linear;display:{{messageDisplay ? "block" : "none"}}'>
       <view class='content flex_box'>
         <view><image class='user_img' src='{{message.img}}'/></view>
         <view><text class='user_name'>{{message.title}}</text></view>
       </view>
     </view>
-    
-    
-    <view class="cart">
+    <!--cart-->
+    <!--<view class="cart">
       <view bindtap='toCart' class='flex_box'>
         <view class="data">
           <view class="icon">
@@ -390,7 +494,7 @@
           <button formType="submit" class="yellow {{cart.count > '0' ?'':'disabled'}}">去结算</button>
         </view>
       </view>
-    </view>
+    </view>-->
 
   </view>
   </form>
@@ -399,6 +503,11 @@
     <loading hidden="{{hiddenLoading}}">正在加载</loading>
   </view>
 
-   <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}"/>
+  <!--top-->
+  <view class='to_top' hidden='{{toTop}}' bindtap='toTop'>
+    <image src="http://wx.so50.com/images/top1.png" />
+  </view>
+
+   <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}" Cartcount='{{cart.count}}'/>
 </view>
 </page>

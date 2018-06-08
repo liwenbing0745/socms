@@ -53,23 +53,21 @@ Page({
         hotProduct:[],
         hiddenLoading: false,
         disabledBtn: false,
-        closeTitle: false
+        closeTitle: false,
+        toTop:true
     },
     toCart:function(){
         wx.redirectTo({
-        url: 'sqtg_cart',
+            url: 'sqtg_cart',
         });
     },
-    modifyActive:function(){
-        this.setData({
-            isModify: true
-        });
-    },
+    // 截单时间提示标题
     titleBox:function(){
         this.setData({
             closeTitle: false
         })
     },
+    // 消息显示
     messageBox:function(){
         let self = this;
         if(this.data.Dynamic.length == this.data.messInx){
@@ -99,14 +97,27 @@ Page({
         var scrollTop = event.scrollTop;
         if(scrollTop > 400 && !this.data.scrollFix){
             this.setData({  
-                scrollFix:true
+                scrollFix:true,
+                toTop:false
             }); 
         }else if(scrollTop < 400 && this.data.scrollFix){
             this.setData({  
-                scrollFix:false
+                scrollFix:false,
+                toTop:true
             }); 
         };
     },  
+    // top
+    toTop:function(){
+        wx.pageScrollTo({
+            scrollTop: 0,
+            duration: 1000
+        });
+        this.setData({  
+            scrollFix:false,
+            toTop:true
+        }); 
+    },
     formSubmit: function (e) {
         //  console.log('wx.login', e);
         var that = this;
@@ -252,7 +263,7 @@ Page({
                 cart: res.data.cart,
                 hiddenLoading: true
             });
-            //console.log(res.data.issqtgseckill, res.data.issqtgbk);
+            //console.log(res.data.cart.count);
             var totalSecond = 0;
             if (res.data.issqtgseckill[0] != undefined) {
                 if (res.data.issqtgseckill[0].seckillsate == '0') {
@@ -364,6 +375,7 @@ Page({
         });
     },
     onReady: function () {
+        this.dialog = this.selectComponent("#navFooter");
         var self = this;
         var StorageSecond = wx.getStorageSync('StorageSecond');
         var reslayed = wx.getStorageSync('GetProdatasqtindexusedelayed');
@@ -440,7 +452,7 @@ Page({
         });
     },
 
-     previewImage: function (e) {
+    previewImage: function (e) {
         var self = this;
         wx.previewImage({
             urls: [self.data.fxxcxewmimg]
@@ -469,7 +481,7 @@ Page({
 
             wx.showModal({
                 title: '提示',
-                content:`本期截单时间已结束,下一期开启时间10:00开启,敬请期待！`,
+                content:`本期已截单，下一期9：00开启，敬请期待！！`,
                 success:function(res){
                     if(res.confirm){
                         //console.log('用户点击确定');
@@ -480,9 +492,9 @@ Page({
             })
         }else{
             this.addCart(e.currentTarget.dataset.id, 1);
+            this.dialog.bindbt();
         };
     },
-
     addCart: function (id) {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');

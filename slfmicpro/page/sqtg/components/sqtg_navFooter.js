@@ -7,6 +7,10 @@ Component({
         imgIndex: {
             type: Number,
             value: 0
+        },
+        Cartcount: {
+            type: Number,
+            value: 0
         }
     },
 
@@ -15,34 +19,34 @@ Component({
     */
     data: {
         navList: [
-      {
-          id: 0,
-          text: '首页',
-          img: '/imgs/tabBar/xcx_footer_img_01_01.png',
-          img_one: '/imgs/tabBar/xcx_footer_img_01_02.png',
-          linkUrl: '/page/sqtg/sqtg_index',
-          select: 'select'
-      },
-      {
-          id: 1,
-          text: '去结算',
-          img: '/imgs/tabBar/xcx_footer_img_02_01.png',
-          img_one: '/imgs/tabBar/xcx_footer_img_02_02.png',
-          linkUrl: '/page/sqtg/sqtg_cart',
-          select: 'select'
-      },
-      {
-          id: 2,
-          text: '我的',
-          img: '/imgs/tabBar/xcx_footer_img_03_01.png',
-          img_one: '/imgs/tabBar/xcx_footer_img_03_02.png',
-          linkUrl: '/page/sqtg/sqtg_PersonCenter',
-          select: 'select'
-      }
-      
-    ]
+            {
+                id: 0,
+                text: '首页',
+                img: '/imgs/tabBar/xcx_footer_img_01_01.png',
+                img_one: '/imgs/tabBar/xcx_footer_img_01_02.png',
+                linkUrl: '/page/sqtg/sqtg_index',
+                select: 'select'
+            },
+            {
+                id: 1,
+                text: '去结算',
+                img: '/imgs/tabBar/xcx_footer_img_02_01.png',
+                img_one: '/imgs/tabBar/xcx_footer_img_02_02.png',
+                linkUrl: '/page/sqtg/sqtg_cart',
+                select: 'select'
+            },
+            {
+                id: 2,
+                text: '我的',
+                img: '/imgs/tabBar/xcx_footer_img_03_01.png',
+                img_one: '/imgs/tabBar/xcx_footer_img_03_02.png',
+                linkUrl: '/page/sqtg/sqtg_PersonCenter',
+                select: 'select'
+            }
+        
+        ],
+        display:false
     },
-    
     /**
     * 组件的方法列表
     */
@@ -55,8 +59,19 @@ Component({
             })
         },
         tapnav: function (event) {
-            var inx = event.currentTarget.dataset.id;
-            wx.redirectTo({ url: inx });
-        }
-    }
+            var url = event.currentTarget.dataset.url;
+            wx.redirectTo({ url: url });
+        },
+        bindbt:function(){
+            let self = this;
+            this.setData({
+                display: true
+            });
+            setTimeout(()=>{
+                this.setData({
+                    display: false
+                });
+            },500)
+        },
+    }, 
 })

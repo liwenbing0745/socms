@@ -51,7 +51,7 @@ scroll-view {
 }
 .orderLists{
   margin-top: 30rpx;
-  padding-bottom:100rpx;
+  padding-bottom:200rpx;
 }
 .orderLists .items{
   position:relative;
@@ -74,6 +74,9 @@ scroll-view {
 }
 .orderLists .items .item_header{
   border-bottom: 1px solid #ddd;
+}
+.orderLists .items .item_header text{
+  font-size: 26rpx;
 }
 .orderLists .items .item_bottom_box{
   position:absolute;
@@ -105,8 +108,10 @@ scroll-view {
 }
 .orderLists .items .items_wrap_center{
   width: 70%;
-  height:200rpx;
   flex-direction: column;
+}
+.orderLists .items .items_wrap_center>text{
+  line-height: 1;
 }
 .orderLists .items .pro_title{
   word-break: break-all;
@@ -114,7 +119,6 @@ scroll-view {
   display: -webkit-box;
   -webkit-box-orient: vertical; 
   -webkit-line-clamp: 2;
-  overflow: hidden; 
 }
 .orderLists .items .order_btn_box{
   position: relative;

@@ -16,7 +16,7 @@
         </text>
     </view>
 
-    <scroll-view class='pro_lists'>
+    <scroll-view class='pro_lists' scroll-y='true'>
       <view class='items' wx:for="{{proLists}}" wx:key="{{index}}" data-index="{{index}}">
         <view class='items_wrap flex_box'>
           <image src='{{item.img}}' class='pro_img' mode='widthFix'/>

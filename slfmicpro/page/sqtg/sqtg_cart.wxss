@@ -96,7 +96,7 @@ page {
 }
 .footer_cart{
   position: fixed;
-  bottom: 10%;
+  bottom: 11%;
   left: 0;
   width: 100%;
   padding-left: 8rpx;

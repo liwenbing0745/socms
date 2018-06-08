@@ -59,6 +59,6 @@
     </view>
   </view>
 
-  <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}"/>
+  <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}" Cartcount='{{cart.count}}'/>
 
 </view>

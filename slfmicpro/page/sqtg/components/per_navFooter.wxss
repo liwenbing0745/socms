@@ -1,4 +1,7 @@
 /* page/sqtg/sqtg_navFooter.wxss */
+.relative{
+  position: relative;
+}
 .flex_box{
   display: flex;
   width: 100%;
@@ -17,10 +20,50 @@
   width: 60rpx;
   height: auto;
 }
+.nav_footer .items{
+  width: 33%;
+  height: 100%;
+}
 .nav_footer .flex_box{
   flex-direction: column;
   padding: 5rpx 10rpx;
 }
 .nav_footer .flex_box text{
   padding: 5rpx 0;
+}
+
+.nav_footer .icon {
+	position: absolute;
+	left: 25%;
+	top:-75rpx;
+  width:120rpx;
+  height:120rpx;
+	background: #E70012;
+	border-radius: 50%;
+}
+.nav_footer .icon .count{
+  position:absolute;
+  left:0;
+  top:19%;
+  width:100%;
+  color:#fff;
+  font-size:24rpx;
+  text-align:center;
+}
+.nav_footer .icon image{
+  position:absolute;
+  left:19rpx;
+  top:0;
+  width:90rpx;
+  height:90rpx;
+}
+.nav_footer .icon text{
+  position:absolute;
+  bottom:5%;
+  left:0%;
+  display: block;
+  width: 100%;
+  text-align: center;
+  color:#fff;
+  font-size:20rpx;
 }

@@ -24,12 +24,12 @@ Page({
       cumMoney: 0
     },
     manaList:[
-      {
-        id: 0,
-        url: '/page/sqmana/sqtg_index',
-        img: 'http://wx.so50.com/images/home-pages_03.png',
-        text: '店铺装修'
-      },
+      // {
+      //   id: 0,
+      //   url: '/page/sqmana/sqtg_index',
+      //   img: 'http://wx.so50.com/images/home-pages_03.png',
+      //   text: '店铺装修'
+      // },
       {
         id: 1,
         url: '/page/sqmana/sqtg_oneClickFight',
