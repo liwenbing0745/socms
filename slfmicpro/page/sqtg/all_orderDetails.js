@@ -201,7 +201,8 @@ Page({
         var rd_session = wx.getStorageSync('rd_session');
         var openid = wx.getStorageSync('openid');
         server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/SetOrder.ashx', { userid: rd_session, openid: openid, id: e.target.dataset.id, action: 'tapPay' }, function (res) {
-   if (res.data.resultspay.errormess == '') {
+          console.log(res);
+        if (res.data.resultspay.errormess == '') {
          
             wx.requestPayment({
                 'timeStamp': res.data.resultspay.timeStamp,

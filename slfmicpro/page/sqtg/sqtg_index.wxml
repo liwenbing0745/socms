@@ -129,7 +129,7 @@
       <view class='skill_product_list sale_product {{disabledBtn == true ? "time_end" : "" }}'>
         <view class='item' wx:for='{{skillProduct}}' wx:key='{{index}}'>
 
-          <navigator class='item_box {{item.boutysum >= item.freeord || item.seckillsate == "2" || item.stock_num== "0"? "skill_over" : "" }}'  formType="submit"  data-id="{{item.id}}" bindtap="tappronav">
+          <navigator class='item_box {{item.boutysum >= item.freeord || item.seckillsate == "2" || item.stock_num== "0" ? "skill_over" : "" }}'  formType="submit"  data-id="{{item.id}}" bindtap="tappronav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
@@ -139,21 +139,22 @@
             </view>
             <view class='flex_box top_box padding_between'>
               <view class='fc_orange_two'>
-                <view class='seckill_time' wx:if='{{item.seckillsate == "0"}}'>
-                  距离开始还剩
+                <view class='seckill_time'>
+                  {{item.seckillsate == '0' ? '距离开始还剩' : '距离结束仅剩'}}
                   <text class='times'>{{sqstate.hour}}</text> : 
                   <text class='times'>{{sqstate.min}}</text> : 
                   <text class='times'>{{sqstate.sec}}</text>
                 </view> 
-                <view class='seckill_time' wx:if='{{item.seckillsate != "0"}}'>
-                  距离结束仅剩
-                  <text class='times'>{{sqstate.hour}}</text> : 
-                  <text class='times'>{{sqstate.min}}</text> : 
-                  <text class='times'>{{sqstate.sec}}</text>
-                </view>
               </view>
-              <view>
-                已售<text class='fc_red'>{{item.sales_sum}}</text>份/{{item.seckillsate == "0" ? "限量": "还剩"}}<text>{{item.stock_num}}</text>份
+              <view class='seckill_number'>
+                <view wx:if='{{item.seckillsate != "2"}}'>
+                  已售<text class='fc_red'>{{item.sales_sum}}</text>份/{{item.seckillsate == "0" ? "限量": "还剩"}}
+                  <text>{{item.stock_num}}</text>份
+                </view>
+                <view wx:if='{{item.seckillsate == "2"}}'>
+                  已售<text class='fc_red'>{{item.freeord}}</text>份/还剩
+                  <text>0</text>份
+                </view>
               </view>
             </view>
             <!-- <view class='bottom_box padding_between'>

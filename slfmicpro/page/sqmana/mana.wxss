@@ -83,10 +83,12 @@ page {
 }
 .section .mana_list .items{
   width: 33%;
-  padding: 25rpx 0;
   text-align: center;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+}
+.section .mana_list .items .navigator{
+  padding: 35rpx 0;
 }
 .section .mana_list .items:nth-child(10),
 .section .mana_list .items:nth-child(11),

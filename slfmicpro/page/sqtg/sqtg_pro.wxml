@@ -51,8 +51,11 @@
       <view class='car_time'>
         <text class='pro_name'>提货时间：{{products[0].remark}}</text>
       </view>
-      <view class='car_number'>
+      <view class='car_number' wx:if='{{products[0].seckillsate != "2"}}'>
         已售<text class='fc_red'>{{products[0].sales_sum}}</text>份/{{products[0].issqtgseckill == '1' && products[0].seckillsate == '0' ? '限量':'还剩'}}<text>{{products[0].stock_num}}</text>份
+      </view>
+      <view class='car_number' wx:if='{{products[0].seckillsate == "2"}}'>
+        已售<text class='fc_red'>{{products[0].freeord}}</text>份/还剩<text>0</text>份
       </view>
     </view>
   </view>

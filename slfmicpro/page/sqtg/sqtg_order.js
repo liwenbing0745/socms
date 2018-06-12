@@ -43,6 +43,10 @@ formSubmit: function (e) {
     var self = this;
       var flag = 0;
        var rd_session = wx.getStorageSync('rd_session');
+          self.setData({
+                            confirmSubmit: false
+                        })
+
      if (!rd_session) {
           flag = 1;  
              wx.showModal({

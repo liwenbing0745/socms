@@ -70,27 +70,32 @@ Page({
     // 消息显示
     messageBox:function(){
         let self = this;
-        if(this.data.Dynamic.length == this.data.messInx){
-            console.log('没数据啦');
-            return false;
-        }else{
-            let newMessage = this.data.Dynamic[this.data.messInx];
-            this.setData({
-                message: newMessage,
-                messInx: this.data.messInx + 1,
-                messageDisplay: true
-            });
-            //console.log(newMessage, this.data.messInx);
-        };
-        
-        //重复调用
-        setTimeout(function(){
-            self.setData({
-                messageDisplay: false
-            });
-            //console.log('timeout');
-            self.messageBox();
-        }, 5000);
+        if(this.data.Dynamic.length > 0){
+            
+            if(this.data.Dynamic.length == this.data.messInx){
+                console.log('没数据啦');
+                return false;
+            }else{
+                let newMessage = this.data.Dynamic[this.data.messInx];
+                this.setData({
+                    message: newMessage,
+                    messInx: this.data.messInx + 1,
+                    messageDisplay: true
+                });
+                //console.log(newMessage, this.data.messInx);
+            };
+            
+            
+            //重复调用
+            setTimeout(function(){
+                self.setData({
+                    messageDisplay: false
+                });
+                //console.log('timeout');
+                self.messageBox();
+            }, 5000);
+
+        }
     },
     //   滚动吸顶
     onPageScroll: function (event) {  
@@ -263,7 +268,7 @@ Page({
                 cart: res.data.cart,
                 hiddenLoading: true
             });
-            //console.log(res.data.cart.count);
+            console.log(res.data.issqtgseckill);
             var totalSecond = 0;
             if (res.data.issqtgseckill[0] != undefined) {
                 if (res.data.issqtgseckill[0].seckillsate == '0') {
@@ -377,41 +382,60 @@ Page({
     onReady: function () {
         this.dialog = this.selectComponent("#navFooter");
         var self = this;
-        var StorageSecond = wx.getStorageSync('StorageSecond');
-        var reslayed = wx.getStorageSync('GetProdatasqtindexusedelayed');
-        if (reslayed) {
-            self.setData({
-                        products: reslayed.data.results,
-                        hotProduct: reslayed.data.HotStyle,
-                        Dynamic: reslayed.data.Dynamic,
-                        booking: reslayed.data.products,
-                        hiddenLoading: true
-                });
-        };
-        if (StorageSecond- Date.parse(new Date())/1000<0) {
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayed.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (reslayed) {
-                wx.setStorageSync('GetProdatasqtindexusedelayed', reslayed);
-                    self.setData({
-                        products: reslayed.data.results,
-                        hotProduct: reslayed.data.HotStyle,
-                        Dynamic: reslayed.data.Dynamic,
-                        booking: reslayed.data.products,
-                        hiddenLoading: true
-                });
-            });
-        };
+     this.initread();
+     
         // 截单后按钮变灰
-        let proEnd = null;
-        proEnd = this.data.products[0].cust_endtime1 || this.data.bkProduct[0].cust_endtime1;
-        proEnd = Date.parse( new Date(proEnd) ) /1000;
-        let newTime = Date.parse( new Date() ) /1000;
-        if( newTime >= proEnd){
-            self.setData({
-                disabledBtn: true,
-                closeTitle:true
-            })
+          if (this.data.products.Length>0 && this.data.bkProduct.Length>0) {
+            let proEnd = null;
+            proEnd = this.data.products[0].cust_endtime1 || this.data.bkProduct[0].cust_endtime1;
+            proEnd = Date.parse( new Date(proEnd) ) /1000;
+            let newTime = Date.parse( new Date() ) /1000;
+            if( newTime >= proEnd){
+                self.setData({
+                    disabledBtn: true,
+                    closeTitle:true
+                })
+            }
         }
     },
+  initread: function () {
+   var self = this;
+            server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayedPage.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page:1 }, function (reslayedpay) {
+                    self.setData({
+                        products: reslayedpay.data.results,
+                        hotProduct: reslayedpay.data.HotStyle,
+                        Dynamic: reslayedpay.data.Dynamic,
+                        booking: reslayedpay.data.products,
+                        hiddenLoading: true
+                });
+
+                    var StorageSecond = wx.getStorageSync('StorageSecondpage');
+                    var reslayedstor = wx.getStorageSync('GetProdatasqtindexusedelayed');
+                    if (reslayedstor) {
+                        self.setData({
+                           products:self.data.products.concat(reslayedstor.data.results),
+                  hotProduct:self.data.hotProduct.concat(reslayedstor.data.HotStyle),
+                  booking:self.data.booking.concat(reslayedstor.data.products),
+                  Dynamic: reslayedstor.data.Dynamic
+                            });
+                    };
+                    if (StorageSecond- Date.parse(new Date())/1000<0) {
+                    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetProdatasqtindexusedelayedPage.ashx', {userid: wx.getStorageSync('rd_session'),scene:self.data.scene ,showmodel: '', page:2 }, function (reslayed) {
+                            wx.setStorageSync('GetProdatasqtindexusedelayed', reslayed);
+                               var StorageSecondpage = Date.parse(new Date())/1000+30;
+                               wx.setStorageSync('StorageSecondpage', StorageSecondpage);
+                                self.setData({
+                                    products: reslayed.data.results,
+                                    hotProduct: reslayed.data.HotStyle,
+                                    Dynamic: reslayed.data.Dynamic,
+                                    booking: reslayed.data.products,
+                                    hiddenLoading: true
+                            });
+                        });
+                    };
+            });
+    
+},
     onShareAppMessage: function (res) {
         var self = this;
 
@@ -481,7 +505,7 @@ Page({
 
             wx.showModal({
                 title: '提示',
-                content:`本期已截单，下一期9：00开启，敬请期待！！`,
+                content:'本期已截单，下一期9：00开启，敬请期待！！',
                 success:function(res){
                     if(res.confirm){
                         //console.log('用户点击确定');
