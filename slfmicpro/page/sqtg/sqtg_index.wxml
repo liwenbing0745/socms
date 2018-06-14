@@ -194,16 +194,16 @@
         </view>
       </view>
 
-      <!--爆款产品列表-->
+      <!--新品列表-->
       <view class='bk_product_list sale_product {{disabledBtn == true ? "time_end" : "" }}'>
-        <view class='item' wx:for='{{bkProduct}}' wx:key='{{index}}'>
+        <view class='item' wx:for='{{hotProduct}}' wx:key='{{index}}'>
 
           <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}'  formType="submit" data-id="{{item.id}}" bindtap="tappronav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
             <view class='pro_title bottom_line padding_between'>
-              <text class='fc_orange_two'>【爆款】</text>
+              <text class='fc_orange_two'>【新品】</text>
               {{item.pro_name}}
             </view>
             <view class='flex_box top_box padding_between'>
@@ -241,16 +241,16 @@
         </view>
       </view>
 
-      <!--新品列表-->
+      <!--爆款产品列表-->
       <view class='bk_product_list sale_product {{disabledBtn == true ? "time_end" : "" }}'>
-        <view class='item' wx:for='{{hotProduct}}' wx:key='{{index}}'>
+        <view class='item' wx:for='{{bkProduct}}' wx:key='{{index}}'>
 
           <navigator class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}'  formType="submit" data-id="{{item.id}}" bindtap="tappronav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
             <view class='pro_title bottom_line padding_between'>
-              <text class='fc_orange_two'>【新品】</text>
+              <text class='fc_orange_two'>【爆款】</text>
               {{item.pro_name}}
             </view>
             <view class='flex_box top_box padding_between'>

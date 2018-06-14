@@ -7,6 +7,7 @@ Page({
     * 页面的初始数据
     */
     data: {
-        uid: wx.getStorageSync('rd_session')
+        uid: wx.getStorageSync('rd_session'),
+        Invitecode: wx.getStorageSync('Invitecode')
     }
 })

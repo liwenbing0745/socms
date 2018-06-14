@@ -25,7 +25,8 @@ Page({
   onLoad: function () {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, page: self.data.page, page_size: self.data.page_size }, function (res) {
+          var Invitecode = wx.getStorageSync('Invitecode');
+     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, Invitecode: Invitecode, page: self.data.page, page_size: self.data.page_size }, function (res) {
             self.setData({
                 orderDetails: res.data.results,
                 try_user_money: res.data.try_user_money
@@ -35,8 +36,9 @@ Page({
     loadImages: function () {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        self.data.page = self.data.page + 1;
-    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, page: self.data.page, page_size: self.data.page_size }, function (res) {
+           var Invitecode = wx.getStorageSync('Invitecode');
+    self.data.page = self.data.page + 1;
+    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, Invitecode: Invitecode, page: self.data.page, page_size: self.data.page_size }, function (res) {
         if (self.data.page > res.data.allpage) {
             self.setData({
                  page: self.data.page - 1
@@ -60,8 +62,9 @@ Page({
     refesh: function () {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-     self.data.page = self.data.page - 1;
-     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, page: self.data.page, page_size: self.data.page_size }, function (res) {
+         var Invitecode = wx.getStorageSync('Invitecode');
+   self.data.page = self.data.page - 1;
+     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtg_all_record.ashx', { userid: rd_session, Invitecode: Invitecode, page: self.data.page, page_size: self.data.page_size }, function (res) {
         if (self.data.page < 1) {
             self.setData({
                 page: self.data.page + 1

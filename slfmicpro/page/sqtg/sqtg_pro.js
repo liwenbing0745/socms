@@ -235,7 +235,8 @@ Page({
                         success: function (ressucc) {
                             server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
-                              wx.redirectTo({
+                            wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                       wx.redirectTo({
           url: '/page/sqtg/sqtg_index',
         });
      });
@@ -258,6 +259,8 @@ Page({
                                                     success: function (data) {
                                                  server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
+							wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
    wx.redirectTo({
           url: '/page/sqtg/sqtg_index',
         });

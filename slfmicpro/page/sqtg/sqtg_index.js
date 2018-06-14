@@ -554,7 +554,8 @@ Page({
                          
                 server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
       	    wx.setStorageSync('rd_session', ures.data.results[0].id);
-        wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
+            wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                       wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
             });
                    
                          },
@@ -577,7 +578,8 @@ Page({
                                                       server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
       	  // //console.log('wx.login',ures);
            wx.setStorageSync('rd_session', ures.data.results[0].id);
-        wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
+           wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                        wx.navigateTo({ url: '/page/sqtg/sqtg_index?scene='+scene});
             });
              
                                                     }

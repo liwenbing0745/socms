@@ -6,32 +6,45 @@
     <view class="page-body-wrapper">
       <form bindsubmit="openLocationsubmit">
         <view class="page-body-form">
-          <view class="page-body-form-item">
+          <view class="page-body-form-item flex_box">
             <text class="page-body-form-key">订单号</text>
             <view>
               <text>{{order}}</text>
             </view>
           </view>
-         <view class="page-body-form-item">
+         <view class="page-body-form-item flex_box">
             <text class="page-body-form-key">反馈内容</text>
-            <input class="page-body-form-value" type="text" value="" name="feedcontent" placeholder="请输入反馈内容"></input>
+            <textarea class="page-body-form-value" type="text" value="" name="feedcontent" placeholder="请输入反馈内容"></textarea>
           </view>
-          <view class="page-body-form-item">
+          <view class="page-body-form-item flex_box">
             <text class="page-body-form-key">联系方式</text>
             <input class="page-body-form-value" type="text" value="" name="feedcontel" placeholder="请输入联系方式"></input>
           </view>
-          <view class='items'>
+          <view class="page-body-form-item flex_box">
+            <text class="page-body-form-key">申请赔付金额</text>
+            <input class="page-body-form-value" type="digit" value="" name="feedmoney" placeholder="请输入金额"></input>
+          </view>
+          <view class='items flex_box img_content'>
             <text>上传图片</text>
-            <image class='stores_bg_img' src='{{storesImg}}' mode='widthFix' />
+            <view class='img_box flex_box'>
+              <view class='img_item_box' wx:for="{{storesImg}}" wx:for-index="id" wx:for-item="num" wx:key="id" wx:if='{{id < 4}}'>
+                <image class='stores_bg_img' src='{{storesImg[id]}}' mode="widthFix" />
+              </view>
+            </view>
             <button size='mini' class='btn' bindtap="openLocationstoresImg">选择文件</button>
           </view>
          </view>
+         <!--售后须知 图片-->
+        <view>
+          <image src='' style='width:100%;' class='shts' mode='widthFix'/>
+        </view>
         <view class="page-body-buttons">
           <button class="page-body-button" type="primary" formType="submit">提交</button>
         </view>
         <view class="hide">
           <input type="text" name="uid" value="{{uid}}" />
           <input type="text" name="storesImg" value="{{storesImg}}" />
+          <input type="text" name="order" value="{{order}}" />
         </view>
       </form>
     </view>

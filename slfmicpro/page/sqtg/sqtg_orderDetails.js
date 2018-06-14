@@ -19,6 +19,7 @@ Page({
     startX:0,
     leftBox:null,
     isShowLeftBox: false,
+     confirmSubmit: true,
     scrollHeight:0,
     today:[
       {
@@ -199,6 +200,9 @@ Page({
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
         var openid = wx.getStorageSync('openid');
+           self.setData({
+                            confirmSubmit: false
+                        })
         server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/SetOrder.ashx', { userid: rd_session, openid: openid, id: e.target.dataset.id, action: 'tapPay' }, function (res) {
    if (res.data.resultspay.errormess == '') {
          
@@ -220,6 +224,9 @@ Page({
                  
                 },
                 'fail': function (ress) {
+                 self.setData({
+                            confirmSubmit: true
+                        })
                     //                    wx.showModal({
                     //                        title: '提示',
                     //                        content: "支付失败",
@@ -234,6 +241,9 @@ Page({
                     content: res.data.resultspay.errormess,
                     showCancel: false
                 });
+                  self.setData({
+                            confirmSubmit: true
+                        })
             }
         });
     },

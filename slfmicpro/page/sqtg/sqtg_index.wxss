@@ -425,14 +425,16 @@ view, text{
   text-align:center;
 }
 .modify_big .phase{
-  position: absolute;
+  position:absolute;
   top:35%;
-  left:25%;
+  left:22%;
+  width:100rpx;
   font-size:56rpx;
+  color:#fff;
+  z-index:11;
+  text-align:center;
   /* #fa2753 */
   /* color: #522f1a; */
-  color:#fff;
-  z-index: 11;
 }
 
 .cart {
@@ -653,6 +655,8 @@ view, text{
 }
 .sale_product .item{
   position: relative;
+  margin-bottom:15rpx;
+  padding:10rpx 0;
   background-color: #fff;
 }
 .sale_product .item_img_box{

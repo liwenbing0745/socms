@@ -163,7 +163,8 @@ Page({
 
                         server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: ressucc.rawData, encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature }, function (ures) {
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
-                            server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (res) {
+                            wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (res) {
                                 //            if (res.data.ssshuqup != "0") {
                                 //                wx.redirectTo({ url: '/page/sqtg/sqtg_index?scene=' + res.data.ssshuqup });
                                 //            }
@@ -202,7 +203,8 @@ Page({
                                                         success: function (data) {
                                                             server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: data.rawData, encryptedData: data.encryptedData, iv: data.iv, signature: data.signature }, function (ures) {
                                                                 wx.setStorageSync('rd_session', ures.data.results[0].id);
-                                                                server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (res) {
+                                                                wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (res) {
                                                                     //            if (res.data.ssshuqup != "0") {
                                                                     //                wx.redirectTo({ url: '/page/sqtg/sqtg_index?scene=' + res.data.ssshuqup });
                                                                     //            }

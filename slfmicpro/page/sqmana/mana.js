@@ -99,7 +99,8 @@ Page({
   onLoad: function (options) {
       var self = this;
       var rd_session = wx.getStorageSync('rd_session');
-      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/grwdht.ashx', { userid: rd_session }, function (res) {
+      var Invitecode = wx.getStorageSync('Invitecode');
+      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/grwdht.ashx', { userid: rd_session, Invitecode: Invitecode }, function (res) {
           self.setData({
               sqmcdipmc: res.data.pro[0].sqmcdipmc,
               ssshutongzi: res.data.pro[0].ssshutongzi,

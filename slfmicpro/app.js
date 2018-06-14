@@ -34,6 +34,7 @@ App({
 	                    server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: ressucc.rawData, encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature }, function (ures) {
 	                        // //console.log('wx.login',ures);
 	                        wx.setStorageSync('rd_session', ures.data.results[0].id);
+	                       wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
 	                        if (ures.data.results[0].ssshuqup != "0" || ures.data.results[0].sqtgaudit == "2") {
 	                            wx.navigateTo({ url: '/page/sqtg/sqtg_index' });
 	                        }
@@ -60,7 +61,8 @@ App({
 	                                                        server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: data.rawData, encryptedData: data.encryptedData, iv: data.iv, signature: data.signature }, function (ures) {
 	                                                            // //console.log('wx.login',ures);
 	                                                            wx.setStorageSync('rd_session', ures.data.results[0].id);
-	                                                            if (ures.data.results[0].ssshuqup != "0" || ures.data.results[0].sqtgaudit == "2") {
+	                                                            wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                      if (ures.data.results[0].ssshuqup != "0" || ures.data.results[0].sqtgaudit == "2") {
 	                                                                wx.navigateTo({ url: '/page/sqtg/sqtg_index' });
 	                                                            }
 	                                                            else {

@@ -1,26 +1,48 @@
 <!--page/sqmana/my_vip.wxml-->
 <view class='container'>
   <view class='content'>
-  
-    <scroll-view class='box' scroll-y="true"  style="height:780px;" bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
+
+    <scroll-view class='orderLists' scroll-y="true" style='height:100%;' bindscrolltolower="loadImages" bindscrolltoupper="refesh" scroll-top="{{scrollTop}}">
       <view class='items' wx:for="{{peopleLists}}" wx:key="{{index}}">
-        <view class='flex_box about_box'>
-          <view>
-            <image src='{{item.returngoodsimg}}' class='vip_img' mode='widthFix'/>
-          </view>
-          <view class='flex_inline text_box'>
-            <view>
-              <text>{{item.feedcontent}}</text>
-            </view>
-            <view>
-              <text>时间:{{item.addtime}}</text>
-            </view>
-          </view>
-       
+          <view class='flex_box item_header padd'>
+            <text>时间：{{item.time}}</text>
+          <text>订单号：{{item.orderNum}}</text>
         </view>
-        
+        <navigator url='/page/sqmana/sqtg_order_detail?id={{item.id}}'>
+          <view class='items_wrap flex_box bor_btm' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}'>
+            <view class='items_img'>
+              <image src="{{childData.img}}"/>
+            </view>
+            <view class='flex_inline items_wrap_center'>
+              <text class='pro_title'>
+                {{childData.text}}
+              </text>
+              <text class='pro_orTime fc_orange'>
+                提货时间:{{childData.cust_thtime}}
+              </text>
+              <view class='flex_inline'>
+                <text>数量：{{childData.num}}</text>
+                <!--<text>佣金：{{item.commission}}</text>-->
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class='bor_btm'>
+          <view class='padd'>
+            <text>共{{item.num}}件商品,合计：</text>
+            <text class='fc_orange'>￥{{item.price}}</text>
+           </view>
+        </view>
+        <view class='bor_btm'>
+          <view class='flex_box padd'>
+            <text class='fc_orange'> 赔付金额:{{item.feedmoney}}</text>
+            <text>进度：{{item.isreplay==1?"已处理" : "未处理"}}</text>
+          </view>
+        </view>
+
       </view>
     </scroll-view>
+    
   </view>
 
 </view>
