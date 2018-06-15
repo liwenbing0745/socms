@@ -27,7 +27,7 @@ page{
   flex-direction:row;
   min-height:300rpx;
   flex-wrap:wrap;
-  width: 50%;
+  width: 48%;
 }
 .img_content .img_box .img_item_box{
   width: 45%;

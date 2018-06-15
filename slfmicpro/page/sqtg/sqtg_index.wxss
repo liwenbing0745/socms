@@ -329,11 +329,8 @@ view, text{
 .product_list .price .modify_ipt{
   width: 185rpx;
 }
-.product,
-.booking_list{
-  padding-top: 20rpx;
-  margin-bottom: 20rpx;
-  background-color: #fff;
+.product{
+  background-color: #F0F0F0
 }
 .booking_list .text .flex_box{
   flex-direction: column;
@@ -543,7 +540,8 @@ view, text{
   font-size: 24rpx;
 }
 .sale_product{
-  background-color: #F0F0F0;
+  /* background-color: #F0F0F0; */
+  margin-bottom:15rpx;
 }
 .sale_product .bottom_line{
   border-bottom: 1px solid #EFEFEF;
