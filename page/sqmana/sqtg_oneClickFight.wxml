@@ -16,7 +16,7 @@
         </text>
     </view>
 
-    <scroll-view class='pro_lists'>
+    <scroll-view class='pro_lists' scroll-y='true'>
       <view class='items' wx:for="{{proLists}}" wx:key="{{index}}" data-index="{{index}}">
         <view class='items_wrap flex_box'>
           <image src='{{item.img}}' class='pro_img' mode='widthFix'/>
@@ -59,11 +59,12 @@
         </view>
       </view>
 
-      <view class='loading_btn flex_box'>
-        <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
-        <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
-      </view>
     </scroll-view>
+
+    <view class='loading_btn flex_box'>
+      <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
+      <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
+    </view>
   </view>
 
   

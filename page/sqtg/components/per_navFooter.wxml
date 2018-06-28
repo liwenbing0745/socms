@@ -1,9 +1,35 @@
 <!--page/sqtg/sqtg_navFooter.wxml-->
 <view class='nav_footer flex_box'>
-  <view wx:for="{{navList}}" wx:key="id" bindtap='toTab' data-index="{{index}}" class='items'>
-    <navigator class='flex_box' url="{{item.linkUrl}}">
+
+  <!--<view wx:for="{{navList}}" wx:key="id" bindtap='toTab' data-index="{{index}}" class='items'>
+    <navigator class='flex_box'  data-id="{{item.linkUrl}}" bindtap="tapnav" >
       <image src="{{ item.id==imgIndex ? item.img_one : item.img}}" mode='widthFix'/>
       <text>{{item.text}}</text>
     </navigator>
+  </view>-->
+
+  <view bindtap='toTab' data-index="0" class='items'>
+    <navigator class='flex_box' data-index="0" url='/page/sqtg/sqtg_index' >
+      <image src="{{ imgIndex != '0' ? '/imgs/tabBar/xcx_footer_img_01_01.png' : '/imgs/tabBar/xcx_footer_img_01_02.png'}}" mode='widthFix'/>
+      <text>首页</text>
+    </navigator>
   </view>
+
+  <view bindtap='toTab' data-index="1" class='items relative'>
+    <navigator class='flex_box' data-index="1" url='/page/sqtg/sqtg_cart' >
+      <view class="icon">
+        <image src="/imgs/shop/cart_01_03.png"></image>
+        <view class="count" hidden='{{Cartcount == "0"}}'>{{Cartcount}}</view>
+        <text>购物车</text>
+      </view>
+    </navigator>
+  </view>
+
+  <view bindtap='toTab' data-index="2" class='items'>
+    <navigator class='flex_box' data-index="2" url='/page/sqtg/sqtg_PersonCenter' >
+      <image src="{{ imgIndex != '2' ? '/imgs/tabBar/xcx_footer_img_03_01.png' : '/imgs/tabBar/xcx_footer_img_03_02.png'}}" mode='widthFix'/>
+      <text>我的</text>
+    </navigator>
+  </view>
+
 </view>

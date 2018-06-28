@@ -1,9 +1,0 @@
-<!--page/sqtg/sqtg_navFooter.wxml-->
-<view class='nav_footer flex_box'>
-  <view wx:for="{{navList}}" wx:key="id" bindtap='toTab' data-index="{{index}}" class='items'>
-    <navigator class='flex_box' url="{{item.linkUrl}}">
-      <image src="{{ item.id==imgIndex ? item.img_one : item.img}}" mode='widthFix'/>
-      <text>{{item.text}}</text>
-    </navigator>
-  </view>
-</view>

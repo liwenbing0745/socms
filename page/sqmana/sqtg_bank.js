@@ -59,8 +59,7 @@ Page({
       var that = this;
       var formData = e.detail.value;
       var formId = e.detail.formId;
-      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId }, function (sendTemplate) {
-      });
+   
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UserAddutix.ashx', { uid: wx.getStorageSync('rd_session'), radiogroup: formData.radiogroup, username: formData.username, bank: formData.bank, bankcard: formData.bankcard, try_user_nickname: formData.try_user_nickname, txje: formData.txje}, function (res) {
           if (res.data.results.errormess != "") {
               wx.showModal({

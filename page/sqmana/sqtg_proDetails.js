@@ -11,7 +11,7 @@ Page({
       pro: [
     ],
      selectInx: 0,
-    array:['原产地','礼品礼盒','老字号','地标产品']
+    array:['水果','礼品','食材','零食']
  
   },
 
@@ -41,8 +41,6 @@ Page({
       });
       var formData = e.detail.value;
       var formId = e.detail.formId;
-      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId }, function (sendTemplate) {
-      });
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdatePros.ashx', { uid: wx.getStorageSync('rd_session'), price: formData.price, sort: formData.sort, id: formData.id }, function (res) {
           that.setData({
               confirmSubmit: true

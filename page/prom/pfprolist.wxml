@@ -1,7 +1,7 @@
 <view class="container">
 	<view class="header">
 		<view class="search">
-			<image class="icon" src="/imgs/index/icon_search.png"/>
+			<image class="icon" src="/imgs/icon_search.png"/>
 			<input bindinput="inputSearch" placeholder="{{placeholder}}" auto-focus/>
 		</view>
 		<button class="yellow {{searchWords.length?'':'disabled'}}" size="mini" hover-class="hover" loading="" plain="" disabled="{{!searchWords.length}}"

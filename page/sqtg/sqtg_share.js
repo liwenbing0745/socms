@@ -34,11 +34,10 @@ Page({
       }
     }
 },
-  // 需要app.js wx.authorize获取权限，未设置
   saveImg: function () {
     console.log('sava');
     wx.downloadFile({
-      url: this.data.products[0].fxewmimg,//域名？？
+      url: this.data.products[0].fxewmimg,
       success: function (res) {
         let path = res.tempFilePath
         wx.saveImageToPhotosAlbum({

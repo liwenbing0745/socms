@@ -98,16 +98,16 @@
         爆款
       </view>
       <view class="filter ft_black {{filterId==158?'active':''}}" data-id="158" bindtap="tapFilter">
-        原产地
+        水果
       </view>
 			<view class="filter ft_black {{filterId==281?'active':''}}" data-id="281" bindtap="tapFilter">
-        地标产品
+        零食
       </view>
 			<view class="filter ft_black {{filterId==159?'active':''}}" data-id="159" bindtap="tapFilter">
-        老字号
+        食材
       </view>
       <view class="filter ft_black {{filterId==161?'active':''}}" data-id="161" bindtap="tapFilter">
-        礼盒
+        礼品
       </view>
     </view>
 

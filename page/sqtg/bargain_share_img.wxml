@@ -1,0 +1,11 @@
+<!--page/sqtg/bargain_share_img.wxml-->
+<view class='container'>
+  <view class='content'>
+    <image src='{{products[0].imgurl}}' alt="" mode='widthFix' class="share_img"/>
+    <!-- <view class='down_btn' bindtap="saveImg">
+      <icon type='download' size='20' color='#000'></icon>
+      <text>保存到相册</text>
+    </view> -->
+  </view>
+
+</view>

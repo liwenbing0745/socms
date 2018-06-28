@@ -61,7 +61,7 @@ view, text{
   box-sizing: border-box;
 }
 .section{
-  padding: 20rpx 0;
+  padding-bottom:20rpx;
 }
 .padding_between{
   padding-left: 15rpx;
@@ -86,6 +86,7 @@ view, text{
 }
 .location image{
   width: 40rpx;
+  height: auto;
 }
 .location .flex_box{
   padding: 15rpx 5rpx;
@@ -106,9 +107,6 @@ view, text{
 .header .text_img{
   align-items: center;
   justify-content: flex-start;
-}
-.shop_info{
-  padding: 0 0 15rpx 0;
 }
 .shop_info text,
 .shop_info view,
@@ -162,6 +160,7 @@ view, text{
 .shop_info .share_code,
 .shop_info .phone{
   width: 40rpx;
+  height: auto;
 }
 .shop_ress .ress_cart{
   width: 50rpx;
@@ -177,7 +176,7 @@ view, text{
 }
 .shop_info .shop_img{
   width: 100%;
-  height: 340rpx;
+  height: auto;
 }
 .shop_info .user_img{
   width: 175rpx;
@@ -242,16 +241,20 @@ view, text{
 .product_list .item .skill_box .skill_box_text {
   color: #e4393c; 
 }
-.product_list .item,
-.booking_list .items{
-  padding: 30rpx 20rpx;
-  border-bottom: 1px solid #ddd;
-}
 .product_list .item_img{
   width:100%;
+  height: auto;
+}
+.booking_list .imgs_box{
+  padding:0;
+  line-height:0;
+  border-radius:0;
+  overflow: visible;
+  font-size:0;
 }
 .booking_list .item_img{
   width: 250rpx;
+  height: 250rpx;
 }
 .product_list .icon_cart{
   width: 70rpx;
@@ -264,18 +267,30 @@ view, text{
 }
 .product_list .item_wrap{
   width: 65%;
+  padding-left: 30rpx;
+}
+.booking_list .item_wrap{
+  padding-left: 30rpx;
 }
 .product_list .item_wrap>navigator.flex_box,
 .booking_list .item_wrap{
   position: relative;
   flex-direction: column;
-  padding-left: 30rpx;
 }
 .item_wrap view{
   padding: 5rpx 10rpx;
 }
-.item_wrap view.price{
-  padding-left:30rpx;
+.item_wrap view .price{
+  padding:5rpx 0 5rpx 30rpx;
+}
+.item_wrap .cart_btn{
+  display:inline-block;
+  border-radius:20rpx;
+  color:#b28435;
+  background-color:#fff;
+  border:1px solid #b28435;
+  font-size:22rpx;
+  margin: 0;
 }
 .item_wrap .market text{
   font-size:28rpx;
@@ -314,11 +329,8 @@ view, text{
 .product_list .price .modify_ipt{
   width: 185rpx;
 }
-.product,
-.booking_list{
-  padding-top: 20rpx;
-  margin-bottom: 20rpx;
-  background-color: #fff;
+.product{
+  background-color: #F0F0F0
 }
 .booking_list .text .flex_box{
   flex-direction: column;
@@ -410,13 +422,16 @@ view, text{
   text-align:center;
 }
 .modify_big .phase{
-  position: absolute;
-  top:27%;
-  left: 28%;
-  font-size: 66rpx;
+  position:absolute;
+  top:35%;
+  left:22%;
+  width:100rpx;
+  font-size:56rpx;
+  color:#fff;
+  z-index:11;
+  text-align:center;
   /* #fa2753 */
-  color: #522f1a;
-  z-index: 11;
+  /* color: #522f1a; */
 }
 
 .cart {
@@ -510,15 +525,23 @@ view, text{
   border: 1px solid #f7f7f7;
   color: #000;
 }
+.title_box{
+  line-height:0;
+  padding: 10rpx 0;
+  justify-content: space-around;
+}
+.title_box text{
+  font-size:26rpx;
+  color: #e4393c;
+}
+
 .sale_product text,
 .sale_product view{
   font-size: 24rpx;
 }
 .sale_product{
-  background-color: #F0F0F0;
-}
-.bk_product_list{
-  padding-bottom: 20rpx;
+  /* background-color: #F0F0F0; */
+  margin-bottom:15rpx;
 }
 .sale_product .bottom_line{
   border-bottom: 1px solid #EFEFEF;
@@ -529,6 +552,7 @@ view, text{
 }
 .sale_product .item_img{
   width: 100%;
+  height:auto;
 }
 .sale_product .pro_title{
   width:100%;
@@ -585,11 +609,26 @@ view, text{
   font-weight: 700;
   margin-right: 15rpx;
 }
-.sale_product .btn{
+/* .sale_product .btn{
   font-size: 24rpx;
   border-radius: 25rpx;
   color: #fff;
   background-color: #fc4b00;
+} */
+.sale_product .btn{
+  display:inline-block;
+  border-radius:20rpx;
+  color:#b28435;
+  background-color:#fff;
+  border:1px solid #b28435;
+  font-size:22rpx;
+}
+.skill_product_list .skill_btn{
+  font-size: 24rpx;
+  border-radius: 25rpx;
+  color: #fff;
+  background-color: #fc4b00;
+  border:1px solid #fc4b00;
 }
 .skill_product_list .will_btn{
   font-size: 24rpx;
@@ -598,17 +637,10 @@ view, text{
   border:1px solid rgb(41, 165, 41);
   background-color: #fff;
 }
-.bk_product_list .btn{
-  display:inline-block;
-  padding:10rpx 20rpx;
-  border-radius:20rpx;
-  color:#b28435;
-  background-color:#fff;
-  border:1px solid #b28435;
-}
 .sale_product .user_box{
   justify-content: flex-end;
   padding: 15rpx 8rpx;
+  border-top: 1px solid #EFEFEF;
 }
 .sale_product .user_box .user_img{
   width: 35rpx;
@@ -621,40 +653,43 @@ view, text{
 }
 .sale_product .item{
   position: relative;
-  margin-bottom: 12rpx;
+  margin-bottom:15rpx;
+  padding:10rpx 0;
   background-color: #fff;
 }
 .sale_product .item_img_box{
   position: relative;
+  width:100%;
+  height:auto;
 }
-/* .sale_product .skill_over .item_img_box::after{
+.sale_product .skill_over .item_img_box::after{
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(http://wx.so50.com/images/indexmask.png);
+  background-image: url(http://wx.so50.com/images/indexmask1.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  z-index: 10;
-} */
+  z-index: 20;
+}
 .sale_product .skill_over{
   position:relative;
 }
-.sale_product .skill_over::after{
+/* .sale_product .skill_mail::after{
   content: '';
   position: absolute;
-  top: 80%;
+  top: 50%;
   left: 35%;
   width: 200rpx;
   height: 200rpx;
-  background-image: url(http://wx.so50.com/images/seconds_over.png);
+  background-image: url(http://wx.so50.com/images/seconds_mail.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  z-index: 10;
-}
-.skill_product_list .item .skill_box::before{
+  z-index: 20;
+} */
+/* .skill_product_list .item .skill_box::before{
   content: '';
   position: absolute;
   top: 8%;
@@ -665,10 +700,34 @@ view, text{
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
+} */
+.skill_product_list .skill_over .skill_btn{
+  background-color: #F5F5F5;
+  color: #ACA899;
+  border-radius: 0;
+  border:1px solid #F5F5F5;
 }
 .sale_product .disabled{
   background-color: #F5F5F5;
   color: #ACA899;
+}
+.kj_product_list .btn{
+  color:#fff;
+  background-color:#e4393c;
+  border:1px solid #e4393c;
+}
+.kj_product_list .item_box{
+  padding:0;
+  line-height:1.5;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+}
+.kj_product_list .item_box::after{
+  border: 0;
+}
+.kj_product_list .item_box .pro_title{
+  text-align: left;
 }
 /* 18-05-08 左上角弹窗*/
 .message_box{
@@ -702,4 +761,36 @@ view, text{
 .disabled{
   background-color: #F5F5F5;
   color: #ACA899;
+}
+/* mask */
+.max{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .7;
+  z-index: 1000;
+}
+.time_end .btn{
+  background-color: #F5F5F5;
+  color: #ACA899;
+  border: 1px solid #F5F5F5;
+  border-radius: 0;
+}
+
+/* toTop */
+.to_top{
+  position:fixed;
+  bottom:20%;
+  right:2%;
+  display: block;
+  width: 100rpx;
+  height:100rpx;
+  z-index: 200;
+}
+.to_top image{
+  width: 100%;
+  height: 100%;
 }

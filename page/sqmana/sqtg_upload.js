@@ -14,23 +14,23 @@ Page({
     savaWapcon:false,
     id:"0",
     selectInx: 0,
-    array:['原产地','礼品礼盒','老字号','地标产品'],
+    array:['水果','礼品','食材','零食'],
     sortSelect: 0,
    sortList:[
       {
-        text: '原产地',
+        text: '水果',
         attr: '158'
       },
       {
-        text: '地标产品',
+        text: '零食',
            attr: '281'
    },
       {
-        text: '老字号',
+        text: '食材',
             attr: '159'
   },
       {
-        text: '礼盒',
+        text: '礼品',
              attr: '161'
  }
     ],
@@ -119,8 +119,6 @@ Page({
         });
       var formData = e.detail.value;
          var formId = e.detail.formId;
-   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId }, function (sendTemplate) {
-    });
   
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdatePros.ashx', { uid: wx.getStorageSync('rd_session'),pro_pic:formData.pro_pic,pro_name:formData.pro_name,pro_Fittingids:formData.pro_Fittingids,weight_units:formData.weight_units,area:formData.area,pro_wapcon:formData.pro_wapcon,pro_ourpri:formData.pro_ourpri,price:formData.price,pro_markpri:formData.pro_markpri,pro_sqtgpri:formData.pro_sqtgpri, sort: formData.sort,id:formData.id}, function (res) {
                 that.setData({

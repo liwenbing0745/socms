@@ -10,52 +10,66 @@
     <text wx:for="{{toactive}}" wx:key="{{index}}" class="{{activeIndex==index?'select':''}}" data-index="{{index}}" data-id="{{item.attr}}" bindtap='toActive'>{{item.text}}</text>
   </view> 
 
-  <scroll-view class='orderLists'  scroll-y="true"  style="height:780px;" >
+  <scroll-view class='orderLists'  scroll-y="true" >
     <view class='items' wx:for="{{orderDetails}}" wx:key="{{index}}">
-      <view class='flex_box item_header'>
-        <text>时间：{{item.time}}</text>
-        <text>订单号：{{item.orderNum}}</text>
-      </view>
-      <!-- <navigator url='/page/sqmana/sqtg_order_detail?id={{item.id}}'> -->
-        <view class='items_wrap flex_box bor_btm'>
-          <view class='items_img'>
-            <image src="{{item.img}}" mode='widthFix'/>
-          </view>
-          <view class='flex_inline items_wrap_center'>
-            <text class='pro_title'>
-              {{item.text}}
-            </text>
-            <view class='time'>
-              <text class='fc_orange'>{{item.cust_thtime}}</text>
-            </view>
-            <view class='flex_inline'>
-              <text>数量：{{item.num}}</text>
-              <!-- <text>佣金：{{item.commission}}</text> -->
-            </view>
-          </view>
+      <view class='item_top_box item_txt' style='{{item.txtStyle}}' data-index='{{index}}' bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">  
+        <view class='flex_box item_header'>
+          <text>时间：{{item.time}}</text>
+          <text>订单号：{{item.orderNum}}</text>
         </view>
-      <!-- </navigator> -->
-      <view class='bor_btm'>
-        <view>
-          <text>共{{item.num}}件商品,合计：</text>
-          <text class='fc_orange'>￥{{item.price}}</text>
-          <text>(含运费：￥{{item.freight}})</text>
-        </view>
-      </view>
-      <view class='order_btn_box flex_box'>
-        <button data-id="{{item.id}}" size='mini' bindtap="tapPay" hidden="{{item.order_state=='2' ? false : true}}">{{item.order_state=='2'?'立即支付':''}}</button>
-        <button data-id="{{item.id}}" size='mini' bindtap="tapDele" hidden="{{item.order_state=='1' || item.order_state=='2' || item.order_state=='6' ? false : true}}">{{item.order_state=='1'||item.order_state=='2'||item.order_state=='6'||item.order_state=='7'?'删除订单':''}}</button>
-        <button size='mini' data-id="{{item.sqmcdipmcmobile}}" bindtap="makePhone" hidden="{{item.sqmcdipmcmobile=='' ? true : false}}">
-          {{item.sqmcdipmcmobile==''?'':'团长电话'}}
-        </button>
-        <!--<button size='mini'>我要评价</button>-->
-        <navigator url='/page/sqtg/sqtg_order_detail?id={{item.id}}'>
-        <button size='mini' class='fc_orange'>{{item.active}}</button>
+        <navigator url='/page/sqtg/sqtg_order_detail?id={{item.id}}'> 
+          <view class='items_wrap flex_box bor_btm' wx:for='{{item.childData}}' wx:for-item='childData' wx:key='{{index}}'>
+            <view class='items_img'>
+              <image src="{{childData.img}}" mode='widthFix'/>
+            </view>
+            <view class='flex_inline items_wrap_center'>
+              <text class='pro_title'>
+                {{childData.text}}
+              </text>
+              <text class='pro_orTime fc_orange'>
+                提货时间:{{childData.cust_thtime}}
+              </text>
+              <text class='pro_orTime fc_orange'>
+                {{childData.sqtgremark}}
+              </text>
+              <view class='flex_inline'>
+                <text>数量：{{childData.num}}</text>
+                <!-- <text>佣金：{{item.commission}}</text> -->
+              </view>
+            </view>
+          </view>
         </navigator>
+        <view class='bor_btm'>
+          <view>
+            <text>共{{item.num}}件商品,合计：</text>
+            <text class='fc_orange'>￥{{item.price}}</text>
+            <text>(含运费：￥{{item.freight}})</text>
+          </view>
+        </view>
+        <view class='order_btn_box flex_box'>
+          <text class='noPay' hidden='{{item.sqtgbountyid=="0"}}'>社区</text>
+          <button data-id="{{item.id}}" size='mini' bindtap="tapPay" disabled="{{!confirmSubmit}}" hidden="{{item.order_state=='2' ? false : true}}">{{item.order_state=='2'?'立即支付':''}}</button>
+          <button data-id="{{item.id}}" size='mini' bindtap="tapDele" hidden="{{item.order_state=='1' || item.order_state=='2' || item.order_state=='6' ? false : true}}">{{item.order_state=='1'||item.order_state=='2'||item.order_state=='6'||item.order_state=='7'?'删除订单':''}}</button>
+          <button size='mini' data-id="{{item.sqmcdipmcmobile}}" bindtap="makePhone" hidden="{{item.sqmcdipmcmobile=='' ? true : false}}">
+            {{item.sqmcdipmcmobile==''?'':'团长电话'}}
+          </button>
+          <!--<button size='mini'>我要评价</button>-->
+          <button size='mini' class='fc_orange'>
+            <navigator url='/page/sqtg/sqtg_order_detail?id={{item.id}}'>
+              {{item.active}}
+            </navigator> 
+          </button>
+        </view>
+      </view> 
+      <view class='item_bottom_box' hidden="{{item.order_state=='1' || item.order_state=='2' || item.order_state=='6' || item.order_state=='7' || item.order_state=='8' ? false : true}}" data-id='{{item.id}}' bindtap='tapDele'>
+        删除
       </view>
-      
     </view>
-    <view class="loading" bindtap="refesh">《《</view>
-    <view class="loading" bindtap="loadImages">》》</view>
   </scroll-view>
+
+  <view class='loading_btn flex_box'>
+    <button size='mini' class="loading yellow" bindtap="refesh">上一页</button>
+    <button size='mini' class="loading green" bindtap="loadImages">下一页</button>
+  </view>
+
 </view>

@@ -125,7 +125,7 @@ page{
   -webkit-line-clamp: 2;
   overflow: hidden; 
   font-size:30rpx;
-  height:73rpx;
+  height:75rpx;
   text-align:left;
 
 }

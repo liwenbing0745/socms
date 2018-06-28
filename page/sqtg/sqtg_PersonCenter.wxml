@@ -73,11 +73,7 @@
         <text>我的批发</text>
       </navigator>
     </view>
-    <!--<view class='list_item tgou_icon' bindtap="tapfxaudit">
-      <navigator>
-        <text>我的团购</text>
-      </navigator>
-    </view>-->
+ 
     <view class='list_item ress_icon'>
       <navigator url='/page/order/addresslist'>
         <text>收货地址</text>
@@ -105,6 +101,6 @@
     </view>
   </view>
 
-   <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}"/>
+   <nav-footer id="navFooter" bind:toTab="NavTab" img-index="{{img_index}}" Cartcount='{{cart.count}}'/>
 
 </view>

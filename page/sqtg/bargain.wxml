@@ -1,0 +1,230 @@
+<!--page/sqtg/bargain.wxml-->
+<view class='container'>
+
+    <!--图片-->
+    <view class="car_cont">
+        <view class='img_box'>
+            <image src="{{products[0].pro_pic}}" mode="widthFix" />
+        </view>
+        <view class='car_wrap'>
+            <view class='time_box flex_box'>
+                <text>{{products[0].status == '0' ? '距离开始还剩' : '距离结束还剩'}}：</text>
+                <view class='flex_inline'>
+                    <text class='time_items'>{{sqstate.day}}天</text>
+                    <text class='time_items'>{{sqstate.hour}}时</text>
+                    <text class='time_items'>{{sqstate.min}}分</text>
+                    <text class='time_items'>{{sqstate.sec}}秒</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!--价格&名称-->
+    <view class='name_cont bc_white mar_btm pad_tb {{products[0].free_num == "0" || isEnds ? "skill_over"  : ""}}'>
+        <view class='flex_box name'>
+            <view class="car_name">
+                <text class='pro_name'>{{products[0].pro_name}}</text>
+            </view>
+            <view class="num_box flex_line">
+                <view>
+                    <text>{{products[0].free_num}}</text>
+                </view>
+                <view>
+                    <text>剩余</text>
+                </view>
+            </view>
+        </view>
+
+        <view class='product_price'>
+            <text class='fc_orange'>最低：￥</text><text class='min_price fc_orange'>{{products[0].min_price}}</text>
+            <text class='max_price fc_gray'>原价：￥</text><text class='fc_gray'>{{products[0].remarket}}</text>
+        </view>
+    </view>
+
+    <!--砍价进度-->
+    <view class='section bc_white mar_btm pad_tb' wx:if='{{user.user_bargain == "1"}}'>
+        <view class='user_name flex_box'>
+            <image src="{{user.user_pic}}"/>
+            <text>{{user.user_name}}</text>
+            <text class='fc_orange text'>{{products[0].min_price ==  products[0].nowprice ? '已砍至最低价，快点下单吧!':'成功参与活动，快快让好友助自己一臂之力' }}</text>
+        </view>
+        <view class='data_content'>
+            <view class='canvas_box'>
+                <view class='float_box' style='left:{{alcLeft}}%'>
+                    -￥{{products[0].barprice}}
+                </view>
+
+                <view class='canvas flex_box'>
+                    <view class='bg_image'>
+                        <view class='image' style='left:{{100 - alcRight}}%'></view>
+                    </view>
+                </view>
+
+                <!--<view class='flex_box bargain_btn'>
+                    <button size='mini' bindtap='showBargain'>{{products[0].baruserid == products[0].uid ? '自砍一刀':'帮砍一刀'}}</button>
+                    <button size='mini' wx:if='{{products[0].baruserid == products[0].uid}}' open-type="share">邀请好友一起砍</button>
+                    <button size='mini' wx:if='{{products[0].baruserid != products[0].uid}}' bindtap='toMyBargain'>我要发起砍价</button>
+                </view>-->
+
+                <view class='flex_box'>
+                    <text class='fc_gray'>原价：￥{{products[0].remarket}}</text>
+                    <text class='fc_orange'>现价：￥{{products[0].nowprice}}</text>
+                </view>
+            </view>
+            <!--好友排行榜-->
+            <view class='friends_recond'>
+                <scroll-view scroll-y="true">
+                    <view class='items flex_box' wx:for="{{recordList}}" wx:key="{{index}}">
+                        <image src='{{item.img}}'/>
+                        <text class='user_name'>{{item.name}}</text>
+                        <view>
+                            <text>一共砍掉</text>
+                            <text class='fc_orange user_bargain'>{{item.bargain}}</text>
+                            <text>元</text>
+                        </view>
+                    </view>
+                </scroll-view>
+                <!--<view>
+                    <button bindtap='addMore' class='add_more'>
+                        加载更多
+                    </button>
+                </view>-->
+            </view>
+        </view>
+    </view>
+
+    <view class='footer'> 
+
+        <view class='product_content mar_btm bc_white pad_tb'>
+            <view class='title'>
+                <text class='fc_orange'>砍价流程</text>
+            </view>
+            <view class='liucheng flex_box'>
+                <view class='items'>
+                    <text class='fc_orange'>1.点击砍价</text>
+                </view>
+                <view class='items'>
+                    <text class='fc_orange'>2.找人帮砍</text>
+                </view>
+                <view class='items'>
+                    <text class='fc_orange'>3.砍到最低</text>
+                </view>
+                <view class='items'>
+                    <text class='fc_orange'>4.优惠购买</text>
+                </view>
+            </view>
+        </view>
+
+        <view class='product_time bc_white mar_btm pad_tb'>
+            <view class='title shuoming'>
+                <text class='fc_orange'>说明</text>
+            </view>
+            <view>
+                <view>
+                    <text>活动开始时间：{{products[0].start_time}}</text>
+                </view>
+                <view>
+                    <text>活动结束时间：{{products[0].end_time}}</text>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+    <!--产品详情图-->
+    <view class='product_details bc_white'>
+        <view class='title fc_orange'>
+            <text>产品详情</text>
+        </view>
+        <view wx:for='{{detailsList}}' wx:key="{{index}}" class='details_img'>
+            <image src='{{item.img}}' mode='widthFix'/>
+        </view>
+    </view>
+    
+
+    <view class="fix_btn">
+
+        <view bindtap='showBargain' class='never_btn' wx:if='{{user.user_bargain == "0"}}'>
+            <view class='btn'>
+                立即砍价
+            </view>
+        </view>
+    
+        <view class='btn_box flex_box' wx:if='{{user.user_bargain == "1"}}'>
+            <!--<view class="btn btn_price">
+                商品现价：￥{{products[0].nowprice}}
+            </view>-->
+            <view class="btn btn_index">
+                <button bindtap='backIndex'>
+                    首页
+                </button>
+            </view>
+            <view class="btn btn_buy">
+                <button data-id="{{bargain_infoid}}" bindtap="tapBuyCart">
+                    当前价购买
+                </button>
+            </view>
+            <view class='btn will_btn'>
+                <button bindtap='toHelp'>
+                    找人帮砍
+                </button>
+            </view>
+        </view>
+
+    </view>
+    <!--邀请分享-->
+    <view class='flex_box friends_help' hidden='{{!isHelp}}'>
+        <view class='flex_box content'>
+            <view>
+                <button open-type="share">
+                    <view class='box'>
+                        <image src='http://wx.so50.com/images/微信.png' />
+                        <text>
+                            邀请朋友帮砍价
+                        </text>
+                    </view>
+                </button>
+            </view>
+            <view>
+                <!--保存图片的后跳转到产品分享图片页-->
+                <button bindtap='saveImg'>
+                    <view class='box'>
+                        <image src='http://wx.so50.com/images/朋友圈.png' />
+                        <text>
+                            生成海报到朋友圈
+                        </text>
+                    </view>
+                </button>
+            </view>
+        </view>
+        <view>
+            <button bindtap='toHelp'>
+                取消
+            </button>
+        </view>
+    </view>
+
+    <!--遮罩层-->
+    <view class='mask' wx:if='{{showMask}}'></view>
+
+    <!--弹出提示窗口-->
+    <view class='alert_box' wx:if='{{showAlert}}'>
+        <view class='content'>
+            <view class='first'>
+                <view>太棒了！</view>
+            </view>
+            <view>
+                <view>恭喜您砍掉{{bargain}}元，邀请其他好友试一试？</view>
+            </view>
+            <view>
+                <button open-type="share">邀请好友一起砍</button>
+            </view>
+            <view class='span' bindtap='showBargainBox'>+</view>
+        </view>
+    </view>
+
+    <view class='max' hidden="{{hiddenLoading}}">
+        <loading hidden="{{hiddenLoading}}">正在加载</loading>
+    </view>
+</view>
+

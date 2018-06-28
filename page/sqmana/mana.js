@@ -24,12 +24,12 @@ Page({
       cumMoney: 0
     },
     manaList:[
-      {
-        id: 0,
-        url: '/page/sqmana/sqtg_index',
-        img: 'http://wx.so50.com/images/home-pages_03.png',
-        text: '店铺装修'
-      },
+      // {
+      //   id: 0,
+      //   url: '/page/sqmana/sqtg_index',
+      //   img: 'http://wx.so50.com/images/home-pages_03.png',
+      //   text: '店铺装修'
+      // },
       {
         id: 1,
         url: '/page/sqmana/sqtg_oneClickFight',
@@ -99,7 +99,8 @@ Page({
   onLoad: function (options) {
       var self = this;
       var rd_session = wx.getStorageSync('rd_session');
-      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/grwdht.ashx', { userid: rd_session }, function (res) {
+      var Invitecode = wx.getStorageSync('Invitecode');
+      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/grwdht.ashx', { userid: rd_session, Invitecode: Invitecode }, function (res) {
           self.setData({
               sqmcdipmc: res.data.pro[0].sqmcdipmc,
               ssshutongzi: res.data.pro[0].ssshutongzi,

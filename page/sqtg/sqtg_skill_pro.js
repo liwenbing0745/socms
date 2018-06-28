@@ -147,18 +147,7 @@ Page({
     }
   }
   ,
-  tapproBuyCart: function (e) {
-    //  console.log('products', e);
-    this.addproCart(e.currentTarget.dataset.id);
-  },
-  addproCart: function (id) {
-    var self = this;
-    var rd_session = wx.getStorageSync('rd_session');
-    server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserAddShop.ashx', { pid: id, buy_sum: self.data.products[0].buy_sum, userid: rd_session }, function (res) {
-      wx.redirectTo({ url: '/page/shop/shop' });
-      //wx.redirectTo({ url: '/page/sqtg/sqtg_cart' });
-    });
-  },
+ 
   login: function (sqtgbountyid) {
     var self = this;
 
@@ -171,6 +160,8 @@ Page({
                 server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: ressucc.rawData, encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature }, function (ures) {
                   // //console.log('wx.login',ures);
                   wx.setStorageSync('rd_session', ures.data.results[0].id);
+				  wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
                   // wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+sqtgbountyid});
                   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid: ures.data.results[0].id }, function (res) {
                     //  console.log('products', res);
@@ -252,6 +243,8 @@ Page({
                                                    server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: data.rawData, encryptedData: data.encryptedData, iv: data.iv, signature: data.signature }, function (ures) {
                   // //console.log('wx.login',ures);
                   wx.setStorageSync('rd_session', ures.data.results[0].id);
+				  wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
                   // wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+sqtgbountyid});
                   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid: ures.data.results[0].id }, function (res) {
                     //  console.log('products', res);

@@ -20,6 +20,7 @@ Page({
     startX:0,
     leftBox:null,
     isShowLeftBox: false,
+      confirmSubmit: true,
     scrollHeight:0,
     today:[
       {
@@ -169,7 +170,6 @@ Page({
                 self.setData({ 
                     orderDetails: res.data.results,
                     page: parseInt(res.data.page),
-                    scrollTop: 100
                 });
             }
             //console.log('products', res)
@@ -189,7 +189,6 @@ Page({
             }
             else {
                 self.setData({ 
-                  scrollTop: 100,
                   orderDetails: res.data.results,
                   page: parseInt(res.data.page),
                 });
@@ -202,8 +201,12 @@ Page({
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
         var openid = wx.getStorageSync('openid');
+           self.setData({
+                            confirmSubmit: false
+                        })
         server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/SetOrder.ashx', { userid: rd_session, openid: openid, id: e.target.dataset.id, action: 'tapPay' }, function (res) {
-   if (res.data.resultspay.errormess == '') {
+          console.log(res);
+        if (res.data.resultspay.errormess == '') {
          
             wx.requestPayment({
                 'timeStamp': res.data.resultspay.timeStamp,
@@ -223,6 +226,9 @@ Page({
                  
                 },
                 'fail': function (ress) {
+                  self.setData({
+                            confirmSubmit: true
+                        })
                     //                    wx.showModal({
                     //                        title: '提示',
                     //                        content: "支付失败",
@@ -237,6 +243,9 @@ Page({
                     content: res.data.resultspay.errormess,
                     showCancel: false
                 });
+                  self.setData({
+                            confirmSubmit: true
+                        })
             }
         });
     },
@@ -392,10 +401,10 @@ Page({
 
     if( oinx == inx){
 
-      return false
+      return false;
 
-    }else if( oinx ){
-
+    }else if(oinx != null){
+      
       list[oinx].txtStyle = 'left:0px';
 
       this.setData({

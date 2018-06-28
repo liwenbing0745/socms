@@ -31,7 +31,8 @@
             <text>{{item.proname}}</text>
           </view>
           <view class='time'>
-            <text class='fc_red'>{{item.cust_thtime}}</text>
+            <text class='fc_red'>提货时间:{{item.cust_thtime}}</text>
+            <text class='fc_red'>{{item.sqtgremark}}</text>
           </view>
         </view>
         <view class='wrap_right'>

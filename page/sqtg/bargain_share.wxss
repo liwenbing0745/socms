@@ -1,0 +1,209 @@
+/* page/sqtg/bargain_share.wxss */
+page{ 
+    position:relative;
+    font-family: "Microsoft YaHei";
+    font-size:28rpx;
+}
+.container {
+    height: 100%;
+    padding-bottom: 120rpx;
+    background-color: #ddd;
+}
+.flex_box{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+.flex_inline{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex_dir{
+    flex-direction: column;
+}
+.fc_red{
+    color: #e4393c;
+}
+.fc_gray{
+    color: #7d7d7d;
+}
+.fc_orange{
+    color: #fc4b00;
+}
+.bc_white{
+    background-color: #fff;
+}
+.mar_btm{
+    margin-bottom:10rpx;
+}
+.pad_tb{
+    padding: 20rpx 20rpx;
+}
+.car_cont image,
+.details_img image{
+    display:block;
+    width:100%;
+}
+.car_cont{
+    position: relative;
+}
+.car_cont .car_wrap{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fc4b00;
+    opacity: .7;
+}
+.car_cont .car_wrap .time_box{
+    justify-content: flex-start;
+    padding: 20rpx;
+}
+.car_cont .car_wrap text{
+    color: #fff;
+}
+
+.name_cont .car_box{
+    text-align: center;
+}
+.name_cont .car_name{
+    width:80%;
+    border-right:1px solid #ddd;
+    font-weight: 700;
+    line-height:1.5;
+}
+.name_cont .num_box{
+    width: 20%;
+    text-align: center;
+    font-weight: 700;
+}
+.name_cont .product_price .items{
+  width: 33%;
+  padding: 12rpx 0;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.name_cont .product_price .items:nth-child(2){
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+.name_cont .product_price .items text{
+  padding: 1rpx 0;
+  font-size: 30rpx;
+}
+.name_cont .product_price .items text:first-child{
+  font-size:38rpx;
+}
+.name_cont .min_price{
+    font-size: 34rpx;
+    padding-right: 10rpx;
+}
+
+.section .user_name image{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.section .user_name .text{
+    max-width:60%;
+}
+.section .recond image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.section .recond .recond_box{
+    max-height:100%;
+}
+.section .recond .recond_box items{
+  padding:7rpx 0;
+  border-bottom: 1px solid #ddd;
+}
+.section .recond .recond_box items .items_box{
+    display: inline-flex;
+    width:auto;
+    align-items: center;
+    justify-content: flex-start;
+}
+.section .recond .add_more{
+    font-size:24rpx;
+}
+.section .bargain_btn{
+    padding:20rpx 0;
+}
+.section .bargain_btn button{
+    width: 80%;
+    background-color:#ff7800;
+    color:#fff;
+}
+  
+.to_home{
+    position: fixed;
+    bottom: 30%;
+    right: 0;
+    display: block;
+    width: 60rpx;
+    height:60rpx;
+    z-index: 200;
+}
+.to_home image{
+    width:100%;
+    height:100%;
+}
+
+  /* mask */
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .7;
+    z-index: 1000;
+}
+
+/* alert */
+.alert_box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 570rpx;
+    height: 380rpx;
+    padding: 10rpx 15rpx;
+    margin: auto auto;
+    background-color: #fff;
+    border-radius: 15rpx;
+    z-index: 1100;
+}
+.alert_box .content{
+    text-align: center;
+}
+.alert_box .content .first{
+    font-size: 32rpx;
+    font-weight: 700;
+}
+.alert_box .content view{
+    padding:10rpx 0;
+}
+.alert_box .span{
+    font-size: 101rpx;
+    font-weight: 700;
+    color: #000;
+    transform: rotate(45deg);
+} 
+.alert_box button{
+    width: 80%;
+    background-color: #ff7800;
+    color: #fff;
+}

@@ -54,7 +54,7 @@
         <text class='fc_orange'>{{cart.total}}</text>
       </view>
       <view class='btn'>
-        <button class="yellow {{cart.count?'':'disabled'}}" type='primary' formType="submit" disabled="{{!confirmSubmit||!cart.count}}">提交订单</button>
+        <button class="yellow {{confirmSubmit?'':'disabled'}}" type='primary' formType="submit" disabled="{{!confirmSubmit||!cart.count}}">提交订单</button>
       </view>
     </view>
   </view>

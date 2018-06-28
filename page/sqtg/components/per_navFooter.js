@@ -7,6 +7,10 @@ Component({
         imgIndex: {
             type: Number,
             value: 0
+        },
+        Cartcount: {
+            type: Number,
+            value: 0
         }
     },
 
@@ -20,7 +24,7 @@ Component({
           text: '首页',
           img: '/imgs/tabBar/xcx_footer_img_01_01.png',
           img_one: '/imgs/tabBar/xcx_footer_img_01_02.png',
-          linkUrl: '/page/index/index',
+          linkUrl: '/page/sqtg/sqtg_index',
           select: 'select'
       },
       {
@@ -28,7 +32,7 @@ Component({
           text: '去结算',
           img: '/imgs/tabBar/xcx_footer_img_02_01.png',
           img_one: '/imgs/tabBar/xcx_footer_img_02_02.png',
-          linkUrl: '/page/shop/shop',
+          linkUrl: '/page/sqtg/sqtg_cart',
           select: 'select'
       },
       {
@@ -36,7 +40,7 @@ Component({
           text: '我的',
           img: '/imgs/tabBar/xcx_footer_img_03_01.png',
           img_one: '/imgs/tabBar/xcx_footer_img_03_02.png',
-          linkUrl: '/page/sqtg/per_PersonCenter',
+          linkUrl: '/page/sqtg/sqtg_PersonCenter',
           select: 'select'
       }
       
@@ -53,6 +57,10 @@ Component({
             this.setData({
                 imgIndex: inx
             })
-        }
+        },
+        // tapnav: function (event) {
+        //     var inx = event.currentTarget.dataset.id;
+        //     wx.redirectTo({ url: inx });
+        // }
     }
 })

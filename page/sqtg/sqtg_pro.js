@@ -6,10 +6,13 @@ Page({
     /**
     * 页面的初始数据
     */
-    data: {
+    data: {  
+        page: 1,
+        page_size: 10,
         isDetailsShow: true,
         tEvaluateSum: 0,
         sqtgbountyid:0,
+        loaddata:0,
         tEvaluate: [],
         sqstate: {
             hour: 0,
@@ -24,7 +27,8 @@ Page({
         messInx:0,
         message:{},
         isEnd:false,
-        endTime:''
+        endTime:'',
+        hiddenLoading:false
     },
     isShowDetail: function () {
         this.setData({
@@ -79,29 +83,30 @@ Page({
             if (totalSecond <= 0) {
                     self.setData({
                         products: res.data.products,
-                          sqtgbountyid: sqtgbountyid,
-                      isEnd: true
+                        sqtgbountyid: sqtgbountyid,
+                        isEnd: true
                     });
                 }
                 else {
                     self.setData({
-                       products: res.data.products,
-                          sqtgbountyid: sqtgbountyid,
-                      isEnd: false
+                        products: res.data.products,
+                        sqtgbountyid: sqtgbountyid,
+                        isEnd: false
                     });     
                     console.log(res.data.products);          
                 }
                 server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid: rd_session },function (resc) {
                     self.setData({
-                                tEvaluate: resc.data.tEvaluate,
-                                tEvaluateSum:resc.data.tEvaluateSum,
-                                detailsList: resc.data.pro_wapcon,
-                                recordList: resc.data.recordList,
-                                    Dynamic: resc.data.Dynamic
-                              
-                              });       
+                        tEvaluate: resc.data.tEvaluate,
+                        tEvaluateSum:resc.data.tEvaluateSum,
+                        detailsList: resc.data.pro_wapcon,
+                        recordList: resc.data.recordList,
+                        loaddata:resc.data.loaddata,
+                        Dynamic: resc.data.Dynamic,
+                        hiddenLoading: true
+                    });       
                              
-                  });
+                });
                 // 调用弹窗
         setTimeout(function(){
             self.messageBox();
@@ -150,7 +155,15 @@ Page({
     addCart: function (id) {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtgbountyBuy.ashx', { bounty_infoid: id, buy_sum: self.data.products[0].buy_sum, userid: rd_session }, function (res) {
+          self.setData({
+                        hiddenLoading: false
+                    });       
+           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/resdisInter.ashx', { bounty_infoid: id, buy_sum: self.data.products[0].buy_sum, userid: rd_session }, function (resdis) {
+            if (resdis.data.results.errormess == "购买成功") {
+                   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sqtgbountyBuy.ashx', { bounty_infoid: id, buy_sum: self.data.products[0].buy_sum, userid: rd_session }, function (res) {
+               self.setData({
+                        hiddenLoading: true
+                    });       
             if (res.data.results.errormess != "购买成功") {
                 wx.showModal({
                     title: '温馨提示',
@@ -159,22 +172,48 @@ Page({
                 });
             }
             else {
+
                 wx.redirectTo({ url: '/page/sqtg/sqtg_cart' });
             }
         });
 
+            }
+            else {
+              self.setData({
+                        hiddenLoading: true
+                    });   
+                wx.showModal({
+                    title: '温馨提示',
+                    content: resdis.data.results.errormess,
+                    showCancel: false
+                });
+            }
+        });
+
+
+    
     }
 ,
-    tapproBuyCart: function (e) {
-      //  console.log('products', e);
-        this.addproCart(e.currentTarget.dataset.id);
-    },
-    addproCart: function (id) {
+    loadImages: function () {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserAddShop.ashx', { pid: id, buy_sum: self.data.products[0].buy_sum, userid: rd_session }, function (res) {
-               wx.redirectTo({ url: '/page/shop/shop' });
-            //wx.redirectTo({ url: '/page/sqtg/sqtg_cart' });
+        self.data.page = self.data.page + 1;
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlistPage.ashx', { userid: rd_session, sqtgbountyid: self.data.sqtgbountyid, page: self.data.page, page_size: self.data.page_size }, function (res) {
+            if (self.data.page > res.data.allpage) {
+              self.setData({
+                    page: self.data.page - 1,
+                    loaddata:1
+                });
+            }
+            else {
+                self.setData({
+                     recordList: res.data.recordList,
+                     loaddata:res.data.loaddata,
+                     page: parseInt(res.data.page),
+                    scrollTop: 100
+                });
+            }
+            //console.log('products', res)
         });
     },
     login: function(sqtgbountyid) {
@@ -185,33 +224,10 @@ Page({
                         success: function (ressucc) {
                             server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
-                                   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (res) {
-            var totalSecond = res.data.products[0].bulk_endtime;
-   if (totalSecond < 0) {
-                    self.setData({
-                        products: res.data.products,
-                      isEnd: true
-                    });
-                }
-                else {
-                    self.setData({
-                       products: res.data.products,
-                      isEnd: false
-                    });               
-                }
-           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (resc) {
-          self.setData({
-                      tEvaluate: resc.data.tEvaluate,
-                      tEvaluateSum:resc.data.tEvaluateSum,
-                      detailsList: resc.data.pro_wapcon,
-                      recordList: resc.data.recordList,
-                          Dynamic: resc.data.Dynamic
-                    
-                    });       
+                            wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                       wx.redirectTo({
+          url: '/page/sqtg/sqtg_index',
         });
-
-        });
-  
      });
                             },
                 fail: function () {
@@ -232,33 +248,11 @@ Page({
                                                     success: function (data) {
                                                  server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
                             wx.setStorageSync('rd_session', ures.data.results[0].id);
-                                   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecData.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (res) {
-            var totalSecond = res.data.products[0].bulk_endtime;
-   if (totalSecond < 0) {
-                    self.setData({
-                        products: res.data.products,
-                      isEnd: true
-                    });
-                }
-                else {
-                    self.setData({
-                       products: res.data.products,
-                      isEnd: false
-                    });               
-                }
-           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlist.ashx', { sqtgbountyid: sqtgbountyid, userid:  ures.data.results[0].id },function (resc) {
-          self.setData({
-                      tEvaluate: resc.data.tEvaluate,
-                      tEvaluateSum:resc.data.tEvaluateSum,
-                      detailsList: resc.data.pro_wapcon,
-                      recordList: resc.data.recordList,
-                          Dynamic: resc.data.Dynamic
-                    
-                    });       
+							wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
+   wx.redirectTo({
+          url: '/page/sqtg/sqtg_index',
         });
-
-        });
-  
      });
                           
                                                     }

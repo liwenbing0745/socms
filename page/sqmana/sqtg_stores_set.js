@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
     data: {
-       uid: wx.getStorageSync('rd_session'),
+        uid: wx.getStorageSync('rd_session'),
+        longitude: 112.93134,
+   latitude: 28.23529,
          try_user_nickname:"",
         sqmcdipmc:"",
         ssshutongzi:"",
@@ -104,6 +106,48 @@ Page({
 },
   onLoad: function () {
       var self = this;
+      wx.getLocation({
+          type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+          success: function (res) {
+              self.setData({
+                  longitude: res.longitude,
+                  latitude: res.latitude
+              });
+
+          },
+          fail: function (resfail) {
+              // 显示提示弹窗
+              wx.showModal({
+                  title: '授权',
+                  content: '请授权使用地理位置',
+                  success: function (res) {
+                      if (res.confirm) {
+
+                          wx.openSetting({
+                              success: function (data) {
+                                  if (data) {
+                                      if (data.authSetting["scope.userLocation"] == true) {
+                                          wx.getLocation({
+                                              type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+                                              success: function (res) {
+                                                  self.setData({
+                                                      longitude: res.longitude,
+                                                      latitude: res.latitude
+                                                  });
+
+                                              }
+                                          });
+                                      }
+                                  }
+                              }
+
+                          });
+                      }
+                  }
+              });
+          }
+      });
+
       var rd_session = wx.getStorageSync('rd_session');
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetTry_pro_infosqtgData.ashx', {userid: wx.getStorageSync('rd_session') ,showmodel: '', page: self.data.page, page_size: self.data.page_size }, function (res) {
 
@@ -130,21 +174,20 @@ Page({
 
 
 
-},
-tapbgImgsid: function (e) {
+
+},
+
+tapbgImgsid: function (e) {
     var self = this;
     self.setData({
         storesImg: e.currentTarget.dataset.id
     })
 },
  formSubmit: function (e) {
-     //  console.log('wx.login', e);
-      var that = this;
+     var that = this;
       var formData = e.detail.value;
         var formId = e.detail.formId;
-   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId }, function (sendTemplate) {
-    });
-   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdateUsers.ashx', { uid: wx.getStorageSync('rd_session'), try_user_nickname: formData.try_user_nickname, sqmcdipmc: formData.sqmcdipmc, ssshutongzi: formData.ssshutongzi, dpdesc: formData.dpdesc, mobile: formData.mobile, try_user_img: formData.try_user_img, storesImg: formData.storesImg, ysIs: formData.ysIs}, function (res) {
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdateUsers.ashx', { uid: wx.getStorageSync('rd_session'), try_user_nickname: formData.try_user_nickname, sqmcdipmc: formData.sqmcdipmc, ssshutongzi: formData.ssshutongzi, dpdesc: formData.dpdesc, mobile: formData.mobile, try_user_img: formData.try_user_img, storesImg: formData.storesImg, ysIs: formData.ysIs, longitude: that.data.longitude, latitude: that.data.latitude }, function (res) {
                 that.setData({
                    confirmSubmit: true
                 })

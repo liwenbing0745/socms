@@ -1,1 +1,1 @@
-<web-view src="https://xcx.so50.com/Pages/html5/my_vip.aspx?userid={{uid}}" class="canvas"></web-view>
+<web-view src="https://xcx.so50.com/Pages/html5/my_vip.aspx?userid={{uid}}&Invitecode={{Invitecode}}" class="canvas"></web-view>

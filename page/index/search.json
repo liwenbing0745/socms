@@ -1,7 +1,0 @@
-{
-	"navigationBarTitleText": "产品中心",
-  "component": true,
-  "usingComponents": {
-    "nav-footer": "/page/index/components/sqtg_navFooter"
-  }
-}

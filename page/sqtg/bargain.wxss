@@ -1,0 +1,392 @@
+/* page/sqtg/bargain.wxss */
+page{ 
+    position:relative;
+    font-family: "Microsoft YaHei";
+    font-size:28rpx;
+}
+.container {
+    height: 100%;
+    padding-bottom: 120rpx;
+    background-color: #ddd;
+}
+.flex_box{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+.flex_inline{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.flex_dir{
+    flex-direction: column;
+}
+.fc_red{
+    color: #e4393c;
+}
+.fc_gray{
+    color: #7d7d7d;
+}
+.fc_orange{
+    color: #fc4b00;
+}
+.bc_white{
+    background-color: #fff;
+}
+.mar_btm{
+    margin-bottom:10rpx;
+}
+.pad_tb{
+    padding: 20rpx 20rpx;
+}
+.car_cont image,
+.details_img image{
+    display:block;
+    width:100%;
+}
+.car_cont{
+    position: relative;
+}
+.car_cont .car_wrap{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fc4b00;
+    opacity: .7;
+}
+.car_cont .car_wrap .flex_inline{
+    width:auto;
+}
+.car_cont .car_wrap .time_box{
+    justify-content: flex-start;
+    padding: 20rpx;
+}
+.car_cont .car_wrap text{
+    color: #fff;
+}
+
+.name_cont .car_box{
+    text-align: center;
+}
+.name_cont .car_name{
+    width:80%;
+    border-right:1px solid #ddd;
+    font-weight: 700;
+    line-height:1.5;
+}
+.name_cont .num_box{
+    width: 20%;
+    text-align: center;
+    font-weight: 700;
+}
+.name_cont .product_price{
+    padding: 15rpx 0;
+}
+.name_cont .min_price{
+    font-size: 34rpx;
+    padding-right: 10rpx;
+}
+.skill_over{
+    position: relative;
+}
+.skill_over::after{
+    content: '';
+    position: absolute;
+    top: -15%;
+    left: 35%;
+    width: 200rpx;
+    height: 200rpx;
+    background-image: url(http://wx.so50.com/images/seconds_over.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+
+
+.section .canvas_box{
+    position: relative;
+}
+.section .canvas_box .float_box{
+    position: absolute;
+    top:4%;
+    padding:5rpx 10rpx;
+    border-radius:15rpx;
+    color:#fff;
+    background-color:#fc4b00;
+    font-size:22rpx;
+}
+.section .canvas_box .float_box::after{
+    content: '';
+    position: absolute;
+    bottom: -23%;
+    left: 42%;
+    display: inline-block;
+    width:15rpx;
+    height: 15rpx;
+    background-color: #fc4b00;
+    transform:rotate(45deg);
+}
+.section .canvas_box .canvas{
+    width: 100%;
+    height:200rpx;
+}
+.section .canvas_box .bg_image{
+    position: relative;
+    width: 100%;
+    height:40rpx;
+    border-radius: 15rpx;
+    background-color: #ddd;
+    overflow: hidden;
+}
+.section .canvas_box .bg_image .image{
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff7800;
+}
+.section .user_name image{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.section .user_name .text{
+    max-width:60%;
+}
+.section .friends_recond image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.section .friends_recond .user_name{
+    max-width: 40%;
+    overflow: hidden;
+}
+.section .friends_recond .add_more{
+    font-size:24rpx;
+}
+.section .bargain_btn{
+    padding:10rpx 0;
+}
+.section .bargain_btn button{
+    background-color:#fc4b00;
+    color:#fff;
+}
+
+.footer .product_content .title,
+.footer .product_time .title{
+    position: relative;
+    padding: 12rpx 0 12rpx 60rpx;
+    border-bottom: 1px solid #ddd;
+}
+.footer .product_content .title::before,
+.footer .product_time .title::before{
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 0;
+    display: block;
+    width: 50rpx;
+    height: 50rpx;
+    background-size: 100% 100%;
+}
+.footer .product_time view{
+    padding: 10rpx 0;
+}
+.footer .product_content .title::before{
+    background-image: url(http://wx.so50.com/images/提示说明.png);
+}
+.footer .product_time .title::before{
+    background-image: url(http://wx.so50.com/images/工作流程图.png);
+}
+.footer .product_content .liucheng{
+    padding: 10rpx 0;
+}
+.footer .product_content .items{
+    width:101rpx;
+    height:101rpx;
+    padding:8rpx;
+    border: 1px solid #fc4b00;
+    border-radius: 100%;
+    text-align:center;
+    line-height:55rpx;
+}
+.footer .product_content .items text{
+    font-weight: 700;
+}
+
+.product_details .title{
+    padding: 25rpx 0;
+    text-align: center;
+}
+
+
+button::after{
+    border:none;
+    border-radius: 0;
+}
+.fix_btn{
+    position:fixed;
+    left:0;
+    bottom:0;
+    display: block;
+    width:100%;
+    background-color:#fff;
+    z-index:50;
+}
+.fix_btn .btn{
+    width:35%;
+    color:#fff;
+    text-align:center;
+}
+.btn{
+    font-family: "Microsoft YaHei";
+    font-size:30rpx;
+    padding:15rpx 5rpx;
+    border-radius:0;
+    overflow: hidden;
+}
+.fix_btn .btn{
+    padding:0;
+    height:110rpx;
+}
+.fix_btn button{
+    width: 100%;
+    height: 100%;
+    line-height:3;
+    border-radius:0;
+    font-size:32rpx;
+}
+.fix_btn .btn_buy button{
+    background-color:#ffad37;
+    color:#fff;
+}
+.fix_btn .btn_price button{
+    color:#000;
+}
+.fix_btn .btn_index{
+    width: 30%;
+}
+.fix_btn .btn_index button{
+    color: #000;
+    border-right:1px solid #ddd;
+    /* background-color: #ff971c; */
+}
+.fix_btn .btn_add button{
+    background-color:#ff971c;
+}
+.fix_btn .disabled{
+    background-color: #F5F5F5;
+    color: #ACA899;
+}
+.fix_btn .will_btn{
+    border-radius:0;
+    padding: 0;
+}
+.fix_btn .will_btn button{
+    border-radius:0;
+    color: #fff;
+    background-color: #ff7800;
+    font-size:32rpx;
+}
+/* .fix_btn .will_btn button{
+    color: #fff;
+    background-color: rgb(41, 165, 41);
+    border: 0;
+    border-radius: 0;
+    padding: 3rpx 0;
+    font-size:32rpx;
+} */
+.fix_btn .never_btn{
+    text-align: center;
+    color: #fff;
+    background-color: #ff7800;
+}
+.fix_btn .never_btn .btn{
+    width:100%;
+    margin:0 auto;
+    line-height:110rpx;
+}
+
+.friends_help{
+    position: fixed;
+    left:0;
+    bottom:0;
+    display: block;
+    width:100%;
+    background-color:#fff;
+    z-index:150;
+}
+.friends_help image{
+    width:100rpx;
+    height: 100rpx;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.friends_help button{
+    background-color: #fff;
+}
+.friends_help .box{
+    padding: 10rpx 0;
+    text-align: center;
+}
+.friends_help .content{
+    justify-content:space-around;
+    border-bottom:2px solid #df6e3d;
+}
+
+  /* mask */
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .7;
+    z-index: 100;
+}
+
+/* alert */
+.alert_box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 500rpx;
+    height: 420rpx;
+    padding: 10rpx 15rpx;
+    margin: auto auto;
+    background-color: #fff;
+    border-radius: 15rpx;
+    z-index: 150;
+}
+.alert_box .content{
+    text-align: center;
+}
+.alert_box .content .first{
+    font-size: 32rpx;
+    font-weight: 700;
+}
+.alert_box .content view{
+    padding:10rpx 0;
+}
+.alert_box .span{
+    font-size: 101rpx;
+    font-weight: 700;
+    color: #000;
+    transform: rotate(45deg);
+} 
+.alert_box button{
+    width: 80%;
+    background-color: #ff7800;
+    color: #fff;
+}

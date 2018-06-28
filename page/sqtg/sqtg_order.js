@@ -43,6 +43,10 @@ formSubmit: function (e) {
     var self = this;
       var flag = 0;
        var rd_session = wx.getStorageSync('rd_session');
+          self.setData({
+                            confirmSubmit: false
+                        })
+
      if (!rd_session) {
           flag = 1;  
              wx.showModal({
@@ -61,17 +65,14 @@ formSubmit: function (e) {
     var value = e.detail.value;
     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UserAddOrdersqtg.ashx', { userid: rd_session,consigneepeo: value.consigneepeo, consigneemobile: value.consigneemobile, remark: value.remark, invoiceH: value.invoiceH }, function (res) {
         if (res.data.results[0].errormess == '更新成功') {
-            //  wx.navigateTo({ url: '/page/order/orderlist' });
-            wx.requestPayment({
+             wx.requestPayment({
                 'timeStamp': res.data.results[0].timeStamp,
                 'nonceStr': res.data.results[0].nonceStr,
                 'package': res.data.results[0].package,
                 'signType': 'MD5',
                 'paySign': res.data.results[0].paySign,
                 'success': function (succres) {
-                  server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/sendTemplate.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId,action:"Postdatasqtddzfcgtz",id: res.data.results[0].id}, function (sendTemplate) {
-    
-    });
+              
   
                     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/UpdateOrderState.ashx', { id: res.data.results[0].id, sp_billno: res.data.results[0].order_no }, function (payres) {
                         wx.redirectTo({ url: '/page/sqtg/all_orderDetails' });
@@ -129,7 +130,8 @@ onReady: function () {
                          
                 server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
            wx.setStorageSync('rd_session', ures.data.results[0].id);
-   
+           wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
             });
                    
                          },
@@ -151,7 +153,8 @@ onReady: function () {
                                                     success: function (data) {
                                                   server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
            wx.setStorageSync('rd_session', ures.data.results[0].id);
-   
+           wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
             });
              
                                                     }

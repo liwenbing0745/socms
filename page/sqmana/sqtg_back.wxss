@@ -23,11 +23,10 @@ page {
 .fc_orange{
   color: #fc4b00;
 }
-.content .box{
-  background-color: #989898;
+/* .content .box{
+  background-color: #ddd;
 }
 .content .items{
-  padding: 10rpx 15rpx;
   margin: 10rpx 0;
   background-color: #fff;
 }
@@ -65,4 +64,110 @@ page {
   display: inline-flex;
   width: 50%;
   padding: 12rpx 0;
+} */
+
+.orderLists .items .items_img image{
+  width: 120rpx;
 }
+.orderLists{
+  max-height: 920rpx;
+  padding-bottom:40rpx;
+}
+.orderLists .items:first-child{
+  margin-top: 15rpx;
+}
+.orderLists .items{
+  position:relative;
+  height:auto;
+  background-color: #fff;
+}
+.orderLists .items .item_top_box{
+  position:relative;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+  background-color: #fff;
+}
+.orderLists .items .item_txt{
+  width: 100%;
+  z-index: 5;
+  padding:0 5rpx;
+  transition: left 0.2s ease-in-out;
+}
+.orderLists .items .item_header{
+  border-bottom: 1px solid #ddd;
+}
+.orderLists .items .item_header text{
+  font-size: 24rpx;
+}
+.orderLists .items .item_bottom_box{
+  position:absolute;
+  top:0;
+  right: 0;
+  width: 180rpx;
+  height: 100%;
+  line-height:450rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #e64340;
+  z-index: 4;
+}
+.orderLists .items .item_top_box>view,
+.orderLists .items .items_wrap{
+  padding: 15rpx;
+}
+.orderLists .items .items_img{
+  width: 30%;
+  font-size: 0;
+  text-align:center;
+}
+.orderLists .items .items_img image{
+  width: 200rpx;
+  height: 200rpx;
+}
+.orderLists .bor_btm{
+  border-bottom: 1px solid #ddd;
+}
+.orderLists .items .items_wrap_center{
+  width: 70%;
+  height:200rpx;
+  flex-direction: column;
+}
+.orderLists .items .items_wrap_center>text{
+  line-height: 1;
+}
+.orderLists .items .pro_title{
+  word-break:break-all;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  height: 57rpx;
+}
+.orderLists .items .order_btn_box{
+  position: relative;
+  justify-content: flex-end;
+}
+.orderLists .items .order_btn_box button{
+  width:135rpx;
+  padding:0;
+  margin:0;
+  color: #fc4b00;
+  border: 1px solid #fc4b00;
+  border-radius:0;
+}
+.orderLists .items .order_btn_box .noPay{
+  position: absolute;
+  top: 30%;
+  left: 3%;
+  padding: 5rpx 10rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: #fc4b00;
+  border: 1px solid #ddd;
+}
+.orderLists .items .padd{
+  padding:15rpx 8rpx;
+} 

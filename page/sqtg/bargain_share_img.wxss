@@ -1,0 +1,28 @@
+/* page/sqtg/bargain_share_img.wxss */
+page {
+height: 100%;
+  font-family: "Microsoft YaHei";
+  font-size:28rpx;
+}
+.container {
+    height: 100%;
+}
+.content{
+    position:relative;
+}
+.content .share_img{
+    width: 100%;
+}
+.down_btn{
+    position: absolute;
+    bottom:13%;
+    left:64%;
+    display: inline-flex;
+    width: 230rpx;
+    height: 40rpx;
+    padding: 15rpx 12rpx;
+    background-color: #ffe224;
+    border-radius: 36rpx;
+    text-align: center;
+    justify-content: space-around;
+}

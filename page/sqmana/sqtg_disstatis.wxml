@@ -1,2 +1,2 @@
 <!--page/sqmana/sqtg_statistics.wxml-->
-<web-view src="https://xcx.so50.com/Pages/html5/sqtg_disstatis.aspx?userid={{uid}}" class="canvas"></web-view>
+<web-view src="https://xcx.so50.com/Pages/html5/sqtg_disstatis.aspx?userid={{uid}}&Invitecode={{Invitecode}}" class="canvas"></web-view>

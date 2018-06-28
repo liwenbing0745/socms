@@ -8,6 +8,8 @@ Page({
    */
   data: {
     uid: wx.getStorageSync('rd_session'),
+       longitude: 112.93134,
+   latitude: 28.23529,
     try_user_nickname: "",
     sqmctihoudian: "",
     mobile: "",
@@ -35,6 +37,49 @@ Page({
     onLoad: function () {
   
      var that = this;
+        wx.getLocation({
+          type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+          success: function (res) {
+              that.setData({
+                  longitude: res.longitude,
+                  latitude: res.latitude
+              });
+
+          },
+          fail: function (resfail) {
+              // 显示提示弹窗
+              wx.showModal({
+                  title: '授权',
+                  content: '请授权使用地理位置',
+                  success: function (res) {
+                      if (res.confirm) {
+
+                          wx.openSetting({
+                              success: function (data) {
+                                  if (data) {
+                                      if (data.authSetting["scope.userLocation"] == true) {
+                                          wx.getLocation({
+                                              type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+                                              success: function (res) {
+                                                  that.setData({
+                                                      longitude: res.longitude,
+                                                      latitude: res.latitude
+                                                  });
+
+                                              }
+                                          });
+                                      }
+                                  }
+                              }
+
+                          });
+                      }
+                  }
+              });
+          }
+      });
+
+
         server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session')}, function (res) {
 //            if (res.data.ssshuqup != "0") {
 //                wx.redirectTo({ url: '/page/sqtg/sqtg_index?scene=' + res.data.ssshuqup });
@@ -106,7 +151,7 @@ wx.showModal({
 
    if (flag==0){
 
-   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/zcfx.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId,sqmctihoudian:formData.sqmctihoudian,sqmc:formData.sqmc,mobile:formData.mobile,procity:formData.procity}, function (ures) {
+   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/zcfx.ashx', { uid: wx.getStorageSync('rd_session'), formId: formId,sqmctihoudian:formData.sqmctihoudian,sqmc:formData.sqmc,mobile:formData.mobile,procity:formData.procity, longitude: that.data.longitude, latitude: that.data.latitude}, function (ures) {
          
              if (ures.data.results[0].flag=="1")
         {  
@@ -153,7 +198,8 @@ wx.showModal({
                          
                 server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: ressucc.rawData,encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature}, function (ures) {
            wx.setStorageSync('rd_session', ures.data.results[0].id);
-   
+           wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
             });
                    
                          },
@@ -174,7 +220,8 @@ wx.showModal({
                                                     success: function (data) {
                                                      server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code ,rawData: data.rawData,encryptedData: data.encryptedData, iv: data.iv, signature: data.signature}, function (ures) {
            wx.setStorageSync('rd_session', ures.data.results[0].id);
-   
+           wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                     
             });
               
                                                     }

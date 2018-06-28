@@ -16,7 +16,11 @@ Page({
         pfaudit: "",
         sqtgaudit: "",
         ssshuqu:"",
-    
+        cart: {
+            count: 0,
+            total: 0,
+            list: {}
+        },
         orderList: [
       {
           url: '/page/sqtg/all_orderDetails?order_state=2',
@@ -106,6 +110,7 @@ Page({
                     pfaudit: res.data.pro[0].pfaudit,
                     sqtgaudit: res.data.pro[0].sqtgaudit,
                     ssshuqu: res.data.pro[0].ssshuqu,
+                    cart: res.data.cart,
                     orderList: res.data.orderList
                 })
            
@@ -146,14 +151,7 @@ Page({
             }
         });
     },
-    tapfxaudit: function (e) {
-        if (this.data.fxaudit == '2') {
-            wx.navigateTo({ url: '/page/prom/sqtlist' });
-        }
-        else {
-            wx.navigateTo({ url: '/page/prom/sqtaudit' });
-        }
-    },
+ 
 	login: function(ssshuqu) {
 	    var self = this;
 	    wx.login({
@@ -164,7 +162,8 @@ Page({
 
 	                    server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: ressucc.rawData, encryptedData: ressucc.encryptedData, iv: ressucc.iv, signature: ressucc.signature }, function (ures) {
 	                        wx.setStorageSync('rd_session', ures.data.results[0].id);
-	                        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (resorderNumList) {
+	                        wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (resorderNumList) {
 
 	                            self.setData({
 	                                try_user_nickname: resorderNumList.data.pro[0].try_user_nickname,
@@ -200,7 +199,8 @@ Page({
 	                                                    success: function (data) {
 	                                                        server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: data.rawData, encryptedData: data.encryptedData, iv: data.iv, signature: data.signature }, function (ures) {
 	                                                            wx.setStorageSync('rd_session', ures.data.results[0].id);
-	                                                            server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (resorderNumList) {
+	                                                            wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+	                      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/orderNumList.ashx', { userid: wx.getStorageSync('rd_session'), ssshuqu: ssshuqu }, function (resorderNumList) {
 
 	                                                                self.setData({
 	                                                                    try_user_nickname: resorderNumList.data.pro[0].try_user_nickname,

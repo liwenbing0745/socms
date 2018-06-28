@@ -20,19 +20,19 @@ Page({
         attr: '0'
       },
       {
-        text: '原产地',
+        text: '水果',
         attr: '158'
       },
       {
-        text: '地标产品',
+        text: '零食',
            attr: '281'
    },
       {
-        text: '老字号',
+        text: '食材',
             attr: '159'
   },
       {
-        text: '礼盒',
+        text: '礼品',
              attr: '161'
  }
     ],

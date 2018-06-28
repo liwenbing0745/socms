@@ -74,7 +74,8 @@ Page({
   let todata = e.currentTarget.dataset.id;
    var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session,todata:todata, page: self.data.page, page_size: self.data.page_size }, function (res) {
+           var Invitecode = wx.getStorageSync('Invitecode');
+   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, Invitecode: Invitecode,todata:todata, page: self.data.page, page_size: self.data.page_size }, function (res) {
             self.setData({
              order_state:0,
           tit:"",
@@ -90,7 +91,8 @@ Page({
    let inx = e.currentTarget.dataset.index;
    var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session,order_state:order_state, page: self.data.page, page_size: self.data.page_size }, function (res) {
+           var Invitecode = wx.getStorageSync('Invitecode');
+   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, Invitecode: Invitecode,order_state:order_state, page: self.data.page, page_size: self.data.page_size }, function (res) {
             self.setData({
           todata:0,
           tit:"",
@@ -108,7 +110,8 @@ Page({
   onLoad: function (options) {
     var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, page: self.data.page, page_size: self.data.page_size }, function (res) {
+            var Invitecode = wx.getStorageSync('Invitecode');
+  server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, Invitecode: Invitecode, page: self.data.page, page_size: self.data.page_size }, function (res) {
        //   console.log('products', res)
              self.setData({
                 orderDetails: res.data.results
@@ -128,7 +131,8 @@ Page({
     let tit = this.dialog.searchData();
      var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session,tit:tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
+           var Invitecode = wx.getStorageSync('Invitecode');
+   server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, Invitecode: Invitecode,tit:tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
             self.setData({
                order_state:0,
           todata:0,
@@ -141,8 +145,9 @@ Page({
    loadImages: function () {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        self.data.page = self.data.page + 1;
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, order_state: self.data.order_state, todata: self.data.todata, tit: self.data.tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
+           var Invitecode = wx.getStorageSync('Invitecode');
+   self.data.page = self.data.page + 1;
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, Invitecode: Invitecode, order_state: self.data.order_state, todata: self.data.todata, tit: self.data.tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
             if (self.data.page > res.data.allpage) {
                self.setData({
                     page: self.data.page - 1
@@ -161,8 +166,9 @@ Page({
     refesh: function () {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
-        self.data.page = self.data.page - 1;
-        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, order_state: self.data.order_state, todata: self.data.todata, tit: self.data.tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
+            var Invitecode = wx.getStorageSync('Invitecode');
+  self.data.page = self.data.page - 1;
+        server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetOrder.ashx', { userid: rd_session, Invitecode: Invitecode, order_state: self.data.order_state, todata: self.data.todata, tit: self.data.tit, page: self.data.page, page_size: self.data.page_size }, function (res) {
             if (self.data.page < 1) {
                 self.setData({
                     page: self.data.page + 1

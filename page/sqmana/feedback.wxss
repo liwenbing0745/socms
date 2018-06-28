@@ -7,3 +7,33 @@ page{
   padding:15rpx 10rpx;
   border-bottom:1px solid #ddd;
 }
+.flex_box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.page-body-wrapper .flex_box{
+  justify-content: flex-start;
+}
+.page-body-wrapper .page-body-form-key{
+  width: 200rpx;
+}
+.img_content text{
+  width: 200rpx;
+}
+.img_content .img_box{
+  flex-direction:row;
+  min-height:300rpx;
+  flex-wrap:wrap;
+  width: 48%;
+}
+.img_content .img_box .img_item_box{
+  width: 45%;
+  height: auto;
+}
+.img_content .img_box .img_item_box image{
+  width: 100%;
+  height: auto;
+}
