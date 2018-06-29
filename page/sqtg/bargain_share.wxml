@@ -48,11 +48,41 @@
             <text>{{user.user_name}}</text>
             <text class='fc_orange text'>赶紧帮你的老铁砍死他，然后你也可以参与。</text>
         </view>
+        <view class='canvas_box'>
+            <view class='float_box' style='left:{{alcLeft}}%'>
+                -￥{{products[0].barprice}}
+            </view>
+
+            <view class='canvas flex_box'>
+                <view class='bg_image'>
+                    <view class='image' style='left:{{100 - alcRight}}%'></view>
+                </view>
+            </view>
+
+            <view class='flex_box'>
+                <text class='fc_gray'>原价：￥{{products[0].remarket}}</text>
+                <text class='fc_orange'>现价：￥{{products[0].nowprice}}</text>
+            </view>
+        </view>
         <view class='bargain_btn'>
             <button wx:if='{{user.user_bargain == "0"}}' bindtap='showBargain'>帮TA砍一刀</button>
             <button wx:if='{{user.user_bargain == "1"}}' bindtap='toMyBargain'>我也要砍价</button>
         </view>
+
         <view class='data_content'>
+            <!--好友砍价榜 -->
+            <scroll-view scroll-y="true" class='friends'>
+                <view class='items flex_box' wx:for="{{recordList}}" wx:key="{{index}}">
+                    <image src='{{item.img}}'/>
+                    <text class='user_name'>{{item.name}}</text>
+                    <view>
+                        <text>一共砍掉</text>
+                        <text class='fc_orange user_bargain'>{{item.bargain}}</text>
+                        <text>元</text>
+                    </view>
+                </view>
+            </scroll-view>
+
             <!--本期用户砍价成功数据-->
             <view class='recond'>
                 <view>

@@ -230,6 +230,7 @@ Page({
  
         });
     },
+
     onLoad: function (options) {
         var self = this;
         var rd_session = wx.getStorageSync('rd_session');
@@ -564,7 +565,34 @@ Page({
         wx.navigateTo({ url: '/page/sqtg/sqtg_pro?scene='+e.currentTarget.dataset.id });
     },
     tapbarnav:function(e){
-        wx.navigateTo({ url: '/page/sqtg/bargain?scene='+e.currentTarget.dataset.id });
+        let status = e.currentTarget.dataset.status;
+        if( status != '0'){
+            wx.navigateTo({ url: '/page/sqtg/bargain?scene='+e.currentTarget.dataset.id });
+        }else{
+            wx.showModal({
+                title: '温馨提示',
+                content: '活动尚未开始',
+                showCancel: false
+            });
+        }
+    },
+    onGotUserInfo: function(e) {
+        var self = this;
+        wx.login({
+            success: function (rescode) {
+                server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: e.detail.rawData, encryptedData: e.detail.encryptedData, iv: e.detail.iv, signature: e.detail.signature }, function (ures) {
+                    // //console.log('wx.login',ures);
+                    wx.setStorageSync('rd_session', ures.data.results[0].id);
+                    wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+                    if (ures.data.results[0].ssshuqup != "0" || ures.data.results[0].sqtgaudit == "2") {
+                        wx.navigateTo({ url: '/page/sqtg/sqtg_index' });
+                    }
+                    else {
+                        wx.navigateTo({ url: '/page/index/index' });
+                    }
+                });
+            }
+        });
     },
     login: function(scene) {
 	    var self = this;

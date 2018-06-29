@@ -630,7 +630,13 @@ view, text{
   background-color: #fc4b00;
   border:1px solid #fc4b00;
 }
-.skill_product_list .will_btn{
+.kj_product_list .btn{
+  color:#fff;
+  background-color:#e4393c;
+  border:1px solid #e4393c;
+}
+.skill_product_list .will_btn,
+.kj_product_list .will_btn{
   font-size: 24rpx;
   border-radius: 25rpx;
   color: rgb(41, 165, 41);
@@ -662,6 +668,11 @@ view, text{
   width:100%;
   height:auto;
 }
+.sale_product .skill_over,
+.sale_product .seconds_mail,
+.sale_product .seconds_end{
+  position:relative;
+}
 .sale_product .skill_over .item_img_box::after{
   content: '';
   position: absolute;
@@ -674,21 +685,30 @@ view, text{
   background-size: 100% 100%;
   z-index: 20;
 }
-.sale_product .skill_over{
-  position:relative;
-}
-/* .sale_product .skill_mail::after{
+.sale_product .seconds_mail .item_img_box::after{
   content: '';
   position: absolute;
-  top: 50%;
-  left: 35%;
-  width: 200rpx;
-  height: 200rpx;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url(http://wx.so50.com/images/seconds_mail.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 20;
-} */
+} 
+.sale_product .seconds_end .item_img_box::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(http://wx.so50.com/images/seconds_end.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 20;
+}
 /* .skill_product_list .item .skill_box::before{
   content: '';
   position: absolute;
@@ -710,11 +730,6 @@ view, text{
 .sale_product .disabled{
   background-color: #F5F5F5;
   color: #ACA899;
-}
-.kj_product_list .btn{
-  color:#fff;
-  background-color:#e4393c;
-  border:1px solid #e4393c;
 }
 .kj_product_list .item_box{
   padding:0;
@@ -794,3 +809,5 @@ view, text{
   width: 100%;
   height: 100%;
 }
+
+

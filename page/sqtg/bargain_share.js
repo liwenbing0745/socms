@@ -64,7 +64,9 @@ Page({
   showBargain:function(){
     var self = this;
     var rd_session = wx.getStorageSync('rd_session');
-    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/BargainNew.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid, uid: rd_session },function (resc) {
+      server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/resdisBargainNew.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid,userid: rd_session }, function (resdis) {
+            if (resdis.data.results.errormess == "购买成功") {
+                server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/BargainNew.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid, uid: rd_session },function (resc) {
       if (resc.data.errormess == '砍价成功') {
         self.setData({
           bargain: resc.data.bargain,
@@ -78,6 +80,7 @@ Page({
             products: res.data.products,
             user: res.data.user
           });
+          self.Canvas();
           server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlistbar.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid, userid: rd_session },function (resc) {
             self.setData({
               detailsList: resc.data.pro_wapcon,
@@ -96,6 +99,21 @@ Page({
       })
       }
     });
+
+            }
+            else {
+              self.setData({
+                        hiddenLoading: true
+                    });   
+                wx.showModal({
+                    title: '温馨提示',
+                    content: resdis.data.results.errormess,
+                    showCancel: false
+                });
+            }
+        });
+
+
   },
   toIndex:function(){
     wx.redirectTo({ url: '/page/sqtg/sqtg_index'});
@@ -103,6 +121,49 @@ Page({
   // 跳转到自己的砍价
   toMyBargain:function(e){
     wx.redirectTo({ url: '/page/sqtg/bargain?scene='+this.data.products[0].id});
+  },
+  Canvas:function(){
+    let barpri = parseFloat(this.data.products[0].nowprice);
+    let oldpri = parseFloat(this.data.products[0].remarket);
+    let alc = (oldpri - barpri) / oldpri;
+    let alcLeft = null;
+    let alcRight = null;
+    alcRight = barpri / oldpri * 100;
+    if( (alc * 100 - 8) > 80 ){
+      alcLeft = 80;
+    }else if( (alc * 100 - 8) <= 0){
+      alcLeft = 0;
+    }else{
+      alcLeft = alc * 100 - 8;
+    }
+    //console.log(alcLeft,alcRight);
+    this.setData({
+      alcLeft: alcLeft,
+      alcRight: alcRight
+    });
+    //console.log(barpri, oldpri, alc, alcLeft);
+
+    // var ctx = wx.createCanvasContext('canvas');
+
+    // ctx.beginPath()
+    // ctx.setStrokeStyle('#dddddd')
+    // ctx.setLineCap('round')
+    // ctx.setLineWidth(20)
+    // ctx.moveTo(10, 50)
+    // ctx.lineTo(330, 50)
+    // ctx.stroke()
+    // ctx.closePath();
+
+    // ctx.beginPath()
+    // ctx.setStrokeStyle('#ff7800')
+    // ctx.setLineCap('round')
+    // ctx.setLineWidth(20)
+    // ctx.moveTo(10, 50)
+    // ctx.lineTo(alc*330, 50)
+    // ctx.stroke()
+    // ctx.closePath();
+
+    // ctx.draw();
   },
   /**
    * 生命周期函数--监听页面加载
@@ -165,6 +226,8 @@ Page({
               hiddenLoading: true,
               proScen: res.data.sqtgbountyid
             });
+            // 调用canvas
+          self.Canvas();
           //console.log(self.data.products,res.data.user);
     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDataUserlistbar.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid, userid: rd_session },function (resc) {
                  //console.log(resc);  

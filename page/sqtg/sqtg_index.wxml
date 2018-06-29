@@ -167,7 +167,7 @@
       <view class='kj_product_list sale_product {{disabledBtn == true ? "time_end" : "" }}'>
         <view class='item' wx:for='{{barProduct}}' wx:key='{{index}}'>
 
-          <button class='item_box {{item.stock_num == 0 ? "skill_over" : "" }}' formType="submit" data-id="{{item.id}}" bindtap="tapbarnav">
+          <button class='item_box {{item.stock_num == 0 || item.status == 2 ? "seconds_mail" : "" }}' formType="submit" data-status='{{item.status}}' data-id="{{item.id}}" bindtap="tapbarnav">
             <view class='item_img_box'>
               <image class="item_img" src="{{item.pro_bigpic}}" mode="widthFix"/>
             </view>
@@ -194,7 +194,8 @@
                 </text>
               </view>
               <view>
-                <button class='skill_btn btn' formType="submit" data-id="{{item.id}}">去砍价</button>
+                <button class='skill_btn btn' wx:if='{{item.status != 0}}'  formType="submit" data-id="{{item.id}}">去砍价</button>
+                <button size='mini' wx:if='{{item.status == 0}}' class='bargain_btn btn will_btn'>{{item.pro_show}}销售</button>
               </view>
             </view>
 
@@ -416,6 +417,7 @@
 
   </view>
   </form>
+
   <!--mask-->
   <view class='max' hidden="{{hiddenLoading}}">
     <loading hidden="{{hiddenLoading}}">正在加载</loading>

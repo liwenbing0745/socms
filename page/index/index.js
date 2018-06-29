@@ -5,9 +5,10 @@ Page({
    longitude: 113.324520,
    latitude: 23.099994,
    hiddenLoading: false,
+   isGetInfo: false,
    markers: []
-}
-,onLoad: function (options) {
+},
+onLoad: function (options) {
 
  
 },
@@ -17,6 +18,26 @@ Page({
         wx.redirectTo({
           url: '/page/sqtg/sqtg_index?scene='+e.markerId,
         });
+  },
+  onGotUserInfo: function(e) {
+    var self = this;
+    this.setData({
+      isGetInfo: true
+    });
+    wx.login({
+        success: function (rescode) {
+            server.getJSON('https://xcx.so50.com/Pages/Ajaxwx/UserLoginUser.ashx', { code: rescode.code, rawData: e.detail.rawData, encryptedData: e.detail.encryptedData, iv: e.detail.iv, signature: e.detail.signature }, function (ures) {
+                // //console.log('wx.login',ures);
+                wx.setStorageSync('rd_session', ures.data.results[0].id);
+                wx.setStorageSync('Invitecode', ures.data.results[0].Invitecode);
+                if (ures.data.results[0].ssshuqup != "0" || ures.data.results[0].sqtgaudit == "2") {
+                    wx.redirectTo({ url: '/page/sqtg/sqtg_index' });
+                }
+            });
+
+        }
+    });
+
   },
      onReady: function () {
        var self = this;

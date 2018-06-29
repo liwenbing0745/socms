@@ -102,7 +102,9 @@ Page({
   showBargain:function(){
     var self = this;
    var rd_session = wx.getStorageSync('rd_session');
-    server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/BargainNew.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid, uid: rd_session },function (resc) {
+     server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/resdisBargainNew.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid,userid: rd_session }, function (resdis) {
+            if (resdis.data.results.errormess == "购买成功") {
+                server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/BargainNew.ashx', { sqtgbountyid: self.data.sqtgbountyid,bargain_infoid: self.data.bargain_infoid, uid: rd_session },function (resc) {
       
                     if (resc.data.errormess == '砍价成功') {
                     self.setData({
@@ -138,6 +140,21 @@ Page({
           })
             }
                 });
+  
+            }
+            else {
+              self.setData({
+                        hiddenLoading: true
+                    });   
+                wx.showModal({
+                    title: '温馨提示',
+                    content: resdis.data.results.errormess,
+                    showCancel: false
+                });
+            }
+        });
+
+
     },
   backIndex:function(){
     wx.redirectTo({ url: '/page/sqtg/sqtg_index'});
@@ -155,7 +172,7 @@ Page({
     }
     else {
       server.getJSON('https://xcx.so50.com/Pages/ajaxsqtg/GetsqtgDecDatabar.ashx', { sqtgbountyid: sqtgbountyid,bargain_infoid: bargain_infoid, userid: rd_session }, function (res) {
-        console.log(res.data.products[0]); 
+        //console.log(res.data.products[0]); 
       var totalSecond = res.data.products[0].bulk_endtime;
 
         var interval = setInterval(function () {
